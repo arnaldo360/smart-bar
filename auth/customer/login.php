@@ -35,15 +35,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = trim($_POST["password"]);
     }
 
-    $sql = "SELECT usersId, usersName, usersPassword, usersFkey, usersRole FROM users WHERE usersName = ? AND usersRole = ?";
+    $sql = "SELECT customerID, customerEmail, customerPassword, BarId FROM customer = WHERE customerEmail = ? ";
 
     if ($statement = $mysqli->prepare($sql)) {
         //bind variables
-        $statement->bind_param("si", $param_username, $param_userRole);
+        $statement->bind_param("s", $param_username, $param_userRole);
 
         //set parameter
         $param_username = $username;
-        $param_userRole = 3;
 
         if ($statement->execute()) {
 
@@ -54,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($statement->num_rows == 1) {
 
                 // Bind result variables
-                $statement->bind_result($userID, $username, $hashed_password, $fkID, $usersRole);
+                $statement->bind_result($userID, $username, $hashed_password, $usersBar);
 
                 if ($statement->fetch()) {
 
@@ -64,11 +63,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         session_start();
 
                         // Store data in session variables
-                        $_SESSION["loggedin"] = true;
-                        $_SESSION["id"]       = $userID;
-                        $_SESSION["username"] = $username;
-                        $_SESSION["customer"] = $fkID;
-                        $_SESSION["role"] = $userRole;
+                        $_SESSION["loggedin"]       = true;
+                        $_SESSION["id"]             = $userID;
+                        $_SESSION["username"]       = $username;
+                        $_SESSION["barId"]          = $usersBar;
 
                         header("Location: ../../pages/dashboard.php");
                     } else {
@@ -130,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 
-    <main>
+    <main style="background-image: url('../../assets/img/bg_4.jpg');">
         <div class="container">
 
             <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
@@ -138,16 +136,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="row justify-content-center">
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
-                            <div class="d-flex justify-content-center py-4">
-                                <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                    <img src="../../assets/img/logo.png" alt="">
-                                    <span class="d-none d-lg-block">Smart-Bar</span>
-                                </a>
-                            </div><!-- End Logo -->
-
                             <div class="card mb-3">
 
                                 <div class="card-body">
+                                    <div class="d-flex justify-content-center py-4">
+                                        <a href="index.html" class="logo d-flex align-items-center w-auto">
+                                            <img src="../../assets/img/logo.png" alt="">
+                                            <span class="d-none d-lg-block">Smart-Bar</span>
+                                        </a>
+                                    </div><!-- End Logo -->
 
                                     <div class="pt-4 pb-2">
                                         <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>

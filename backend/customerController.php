@@ -9,7 +9,7 @@ if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
     $username = $_SESSION["username"];
 
     // Prepare a select statement
-    $sql = "SELECT * from customers WHERE customersEmail= ?";
+    $sql = "SELECT * from customer WHERE customerEmail= ?";
 
     if ($statement = $mysqli->prepare($sql)) {
         // Bind variables to the prepared statement as parameters
@@ -27,17 +27,13 @@ if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
                 $row = $result->fetch_array(MYSQLI_ASSOC);
 
                 // Retrieve customer field values
-                $customerId             = $row['customersId'];
-                $customersFirstName     = $row['customersFirstName'];
-                $customersLastName      = $row['customersLastName'];
-                $customersEmail         = $row['customersEmail'];
-                $customersGender        = $row['customersGender'];
-                $customersMobile        = $row['customersContact'];
-                $customersStatus        = $row['customersStatus'];
-                $customersRegion        = $row['customersRegion'];
-                $customersDistrict      = $row['customersDistrict'];
-                $customersWard          = $row['customersWard'];
-
+                $customerId             = $row['customerId'];
+                $customerFullName       = $row['customerFullName'];
+                $customerEmail          = $row['customerEmail'];
+                $customerGender         = $row['customerGender'];
+                $customerMobile         = $row['customerContact'];
+                $customerStatus         = $row['customerStatus'];
+                
             } else {
                 echo "Customer dont exist";
             }

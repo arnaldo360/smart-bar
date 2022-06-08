@@ -1,11 +1,11 @@
  <?php
     include('../auth/authentication.php');
-    include("../backend/adminController.php");
+    // include("../backend/adminController.php");
     include("../backend/customerController.php");
 
-    global $role;
-    global $username;
-    global $user_id;
+    // global $role;
+    // global $username;
+    // global $user_id;
 
     ?>
 
