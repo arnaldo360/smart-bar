@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2022 at 01:53 AM
+-- Generation Time: Jun 08, 2022 at 05:42 PM
 -- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `online_bar`
+-- Database: `smart_bar`
 --
 
 -- --------------------------------------------------------
@@ -36,6 +36,13 @@ CREATE TABLE `bar` (
   `barEmail` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `bar`
+--
+
+INSERT INTO `bar` (`barId`, `barName`, `brellaNumber`, `barContact`, `barPysicallAdd`, `barEmail`) VALUES
+(1, 'Kidimbwi', '121222', '0755869646', 'Tegeta', 'kidimbwi2gmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -49,8 +56,19 @@ CREATE TABLE `customer` (
   `customerEmail` varchar(45) DEFAULT NULL,
   `customerContact` varchar(45) DEFAULT NULL,
   `customerPhysicalAdd` varchar(45) DEFAULT NULL,
-  `BarId` int(11) DEFAULT NULL
+  `customerPassword` varchar(255) NOT NULL,
+  `customerStatus` varchar(45) DEFAULT 'ACTIVE',
+  `BarId` int(11) DEFAULT NULL,
+  `createdAt` datetime DEFAULT current_timestamp(),
+  `userRole` int(11) DEFAULT 3
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`customerID`, `customerFullName`, `customerGender`, `customerEmail`, `customerContact`, `customerPhysicalAdd`, `customerPassword`, `customerStatus`, `BarId`, `createdAt`, `userRole`) VALUES
+(1, 'Georgina Lwoga', 'Female', 'lee@gmail.com', '0785414121', NULL, '$2y$10$duJblBfsVgXt5SVMGy4GpO/iDuwu53UggxAGgD4FkbqZraT3juAVO', 'ACTIVE', NULL, '0000-00-00 00:00:00', 3);
 
 -- --------------------------------------------------------
 
@@ -62,13 +80,24 @@ CREATE TABLE `employee` (
   `employeeID` int(11) NOT NULL,
   `employeeFullName` varchar(45) DEFAULT NULL,
   `employeeEmail` varchar(45) DEFAULT NULL,
+  `employeePassword` varchar(255) DEFAULT NULL,
   `employeeContact` varchar(45) DEFAULT NULL,
-  `employeeGende` varchar(45) DEFAULT NULL,
+  `employeeGender` varchar(45) DEFAULT NULL,
   `employeeTitle` varchar(45) DEFAULT NULL,
   `employeeDoB` varchar(45) DEFAULT NULL,
   `employeePhysicalAdd` varchar(45) DEFAULT NULL,
-  `employeeBar` int(11) DEFAULT NULL
+  `employeeBar` int(11) DEFAULT NULL,
+  `employeeStatus` varchar(45) DEFAULT 'ACTIVE',
+  `createdAt` datetime DEFAULT current_timestamp(),
+  `userRole` int(11) DEFAULT 2
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`employeeID`, `employeeFullName`, `employeeEmail`, `employeePassword`, `employeeContact`, `employeeGender`, `employeeTitle`, `employeeDoB`, `employeePhysicalAdd`, `employeeBar`, `employeeStatus`, `createdAt`, `userRole`) VALUES
+(1, 'James Weinand', 'james@gmail.com', '$2y$10$TWLWWm0HdaoWuVqkLh91Ze1cIxb.QMzY5x14v4HfV.lMdM1PEEsUy', '0714565656', 'male', NULL, NULL, NULL, 1, 'ACTIVE', '2022-06-08 15:17:47', 2);
 
 -- --------------------------------------------------------
 
@@ -149,19 +178,19 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `bar`
 --
 ALTER TABLE `bar`
-  MODIFY `barId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `barId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customerID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `customerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `employeeID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `employeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `order`
