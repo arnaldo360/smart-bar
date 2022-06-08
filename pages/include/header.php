@@ -18,11 +18,11 @@
                      <img src="../assets/img/undraw_profile_pic.png" alt="Profile" class="rounded-circle">
                      <span class="d-none d-md-block dropdown-toggle ps-2">
                          <?php if ($role == 1) {
-                                echo $adminFirstName;
+                                echo $adminFullName;
                             } elseif ($role == 2) {
-                                echo $customersFirstName;
-                            } else {
-                                echo $customersFirstName;
+                                echo $employeeFullName;
+                            } elseif ($role == 3) {
+                                echo $customerFullName;
                             }
                             ?>
 
@@ -35,11 +35,11 @@
                          <h6>
                              <?php
                                 if ($role == 1) {
-                                    echo $adminFirstName . " " . $adminLastName;
+                                    echo $adminFullName;
                                 } elseif ($role == 2) {
-                                    echo $customersFirstName . " " . $customersLastName;
-                                } else {
-                                    echo $customersFirstName . " " . $customersLastName;
+                                    echo $employeeFullName;
+                                } elseif ($role == 3)  {
+                                    echo $customerFullName;
                                 }
                                 ?>
                          </h6>
@@ -49,7 +49,7 @@
                                     echo 'Administrator';
                                 } elseif ($role == 2) {
                                     echo 'Employee';
-                                } else {
+                                } elseif ($role == 3)  {
                                     echo 'Customer';
                                 }
                                 ?>

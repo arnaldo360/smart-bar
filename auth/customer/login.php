@@ -35,11 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = trim($_POST["password"]);
     }
 
-    $sql = "SELECT customerID, customerEmail, customerPassword, BarId FROM customer = WHERE customerEmail = ? ";
+    $sql = " SELECT customerID, customerEmail, customerPassword, BarId, userRole FROM customer WHERE customerEmail = ? ";
 
     if ($statement = $mysqli->prepare($sql)) {
         //bind variables
-        $statement->bind_param("s", $param_username, $param_userRole);
+        $statement->bind_param("s", $param_username);
 
         //set parameter
         $param_username = $username;
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($statement->num_rows == 1) {
 
                 // Bind result variables
-                $statement->bind_result($userID, $username, $hashed_password, $usersBar);
+                $statement->bind_result($userID, $username, $hashed_password, $usersBar, $userRole);
 
                 if ($statement->fetch()) {
 
@@ -67,6 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION["id"]             = $userID;
                         $_SESSION["username"]       = $username;
                         $_SESSION["barId"]          = $usersBar;
+                        $_SESSION["userRole"]       = $userRole;
 
                         header("Location: ../../pages/dashboard.php");
                     } else {

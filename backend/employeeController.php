@@ -9,7 +9,7 @@ if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
     $username = $_SESSION["username"];
 
     // Prepare a select statement
-    $sql = "SELECT * from customer WHERE customerEmail= ?";
+    $sql = "SELECT * from employee WHERE employeeEmail= ?";
 
     if ($statement = $mysqli->prepare($sql)) {
         // Bind variables to the prepared statement as parameters
@@ -26,16 +26,16 @@ if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
                 /* Fetch result row as an associative array. Since the result set contains only one row, we don't need to use while loop */
                 $row = $result->fetch_array(MYSQLI_ASSOC);
 
-                // Retrieve customer field values
-                $customerId             = $row['customerID'];
-                $customerFullName       = $row['customerFullName'];
-                $customerEmail          = $row['customerEmail'];
-                $customerGender         = $row['customerGender'];
-                $customerMobile         = $row['customerContact'];
-                $customerStatus         = $row['customerStatus'];
+                // Retrieve employee field values
+                $employeeId             = $row['employeeID'];
+                $employeeFullName       = $row['employeeFullName'];
+                $employeeEmail          = $row['employeeEmail'];
+                $employeeGender         = $row['employeeGender'];
+                $employeeMobile         = $row['employeeContact'];
+                $employeeStatus         = $row['employeeStatus'];
 
             } else {
-                echo "Customer dont exist";
+                echo "employee dont exist";
             }
 
         } else {
@@ -50,4 +50,3 @@ if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
     }
 
 }
-?>

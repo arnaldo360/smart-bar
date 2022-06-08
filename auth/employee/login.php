@@ -35,15 +35,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = trim($_POST["password"]);
     }
 
-    $sql = "SELECT usersId, usersName, usersPassword, usersFkey, usersRole FROM users WHERE usersName = ? AND usersRole = ?";
+    $sql = "SELECT employeeID, employeeEmail, employeePassword, employeeBar, userRole FROM employee WHERE employeeEmail = ? ";
 
     if ($statement = $mysqli->prepare($sql)) {
         //bind variables
-        $statement->bind_param("si", $param_username, $param_userRole);
+        $statement->bind_param("s", $param_username);
 
         //set parameter
         $param_username = $username;
-        $param_userRole = 3;
 
         if ($statement->execute()) {
 
@@ -54,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($statement->num_rows == 1) {
 
                 // Bind result variables
-                $statement->bind_result($userID, $username, $hashed_password, $fkID, $usersRole);
+                $statement->bind_result($userID, $username, $hashed_password, $employeeBar, $userRole);
 
                 if ($statement->fetch()) {
 
@@ -64,11 +63,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         session_start();
 
                         // Store data in session variables
-                        $_SESSION["loggedin"] = true;
-                        $_SESSION["id"]       = $userID;
-                        $_SESSION["username"] = $username;
-                        $_SESSION["customer"] = $fkID;
-                        $_SESSION["role"] = $userRole;
+                        $_SESSION["loggedin"]       = true;
+                        $_SESSION["id"]             = $userID;
+                        $_SESSION["username"]       = $username;
+                        $_SESSION["barID"]          = $employeeBar;
+                        $_SESSION["userRole"]           = $userRole;
 
                         header("Location: ../../pages/dashboard.php");
                     } else {
@@ -189,14 +188,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <div class="col-12">
                                             <button class="btn btn-primary w-100" type="submit">Login</button>
                                         </div>
+
+                                        <div class="col-12">
+                                            <p class="small mb-0">Don't have account? <a href="register.php">Create an account</a></p>
+                                        </div>
                                         <div class="col-12">
                                             <p class="small mb-0">Back To Home <a href="../../index.php">Back Home</a></p>
                                         </div>
                                         <div class="col-12">
                                             <p class="small mb-0">Forgot Password? <a href="../forgetPassword.php">Reset Password</a></p>
-                                        </div>
-                                        <div class="col-12">
-                                            <p class="small mb-0">Don't have account? <a href="register.php">Create an account</a></p>
                                         </div>
                                     </form>
 

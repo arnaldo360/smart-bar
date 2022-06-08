@@ -1,11 +1,12 @@
 <?php
 session_start();
 include_once('../database/dbConnect.php');
-if ((!isset($_SESSION['username']))&&(!isset($_SESSION['id']))&&(!isset($_SESSION['role']))) {
+if ((!isset($_SESSION['username']))&&(!isset($_SESSION['id']))&&(!isset($_SESSION['role'])) && (!isset($_SESSION['barID']))) {
 header("Location: ../../index.php"); 
 
 } else {
-	$role           = $_SESSION['role'];
+	$role           = $_SESSION['userRole'];
 	$username       = $_SESSION['username'];
 	$user_id        = $_SESSION['id'];
+	$barId			= $_SESSION['barID'];
 }

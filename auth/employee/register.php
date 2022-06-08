@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
 
         // Prepare a select statement
-        $sql = "SELECT `usersId` FROM `users` WHERE `usersName` = ?";
+        $sql = "SELECT employeeID FROM employee WHERE employeeEmail = ?";
 
         if ($stmt = $mysqli->prepare($sql)) {
 
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
 
         // Prepare an insert statement
-        $sql = "INSERT INTO customers (customersEmail, customersRef) VALUES (?, ?)";
+        $sql = "INSERT INTO employee (employeeEmail, employeePassword) VALUES (?, ?)";
 
         if ($stmt = $mysqli->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
@@ -195,14 +195,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <div class="col-12">
                                             <button class="btn btn-primary w-100" type="submit">Create Account</button>
                                         </div>
+
+                                        <div class="col-12">
+                                            <p class="small mb-0">Already have an account? <a href="login.php">Log in</a></p>
+                                        </div>
                                         <div class="col-12">
                                             <p class="small mb-0">Back To Home <a href="../../index.php">Back Home</a></p>
                                         </div>
                                         <div class="col-12">
                                             <p class="small mb-0">Forgot Password? <a href="../forgetPassword.php">Reset Password</a></p>
-                                        </div>
-                                        <div class="col-12">
-                                            <p class="small mb-0">Already have an account? <a href="login.php">Log in</a></p>
                                         </div>
                                     </form>
 
