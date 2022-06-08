@@ -199,7 +199,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <p class="small mb-0">Back To Home <a href="../../index.php">Back Home</a></p>
                                         </div>
                                         <div class="col-12">
-                                            <p class="small mb-0">Forgot Password? <a href="../forgetPassword.php">Reset Password</a></p>
+                                            <p class="small mb-0">Forgot Password? <a href="forgetPassword.php">Reset Password</a></p>
                                         </div>
                                         <div class="col-12">
                                             <p class="small mb-0">Already have an account? <a href="login.php">Log in</a></p>

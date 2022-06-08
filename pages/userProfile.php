@@ -1,11 +1,12 @@
  <?php
     include('../auth/authentication.php');
-    include("../backend/adminController.php");
+    include("../backend/employeeController.php");
     include("../backend/customerController.php");
 
     global $role;
     global $username;
     global $user_id;
+    global $barId;
 
     ?>
 
@@ -46,11 +47,11 @@
 
                          <img src="../assets/img/undraw_profile_pic.png" alt="Profile" class="rounded-circle">
                          <h2><?php if ($role == 1) {
-                                    echo $adminFirstName . " " . $adminLastName;
+                                    echo $adminFullName;
                                 } elseif ($role == 2) {
-                                    echo $customersFirstName . " " . $customersLastName;
-                                } else {
-                                    echo $customersFirstName . " " . $customersLastName;
+                                    echo $employeeFullName;
+                                } elseif ($role == 3) {
+                                    echo $customerFullName;
                                 }
                                 ?></h2>
                          <h3><?php
@@ -58,7 +59,7 @@
                                     echo 'Administrator';
                                 } elseif ($role == 2) {
                                     echo 'Employee';
-                                } else {
+                                } elseif ($role == 3) {
                                     echo 'Customer';
                                 }
                                 ?></h3>
@@ -102,11 +103,11 @@
                                      <div class="col-lg-3 col-md-4 label ">Full Name</div>
                                      <div class="col-lg-9 col-md-8">
                                          <?php if ($role == 1) {
-                                                echo $adminFirstName . " " . $adminLastName;
+                                                echo $adminFullName;
                                             } elseif ($role == 2) {
-                                                echo $customersFirstName . " " . $customersLastName;
-                                            } else {
-                                                echo $customersFirstName . " " . $customersLastName;
+                                                echo $employeeFullName;
+                                            } elseif ($role == 3) {
+                                                echo $customerFullName;
                                             }
                                             ?>
                                      </div>
@@ -118,9 +119,9 @@
                                          <?php if ($role == 1) {
                                                 echo $adminContact;
                                             } elseif ($role == 2) {
-                                                echo $customersContact;
-                                            } else {
-                                                echo $customersContact;
+                                                echo $employeeMobile;
+                                            } elseif ($role == 3) {
+                                                echo $customerMobile;
                                             }
                                             ?>
                                      </div>
@@ -132,9 +133,9 @@
                                          <?php if ($role == 1) {
                                                 echo $adminEmail;
                                             } elseif ($role == 2) {
-                                                echo $customersEmail;
-                                            } else {
-                                                echo $customersEmail;
+                                                echo $employeeEmail;
+                                            } elseif ($role == 3) {
+                                                echo $customerEmail;
                                             }
                                             ?>
                                      </div>
@@ -146,9 +147,9 @@
                                          <?php if ($role == 1) {
                                                 echo "";
                                             } elseif ($role == 2) {
-                                                echo $customersContact;
-                                            } else {
-                                                echo $customersContact;
+                                                echo $employeePhysicalAdd;
+                                            } elseif ($role == 3) {
+                                                echo $customerPhysicalAdd;
                                             }
                                             ?>
                                      </div>
@@ -164,28 +165,14 @@
                                  <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data" novalidate>
 
                                      <div class="row mb-3">
-                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">First Name</label>
+                                         <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                                          <div class="col-md-8 col-lg-9">
-                                             <input name="firstName" type="text" class="form-control" id="firstName" value="<?php if ($role == 1) {
-                                                                                                                                echo $adminFirstName;
+                                             <input name="fullName" type="text" class="form-control" id="fullName" value="<?php if ($role == 1) {
+                                                                                                                                echo $adminFullName;
                                                                                                                             } elseif ($role == 2) {
-                                                                                                                                echo $customersFirstName;
-                                                                                                                            } else {
-                                                                                                                                echo $customersFirstName;
-                                                                                                                            }
-                                                                                                                            ?>">
-                                         </div>
-                                     </div>
-
-                                     <div class="row mb-3">
-                                         <label for="lastName" class="col-md-4 col-lg-3 col-form-label">Last Name</label>
-                                         <div class="col-md-8 col-lg-9">
-                                             <input name="lastName" type="text" class="form-control" id="lastName" value="<?php if ($role == 1) {
-                                                                                                                                echo $adminLastName;
-                                                                                                                            } elseif ($role == 2) {
-                                                                                                                                echo $customersLastName;
-                                                                                                                            } else {
-                                                                                                                                echo $customersLastName;
+                                                                                                                                echo $employeeFullName;
+                                                                                                                            } elseif ($role == 3) {
+                                                                                                                                echo $customerFullName;
                                                                                                                             }
                                                                                                                             ?>">
                                          </div>
@@ -197,9 +184,9 @@
                                              <input name="phone" type="text" class="form-control" id="Phone" value="<?php if ($role == 1) {
                                                                                                                         echo $adminContact;
                                                                                                                     } elseif ($role == 2) {
-                                                                                                                        echo $customersContact;
-                                                                                                                    } else {
-                                                                                                                        echo $customersContact;
+                                                                                                                        echo $employeeMobile;
+                                                                                                                    } elseif ($role == 3) {
+                                                                                                                        echo $customerMobile;
                                                                                                                     }
                                                                                                                     ?>">
                                          </div>
@@ -211,9 +198,23 @@
                                              <input name="email" type="email" class="form-control" id="Email" value="<?php if ($role == 1) {
                                                                                                                             echo $adminEmail;
                                                                                                                         } elseif ($role == 2) {
-                                                                                                                            echo $customersEmail;
-                                                                                                                        } else {
-                                                                                                                            echo $customersEmail;
+                                                                                                                            echo $employeeEmail;
+                                                                                                                        } elseif ($role == 3) {
+                                                                                                                            echo $customerEmail;
+                                                                                                                        }
+                                                                                                                        ?>">
+                                         </div>
+                                     </div>
+
+                                     <div class="row mb-3">
+                                         <label for="address" class="col-md-4 col-lg-3 col-form-label">Address</label>
+                                         <div class="col-md-8 col-lg-9">
+                                             <input name="text" type="text" class="form-control" id="address" value="<?php if ($role == 1) {
+                                                                                                                            echo $adminPhysicalAdd;
+                                                                                                                        } elseif ($role == 2) {
+                                                                                                                            echo $employeePhysicalAdd;
+                                                                                                                        } elseif ($role == 3) {
+                                                                                                                            echo $customerPhysicalAdd;
                                                                                                                         }
                                                                                                                         ?>">
                                          </div>

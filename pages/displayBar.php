@@ -1,13 +1,15 @@
  <?php
     include('../auth/authentication.php');
-    include("../backend/adminController.php");
+    include_once("../backend/employeeController.php");
+    include_once("../backend/customerController.php");
 
     global $role;
     global $username;
     global $user_id;
+    global $barId;
 
     ?>
-<?php require_once("../backend/displayBarController.php"); ?>
+ <?php require_once("../backend/displayBarController.php"); ?>
  <?php include("include/title.php"); ?>
 
  <?php include("include/header.php"); ?>
@@ -79,7 +81,7 @@
                              </div>
                              <div class="col-md-4">
                                  <div class="form-floating mb-3">
-                                     <input type="text" class="form-control" id="floatingReg" placeholder="Region"  value="<?php echo $barDistrict;  ?>" disabled>
+                                     <input type="text" class="form-control" id="floatingReg" placeholder="Region" value="<?php echo $barDistrict;  ?>" disabled>
                                      <label for="floatingReg">Region</label>
                                  </div>
                              </div>

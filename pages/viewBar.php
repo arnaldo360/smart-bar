@@ -1,11 +1,12 @@
  <?php
     include('../auth/authentication.php');
-    include("../backend/adminController.php");
-    include("../backend/customerController.php");
+    include_once("../backend/employeeController.php");
+    include_once("../backend/customerController.php");
 
     global $role;
     global $username;
     global $user_id;
+    global $barId;
 
     ?>
 
@@ -77,7 +78,7 @@
                                  <td>" . $row["barOwner"] . "</td>
                                  <td>" . $row["barStatus"] . "</td>
                                  <td>
-                                     <a href='../backend/diplayBarController.php?id=". $row["barId"] ."'><button type='button' class='btn btn-info' id='$count'><i class='bi bi-eye'></i></button></a>
+                                     <a href='../backend/diplayBarController.php?id=" . $row["barId"] . "'><button type='button' class='btn btn-info' id='$count'><i class='bi bi-eye'></i></button></a>
                                      <a href=''><button type='button' class='btn btn-success' id='$count'><i class='bi bi-pencil'></i></button></a>
                                      <a href=''><button type='button' class='btn btn-danger' id='$count'><i class='bi bi-trash'></i></button></a>
                                  </td>

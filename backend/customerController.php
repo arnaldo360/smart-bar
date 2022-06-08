@@ -32,6 +32,7 @@ if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
                 $customerEmail          = $row['customerEmail'];
                 $customerGender         = $row['customerGender'];
                 $customerMobile         = $row['customerContact'];
+                $customerPhysicalAdd    = $row['customerPhysicalAdd'];
                 $customerStatus         = $row['customerStatus'];
 
             } else {
