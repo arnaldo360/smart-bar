@@ -2,6 +2,7 @@
     include('../auth/authentication.php');
     include_once("../backend/employeeController.php");
     include_once("../backend/customerController.php");
+    include_once("../backend/managerController.php");
 
     global $role;
     global $username;

@@ -8,5 +8,5 @@ header("Location: ../../index.php");
 	$role           = $_SESSION['userRole'];
 	$username       = $_SESSION['username'];
 	$user_id        = $_SESSION['id'];
-	$barId			= $_SESSION['barId'];
+	$barId			= $_SESSION['barID'];
 }

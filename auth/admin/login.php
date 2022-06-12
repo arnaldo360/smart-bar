@@ -1,7 +1,7 @@
 <?php
 
 // require once config file
-require_once "../database/dbConnect.php";
+require_once "../../database/dbConnect.php";
 
 // declare a variable and initialize an array
 $login_errors = array();
@@ -13,15 +13,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username    = trim($_POST["username"]);
     $password    = trim($_POST["password"]);
 
-    $sql = "SELECT usersId, usersName, usersPassword, usersFkey, usersRole FROM users WHERE usersName = ? AND usersRole = ?";
+    $sql = "SELECT superAdminId, superAdminEmail, superAdminPassword FROM  superadmin WHERE superAdminEmail = ? ";
 
     if ($statement = $mysqli->prepare($sql)) {
         //bind variables
-        $statement->bind_param("si", $param_username, $param_userRole);
+        $statement->bind_param("s", $param_username);
 
         //set parameter
         $param_username = $username;
-        $param_userRole = 1;
 
         if ($statement->execute()) {
 
@@ -32,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($statement->num_rows == 1) {
 
                 // Bind result variables
-                $statement->bind_result($userID, $username, $hashed_password, $fkID, $userRole);
+                $statement->bind_result($userID, $username, $hashed_password);
 
                 if ($statement->fetch()) {
 
@@ -45,10 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION["loggedin"] = true;
                         $_SESSION["id"]       = $userID;
                         $_SESSION["username"] = $username;
-                        $_SESSION["admin"] = $fkID;
-                        $_SESSION["role"] = $userRole;
 
-                        header("Location: ../pages/dashboard.php");
+                        header("Location: pages/dashboard.php");
                     } else {
                         array_push($login_errors, "Invalid Password");
                     }
@@ -86,30 +83,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="../assets/img/favicon.png" rel="icon">
-    <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="../../assets/img/favicon.png" rel="icon">
+    <link href="../../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="../assets/vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="../assets/vendor/simple-datatables/style.css" rel="stylesheet">
+    <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="../../assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="../../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="../../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="../../assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../../assets/css/style.css" rel="stylesheet">
 
 </head>
 
 <body>
 
-    <main style="background-image: url('../assets/img/bg_4.jpg');">
+    <main style="background-image: url('../../assets/img/bg_4.jpg');">
         <div class=" container">
 
             <section class=" section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
@@ -119,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             <div class="d-flex justify-content-center py-4">
                                 <a href="#" class="logo d-flex align-items-center w-auto">
-                                    <img src="../assets/img/logo.png" alt="">
+                                    <img src="../../assets/img/logo.png" alt="">
                                     <span class="d-none d-lg-block" style="color: wheat;">Smart-Bar</span>
                                 </a>
                             </div><!-- End Logo -->
@@ -159,12 +156,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <span class="invalid-feedback"><?php echo $password_err; ?></span>
                                         </div>
 
-                                        <div class="col-12">
+                                        <div class="col-6">
                                             <button class="btn btn-primary w-100" type="submit">Login</button>
                                         </div>
 
-                                        <div class="col-12">
-                                            <p class="small mb-0">Back To Home <a href="../index.php">Back Home</a></p>
+                                        <div class="col-6">
+                                            <a href="../../index.php"><button class="btn btn-danger w-100" type="button">Cancle</button></a>
                                         </div>
                                     </form>
 
@@ -183,14 +180,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="../assets/vendor/apexcharts/apexcharts.min.js"></script>
-    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/vendor/chart.js/chart.min.js"></script>
-    <script src="../assets/vendor/echarts/echarts.min.js"></script>
-    <script src="../assets/vendor/quill/quill.min.js"></script>
-    <script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="../assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="../assets/vendor/php-email-form/validate.js"></script>
+    <script src="../../assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/vendor/chart.js/chart.min.js"></script>
+    <script src="../../assets/vendor/echarts/echarts.min.js"></script>
+    <script src="../../assets/vendor/quill/quill.min.js"></script>
+    <script src="../../assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="../../assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="../../assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
     <script src="../assets/js/main.js"></script>

@@ -1,12 +1,9 @@
  <?php
-    include('../auth/authentication.php');
-    include_once("../backend/employeeController.php");
-    include_once("../backend/customerController.php");
+    include('../backend/authentication.php');
+    include_once("../backend/adminController.php");
 
-    global $role;
     global $username;
     global $user_id;
-    global $barId;
 
     ?>
 

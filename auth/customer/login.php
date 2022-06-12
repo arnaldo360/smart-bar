@@ -183,12 +183,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 <label class="form-check-label" for="rememberMe">Remember me</label>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-6">
                                             <button class="btn btn-primary w-100" type="submit">Login</button>
                                         </div>
-                                        <div class="col-12">
-                                            <p class="small mb-0">Back To Home <a href="../../index.php">Back Home</a></p>
+                                        <div class="col-6">
+                                            <a href="../../index.php"><button class="btn btn-danger w-100" type="button">Cancle</button></a>
                                         </div>
+                                        
                                         <div class="col-12">
                                             <p class="small mb-0">Forgot Password? <a href="forgetPassword.php">Reset Password</a></p>
                                         </div>

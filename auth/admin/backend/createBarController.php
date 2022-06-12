@@ -1,10 +1,10 @@
 <?php
 
 // require once database connection file
-require_once("../database/dbConnect.php");
+require_once("../../../database/dbConnect.php");
 
 // declare form field variables and initialize null
-$barName = $breallaNum = $barOwner = $barEmail = $barContact = $num_employees = $num_of_branches = $barRegion = $barDistrict = $barWard = null;
+$barName = $breallaNum = $barOwner = $barEmail = $barContact = $num_employees = $address = null;
 
 // declare variable and initialize array
 $general_errors = $qp_errors = array();
@@ -53,56 +53,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $num_employees = trim($_POST["num_employees"]);
   }
 
-  // num_of_branches validation
-  if (empty(trim($_POST["num_of_branches"]))) {
-    array_push($qp_errors, "Number of branches is required");
+  // Physical address validation
+  if (empty(trim($_POST["address"]))) {
+    array_push($general_errors, "Physical Address is required");
   } else {
-    $num_of_branches = trim($_POST["num_of_branches"]);
+    $address = trim($_POST["address"]);
   }
 
-  // bar region validation
-  if (empty(trim($_POST["barRegion"]))) {
-    array_push($qp_errors, "Bar Region is required");
-  } else {
-    $barRegion = trim($_POST["barRegion"]);
-  }
-
-  // bar district validation
-  if (empty(trim($_POST["barDistrict"]))) {
-    array_push($qp_errors, "Bar District is required");
-  } else {
-    $barDistrict = trim($_POST["barDistrict"]);
-  }
-
-  // bar ward validation
-  if (empty(trim($_POST["barWard"]))) {
-    array_push($qp_errors, "Bar Ward is required");
-  } else {
-    $barWard = trim($_POST["barWard"]);
-  }
+  
 
   // check errors before inserting bar into database
   if (count($general_errors) == count($qp_errors)) {
 
     // prepare an insert statement
-    $barSql = "INSERT INTO `bar`(`barName`, `brellaNumber`, `barOwner`, `barContact`, `barEmail`, `employeeNumber`, `barBranches`, `barRegion`, `barDistrict`, `barWard`)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $barSql = "INSERT INTO bar (`barName`, `brellaNumber`, `barOwner`, `barContact`, `barEmail`, `numberOfEmployees`, `barPhysicalAddress`)
+    VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     if ($statement = $mysqli->prepare($barSql)) {
       // bind variables
-      $statement->bind_param("sisisiiiii", $param_barName, $param_brellaNum, $param_barOwner, $param_barContact, $param_barEmail, $param_num_employees, $param_num_of_branches, $param_barRegion, $param_barDistrict, $param_barWard);
+      $statement->bind_param("sssssis", $param_barName, $param_brellaNum, $param_barOwner, $param_barContact, $param_barEmail, $param_num_employees, $param_address);
 
       // set parameter
       $param_barName            = $barName;
       $param_brellaNum          = $brellaNum;
       $param_barOwner           = $barOwner;
       $param_barEmail           = $barEmail;
-      $param_barContact         = "(+255)" . $barContact;
+      $param_barContact         = $barContact;
       $param_num_employees      = $num_employees;
-      $param_num_of_branches    = $num_of_branches;
-      $param_barRegion          = $barRegion;
-      $param_barDistrict        = $barDistrict;
-      $param_barWard            = $barWard;
+      $param_address            = $address;
 
       if ($statement->execute()) {
 

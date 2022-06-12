@@ -18,7 +18,7 @@
                      <img src="../assets/img/undraw_profile_pic.png" alt="Profile" class="rounded-circle">
                      <span class="d-none d-md-block dropdown-toggle ps-2">
                          <?php if ($role == 1) {
-                                echo $adminFullName;
+                                echo $managerFullName;
                             } elseif ($role == 2) {
                                 echo $employeeFullName;
                             } elseif ($role == 3) {
@@ -35,7 +35,7 @@
                          <h6>
                              <?php
                                 if ($role == 1) {
-                                    echo $adminFullName;
+                                    echo $managerFullName;
                                 } elseif ($role == 2) {
                                     echo $employeeFullName;
                                 } elseif ($role == 3)  {
@@ -46,7 +46,7 @@
                          <span>
                              <?php
                                 if ($role == 1) {
-                                    echo 'Administrator';
+                                    echo 'Manager';
                                 } elseif ($role == 2) {
                                     echo 'Employee';
                                 } elseif ($role == 3)  {

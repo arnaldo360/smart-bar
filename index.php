@@ -44,8 +44,8 @@
       <div class="languages d-none d-md-flex align-items-center">
 
         <ul>
-          <li><a href="auth/customer/login.php">Customer Login</a></li>
-          <li><a href="auth/employee/login.php">Employee Login</a></li>
+          <li><a href="auth/customer/login.php">Login</a></li>
+          <li><a href="auth/customer/register.php">SignUp</a></li>
         </ul>
       </div>
     </div>
@@ -64,10 +64,17 @@
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li class="dropdown"><a href="#"><span>Staff</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="auth/employee/login.php">Employee</a></li>
+              <li><a href="auth/manager/login.php">Manager</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="auth/admin/login.php">Admin</a></li>
         </ul>
         <i class=" bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-      <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">RESERVATION</a>
+      <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Create Order</a>
 
     </div>
   </header><!-- End Header -->

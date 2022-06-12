@@ -19,11 +19,11 @@
  <main id="main" class="main">
 
      <div class="pagetitle">
-         <h1>Payments</h1>
+         <h1>Feedback</h1>
          <nav>
              <ol class="breadcrumb">
                  <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-                 <li class="breadcrumb-item active">View Payments</li>
+                 <li class="breadcrumb-item active">View Feedback</li>
              </ol>
          </nav>
      </div><!-- End Page Title -->
@@ -34,25 +34,25 @@
              <div class="card recent-sales overflow-auto">
 
                  <div class="card-body">
-                     <h5 class="card-title">View Payments</h5>
+                     <h5 class="card-title">View Feedback</h5>
 
                      <table class="table table-borderless datatable">
                          <thead>
                              <tr>
                                  <th scope="col">#</th>
-                                 <th scope="col">Title</th>
-                                 <th scope="col">OrderID</th>
-                                 <th scope="col">Price</th>
+                                 <th scope="col">Username</th>
+                                 <th scope="col">Email</th>
+                                 <th scope="col">Subject</th>
                                  <th scope="col">Status</th>
                                  <th scope="col">Action</th>
                              </tr>
                          </thead>
                          <tbody>
                              <tr>
-                                 <th scope="row"><a href="#">#2457</a></th>
-                                 <td>Vodacom</td>
-                                 <td>12</td>
-                                 <td>Tsh 100,000/=</td>
+                                 <th scope="row"><a href="#">1</a></th>
+                                 <td>Brandon Jacob</td>
+                                 <td>jacob@gmail.com</td>
+                                 <td>Happyness</td>
                                  <td><span class="badge bg-success">Approved</span></td>
                                  <td>
                                      <button type="button" class="btn btn-info"><i class="bi bi-eye"></i></button>

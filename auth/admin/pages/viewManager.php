@@ -16,12 +16,12 @@
  <main id="main" class="main">
 
      <div class="pagetitle">
-         <h1>Bar</h1>
+         <h1>Users</h1>
          <nav>
              <ol class="breadcrumb">
                  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                 <li class="breadcrumb-item">Bar</li>
-                 <li class="breadcrumb-item active">View Bar</li>
+                 <li class="breadcrumb-item">Users</li>
+                 <li class="breadcrumb-item active">View Manager</li>
              </ol>
          </nav>
      </div><!-- End Page Title -->
@@ -33,7 +33,7 @@
                  <?php if ($_GET["redirect"] == "success") : ?>
                      <div class="alert alert-info alert-dismissible fade show" role="alert">
                          <i class="bi bi-check-circle me-1"></i>
-                         Bar Added succesfully!
+                         Bar Manager Added succesfully!
                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                      </div>
                  <?php endif; ?>
@@ -42,12 +42,12 @@
 
                  <div class="card-body">
 
-                     <h5 class="card-title">View Bar</h5>
+                     <h5 class="card-title">View Bar Managers</h5>
 
                      <?php
                         require_once("../../../database/dbConnect.php");
 
-                        $sql = "SELECT * FROM bar";
+                        $sql = "SELECT * FROM manager JOIN bar ON bar.barId = manager.managerBar";
 
                         $results = mysqli_query($mysqli, $sql);
 
@@ -56,8 +56,8 @@
                              <tr>
                                  <th scope='col'>#</th>
                                  <th scope='col'>Bar Name</th>
-                                 <th scope='col'>BrellaNum</th>
-                                 <th scope='col'>Bar Owner</th>
+                                 <th scope='col'>Manager Name</th>
+                                 <th scope='col'>Email</th>
                                  <th scope='col'>Status</th>
                                  <th scope='col'>Action</th>
                              </tr>
@@ -67,16 +67,16 @@
                         // output data of each row
                         $count = 1;
                         while ($row = mysqli_fetch_array($results)) {
-                            $barID = 'barID' . $count;
+                            $managerId = 'managerId' . $count;
                             echo "<tr>
                                 <td scope='row'>" . $count . "</td>
                                  <th>" . $row["barName"] . "</th>
-                                 <td>" . $row["brellaNumber"] . "</td>
-                                 <td>" . $row["barOwner"] . "</td>
+                                 <td>" . $row["managerFullName"] . "</td>
+                                 <td>" . $row["managerEmail"] . "</td>
                                  <td>";
-                            if ($row["barStatus"] == 'ACTIVE') {
+                            if ($row["managerStatus"] == 'ACTIVE') {
                                 echo "<span class='badge rounded-pill bg-success'>Active</span>";
-                            } elseif ($row["barStatus"] == 'DEACTIVATED') {
+                            } elseif ($row["managerStatus"] == 'DEACTIVATED') {
                                 echo "<span class='badge rounded-pill bg-danger'>Deactivated</span>";
                             } else {
                                 echo "<span class='badge rounded-pill bg-primary'>Pending</span>";
@@ -84,9 +84,9 @@
 
                             echo "</td>
                                  <td>
-                                     <a href='displayBar.php?id=" . $row["barId"] . "'><button type='button' class='btn btn-info' id='$count'><i class='bi bi-eye'></i></button></a>
-                                     <a href='editBar.php?id=" . $row["barId"] . "'><button type='button' class='btn btn-success' id='$count'><i class='bi bi-pencil'></i></button></a>
-                                     <a href='deleteBar.php?id=" . $row["barId"] . "'><button type='button' class='btn btn-danger' id='modalDelete.$count.'><i class='bi bi-trash'></i></button></a>
+                                     <a href='displayBar.php?id=" . $row["managerId"] . "'><button type='button' class='btn btn-info' id='$count'><i class='bi bi-eye'></i></button></a>
+                                     <a href='editBar.php?id=" . $row["managerId"] . "'><button type='button' class='btn btn-success' id='$count'><i class='bi bi-pencil'></i></button></a>
+                                     <a href='deleteBar.php?id=" . $row["managerId"] . "'><button type='button' class='btn btn-danger' id='modalDelete.$count.'><i class='bi bi-trash'></i></button></a>
                                  </td>
                              </tr>";
                             $count = $count + 1;

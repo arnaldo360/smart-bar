@@ -3,21 +3,20 @@
 //require once config file
 require_once "../database/dbConnect.php";
 
-
-if (isset($_SESSION["admin"]) && !empty($_SESSION["admin"])) {
+if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
 
     // store session value in variable
-    $usersID = $_SESSION["admin"];
+    $username = $_SESSION["username"];
 
     // Prepare a select statement
-    $sql = "SELECT * FROM `admin` WHERE `adminId` = ?";
+    $sql = "SELECT * from manager WHERE managerEmail= ?";
 
     if ($statement = $mysqli->prepare($sql)) {
         // Bind variables to the prepared statement as parameters
-        $statement->bind_param("s", $param_ID);
+        $statement->bind_param("s", $param_username);
 
         // Set parameters
-        $param_ID = $usersID;
+        $param_username = $username;
 
         // Attempt to execute the prepared statement
         if ($statement->execute()) {
@@ -27,15 +26,16 @@ if (isset($_SESSION["admin"]) && !empty($_SESSION["admin"])) {
                 /* Fetch result row as an associative array. Since the result set contains only one row, we don't need to use while loop */
                 $row = $result->fetch_array(MYSQLI_ASSOC);
 
-                // Retrieve admin field values
-                $adminId                = $row['adminId'];
-                $adminFirstName         = $row['adminFirstName'];
-                $adminLastName          = $row['adminLastName'];
-                $adminEmail             = $row['adminEmail'];
-                $adminContact            = $row['adminContact'];
-                $adminStatus            = $row['adminStatus'];
+                // Retrieve manager field values
+                $managerId             = $row['managerId'];
+                $managerFullName       = $row['managerFullName'];
+                $managerEmail          = $row['managerEmail'];
+                $managerGender         = $row['managerGender'];
+                $managerMobile         = $row['managerContact'];
+                $createdAt             = $row['createdAt'];
+                $managerStatus         = $row['managerStatus'];
             } else {
-                echo "admin dont exist";
+                echo "manager dont exist";
             }
         } else {
             echo "Failed to execute";

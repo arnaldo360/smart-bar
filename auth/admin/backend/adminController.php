@@ -1,18 +1,15 @@
 <?php
 
 //require once config file
-require_once "../../database/dbConnect.php";
+require_once "../../../database/dbConnect.php";
 
-// start session
-session_start();
-
-if (isset($_SESSION["admin"]) && !empty($_SESSION["admin"])) {
+if (isset($_SESSION["id"]) && !empty($_SESSION["id"])) {
 
     // store session value in variable
-    $usersID = $_SESSION["admin"];
+    $usersID = $_SESSION["id"];
 
     // Prepare a select statement
-    $sql = "SELECT * FROM `admin` WHERE `adminId` = ?";
+    $sql = "SELECT * FROM superAdmin WHERE superAdminId = ? ";
 
     if ($statement = $mysqli->prepare($sql)) {
         // Bind variables to the prepared statement as parameters
@@ -22,34 +19,30 @@ if (isset($_SESSION["admin"]) && !empty($_SESSION["admin"])) {
         $param_ID = $usersID;
 
         // Attempt to execute the prepared statement
-        if($statement->execute()){
+        if ($statement->execute()) {
             $result = $statement->get_result();
 
-            if($result->num_rows == 1){
+            if ($result->num_rows == 1) {
                 /* Fetch result row as an associative array. Since the result set contains only one row, we don't need to use while loop */
                 $row = $result->fetch_array(MYSQLI_ASSOC);
 
                 // Retrieve admin field values
-                $adminId                = $row['adminId'];
-                $adminFirstName         = $row['adminFirstName'];
-                $adminLastName          = $row['adminLastName'];
-                $adminEmail             = $row['adminEmail'];
-                $adminMobile            = $row['adminContact'];
-                $adminStatus            = $row['adminStatus'];
-
+                $superAdminId               = $row['superAdminId'];
+                $superAdminFullName         = $row['superAdminFullName'];
+                $superAdminEmail            = $row['superAdminEmail'];
+                $superAdminContact          = $row['superAdminContact'];
+                $status                     = $row['status'];
+                
             } else {
-                echo "admin dont exist";
+                echo "Super Admin dont exist";
             }
-
         } else {
             echo "Failed to execute";
         }
 
         //Close statement
         $statement->close();
-
     } else {
-      echo "Failed to prepare";
+        echo "Failed to prepare";
     }
-
 }

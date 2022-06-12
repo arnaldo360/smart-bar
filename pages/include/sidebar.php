@@ -15,6 +15,24 @@
         if ($role == 1) {
             echo '
 
+            <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#users-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-person"></i><span>Employee</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="users-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="createEmployee.php">
+                        <i class="bi bi-plus"></i><span>Create Employee</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="viewEmployee.php">
+                        <i class="bi bi-view-list"></i><span>View Employee</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Users Nav -->
+
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#orders-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-minecart-loaded"></i><span>Orders</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -52,11 +70,11 @@
         </li><!-- End products Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="reservation.php">
+            <a class="nav-link collapsed" href="feedback.php">
                 <i class="bi bi-stickies"></i>
-                <span>Reservations</span>
+                <span>Feedback</span>
             </a>
-        </li><!-- End Reservations Page Nav -->
+        </li><!-- End Feedback Page Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="report.php">
@@ -99,28 +117,11 @@
             </ul>
         </li><!-- End Orders Nav -->
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#products-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-hdd-stack"></i><span>Products</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="products-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="createProduct.php">
-                        <i class="bi bi-file-text"></i><span>Create Product</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="viewProduct.php">
-                        <i class="bi bi-view-list"></i><span>View Product</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End products Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="reservation.php">
                 <i class="bi bi-stickies"></i>
-                <span>Reservations</span>
+                <span>Feedback</span>
             </a>
         </li><!-- End Reservations Page Nav -->
 

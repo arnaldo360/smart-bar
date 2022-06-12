@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = trim($_POST["password"]);
     }
 
-    $sql = "SELECT employeeID, employeeEmail, employeePassword, employeeBar, userRole FROM employee WHERE employeeEmail = ? ";
+    $sql = "SELECT managerId, managerEmail, managerPassword, managerBar, userRole FROM manager WHERE managerEmail = ? ";
 
     if ($statement = $mysqli->prepare($sql)) {
         //bind variables
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($statement->num_rows == 1) {
 
                 // Bind result variables
-                $statement->bind_result($userID, $username, $hashed_password, $employeeBar, $userRole);
+                $statement->bind_result($userID, $username, $hashed_password, $managerBar, $userRole);
 
                 if ($statement->fetch()) {
 
@@ -66,8 +66,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION["loggedin"]       = true;
                         $_SESSION["id"]             = $userID;
                         $_SESSION["username"]       = $username;
-                        $_SESSION["barID"]          = $employeeBar;
-                        $_SESSION["userRole"]           = $userRole;
+                        $_SESSION["barID"]          = $managerBar;
+                        $_SESSION["userRole"]       = $userRole;
 
                         header("Location: ../../pages/dashboard.php");
                     } else {
@@ -192,10 +192,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <a href="../../index.php"><button class="btn btn-danger w-100" type="button">Cancle</button></a>
                                         </div>
 
+
                                         <div class="col-12">
                                             <p class="small mb-0">Forgot Password? <a href="forgetPassword.php">Reset Password</a></p>
                                         </div>
-                                        
                                         <div class="col-12">
                                             <p class="small mb-0">Don't have account? <a href="register.php">Create an account</a></p>
                                         </div>

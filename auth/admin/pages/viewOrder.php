@@ -1,67 +1,75 @@
-<?php include_once("../backend/customerController.php"); ?>
+ <?php
+    include('../backend/authentication.php');
+    include_once("../backend/adminController.php");
 
-<?php include("include/title.php"); ?>
+    global $username;
+    global $user_id;
 
-<?php include("include/header.php"); ?>
+    ?>
+ <?php include("include/title.php"); ?>
 
-<?php include("include/sidebar.php"); ?>
+ <?php include("include/header.php"); ?>
 
-<main id="main" class="main">
+ <?php include("include/sidebar.php"); ?>
 
-    <div class="pagetitle">
-        <h1>Orders</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-                <li class="breadcrumb-item">Orders</li>
-                <li class="breadcrumb-item active">View Order</li>
-            </ol>
-        </nav>
-    </div><!-- End Page Title -->
+ <main id="main" class="main">
 
-    <section class="pagetitle">
-        <!-- Recent Sales -->
-        <div class="col-12">
-            <div class="card recent-sales overflow-auto">
+     <div class="pagetitle">
+         <h1>Orders</h1>
+         <nav>
+             <ol class="breadcrumb">
+                 <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
+                 <li class="breadcrumb-item">Orders</li>
+                 <li class="breadcrumb-item active">View Order</li>
+             </ol>
+         </nav>
+     </div><!-- End Page Title -->
 
-                <div class="card-body">
-                    <h5 class="card-title">View Order</h5>
+     <section class="pagetitle">
+         <!-- Recent Sales -->
+         <div class="col-12">
+             <div class="card recent-sales overflow-auto">
 
-                    <table class="table table-borderless datatable">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Customer</th>
-                                <th scope="col">Product</th>
-                                <th scope="col">Table</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row"><a href="#">1</a></th>
-                                <td>Brandon Jacob</td>
-                                <td>At praesentium minu</td>
-                                <td>Table 10</td>
-                                <td><span class="badge bg-success">Approved</span></td>
-                                <td>
-                                    <button type="button" class="btn btn-info"><i class="bi bi-eye"></i></button>
-                                    <button type="button" class="btn btn-success"><i class="bi bi-pencil"></i></button>
-                                    <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                 <div class="card-body">
+                     <h5 class="card-title">View Order</h5>
 
-                </div>
+                     <table class="table table-borderless datatable">
+                         <thead>
+                             <tr>
+                                 <th scope="col">#</th>
+                                 <th scope="col">Customer</th>
+                                 <th scope="col">Product</th>
+                                 <th scope="col">Table</th>
+                                 <th scope="col">Status</th>
+                                 <th scope="col">Action</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr>
+                                 <th scope="row"><a href="#">1</a></th>
+                                 <td>Brandon Jacob</td>
+                                 <td>At praesentium minu</td>
+                                 <td>Table 10</td>
+                                 <td><span class="badge bg-success">Approved</span></td>
+                                 <td>
+                                     <button type="button" class="btn btn-info"><i class="bi bi-eye"></i></button>
+                                     <button type="button" class="btn btn-success"><i class="bi bi-pencil"></i></button>
+                                     <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                 </td>
+                             </tr>
+                         </tbody>
+                     </table>
 
-            </div>
-        </div><!-- End Recent Sales -->
+                 </div>
 
-    </section>
+             </div>
+         </div><!-- End Recent Sales -->
 
-</main><!-- End #main -->
+     </section>
+
+ </main><!-- End #main -->
 
 
-<?php include_once("include/footer.php"); ?>
+ <?php include_once("include/footer.php"); ?>
+
+ <?php include_once("include/bodyClosing.php"); ?>

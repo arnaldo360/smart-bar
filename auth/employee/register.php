@@ -192,18 +192,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 <div class="invalid-feedback">You must agree before submitting.</div>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-6">
                                             <button class="btn btn-primary w-100" type="submit">Create Account</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="../../index.php"><button class="btn btn-danger w-100" type="button">Cancle</button></a>
                                         </div>
 
                                         <div class="col-12">
-                                            <p class="small mb-0">Already have an account? <a href="login.php">Log in</a></p>
-                                        </div>
-                                        <div class="col-12">
-                                            <p class="small mb-0">Back To Home <a href="../../index.php">Back Home</a></p>
-                                        </div>
-                                        <div class="col-12">
                                             <p class="small mb-0">Forgot Password? <a href="forgetPassword.php">Reset Password</a></p>
+                                        </div>
+                                        <div class="col-12">
+                                            <p class="small mb-0">Already have an account? <a href="login.php">Log in</a></p>
                                         </div>
                                     </form>
 
