@@ -84,9 +84,9 @@
 
                             echo "</td>
                                  <td>
-                                     <a href='displayBar.php?id=" . $row["customerID"] . "'><button type='button' class='btn btn-info' id='$count'><i class='bi bi-eye'></i></button></a>
-                                     <a href='editBar.php?id=" . $row["customerID"] . "'><button type='button' class='btn btn-success' id='$count'><i class='bi bi-pencil'></i></button></a>
-                                     <a href='deleteBar.php?id=" . $row["customerID"] . "'><button type='button' class='btn btn-danger' id='modalDelete.$count.'><i class='bi bi-trash'></i></button></a>
+                                     <a href='displayCustomer.php?id=" . $row["customerID"] . "'><button type='button' class='btn btn-info' id='$count'><i class='bi bi-eye'></i></button></a>
+                                     <a href='editCustomer.php?id=" . $row["customerID"] . "'><button type='button' class='btn btn-success' id='$count'><i class='bi bi-pencil'></i></button></a>
+                                     <a href='deleteCustomer.php?id=" . $row["customerID"] . "'><button type='button' class='btn btn-danger' id='modalDelete.$count.'><i class='bi bi-trash'></i></button></a>
                                  </td>
                              </tr>";
                             $count = $count + 1;

@@ -16,11 +16,11 @@
  <main id="main" class="main">
 
      <div class="pagetitle">
-         <h1>Reservations</h1>
+         <h1>Feedback</h1>
          <nav>
              <ol class="breadcrumb">
                  <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-                 <li class="breadcrumb-item active">View Reservation</li>
+                 <li class="breadcrumb-item active">View Feedback</li>
              </ol>
          </nav>
      </div><!-- End Page Title -->
@@ -28,37 +28,73 @@
      <section class="pagetitle">
          <!-- Recent Sales -->
          <div class="col-12">
+             <?php if (isset($_GET["redirect"]) && !empty($_GET["redirect"])) : ?>
+                 <?php if ($_GET["redirect"] == "success") : ?>
+                     <div class="alert alert-info alert-dismissible fade show" role="alert">
+                         <i class="bi bi-check-circle me-1"></i>
+                         Feedback Changes succesfully!
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>
+                 <?php endif; ?>
+             <?php endif; ?>
              <div class="card recent-sales overflow-auto">
 
                  <div class="card-body">
-                     <h5 class="card-title">View Reservation</h5>
 
-                     <table class="table table-borderless datatable">
+                     <h5 class="card-title">View Feedback</h5>
+
+                     <?php
+                        require_once("../../../database/dbConnect.php");
+
+                        $sql = "SELECT * FROM feedback";
+
+                        $results = mysqli_query($mysqli, $sql);
+
+                        echo "<table class='table table-borderless datatable'>
                          <thead>
                              <tr>
-                                 <th scope="col">#</th>
-                                 <th scope="col">Customer Name</th>
-                                 <th scope="col">Bar Reserved</th>
-                                 <th scope="col">Event</th>
-                                 <th scope="col">Status</th>
-                                 <th scope="col">Action</th>
+                                 <th scope='col'>#</th>
+                                 <th scope='col'>FullName</th>
+                                 <th scope='col'>Email</th>
+                                 <th scope='col'>Subject</th>
+                                 <th scope='col'>Message</th>
+                                 <th scope='col'>Status</th>
+                                 <th scope='col'>Action</th>
                              </tr>
                          </thead>
-                         <tbody>
-                             <tr>
-                                 <th scope="row"><a href="#">1</a></th>
-                                 <td>Brandon Jacob</td>
-                                 <td>Coner Bar</td>
-                                 <td>Happy Birthday</td>
-                                 <td><span class="badge bg-success">Approved</span></td>
+                         <tbody>";
+
+                        // output data of each row
+                        $count = 1;
+                        while ($row = mysqli_fetch_array($results)) {
+                            $feedbackId = 'feedbackId' . $count;
+                            echo "<tr>
+                                <td scope='row'>" . $count . "</td>
+                                 <th>" . $row["fullname"] . "</th>
+                                 <td>" . $row["email"] . "</td>
+                                 <td>" . $row["feedbackSubject"] . "</td>
+                                 <td>" . $row["feedbackMessage"] . "</td>
+                                 <td>";
+                            if ($row["feedbackStatus"] == 'ATTENDED') {
+                                echo "<span class='badge rounded-pill bg-success'>Attended</span>";
+                            } elseif ($row["feedbackStatus"] == 'DECLINED') {
+                                echo "<span class='badge rounded-pill bg-danger'>Declined</span>";
+                            } else {
+                                echo "<span class='badge rounded-pill bg-primary'>Pending</span>";
+                            }
+
+                            echo "</td>
                                  <td>
-                                     <button type="button" class="btn btn-info"><i class="bi bi-eye"></i></button>
-                                     <button type="button" class="btn btn-success"><i class="bi bi-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                     <a href='attendedFeedback.php?id=" . $row["feedbackId"] . "'><button type='button' class='btn btn-info' id='$count'><i class='bi bi-check2'></i></button></a>
+                                     <a href='declinedFeedback.php?id=" . $row["feedbackId"] . "'><button type='button' class='btn btn-danger' id='$count'><i class='bi bi-trash'></i></button></a>
                                  </td>
-                             </tr>
-                         </tbody>
-                     </table>
+                             </tr>";
+                            $count = $count + 1;
+                        }
+                        echo " </tbody>
+                     </table>";
+
+                        ?>
 
                  </div>
 

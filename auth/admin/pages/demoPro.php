@@ -35,26 +35,6 @@
 
                          <!-- Floating Labels Form -->
                          <form class="row g-3 needs-validation" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" novalidate>
-
-                             <div class="col-md-4">
-                                 <div class="form-floating mb-3">
-                                     <select class="form-select <?php echo (!empty($barId_err)) ? 'is-invalid' : ''; ?>" id="floatingSelect" aria-label="State" name="barId" required>
-                                         <option selected>Select Bar</option>
-                                         <?php
-                                            require_once "../../../database/dbConnect.php";
-                                            $result = mysqli_query($mysqli, "Select * from bar; ");
-                                            while ($row = mysqli_fetch_array($result)) {
-                                            ?>
-                                             <option value="<?php echo $row['barId']; ?>"><?php echo $row["barName"]; ?></option>
-                                         <?php
-                                            }
-                                            ?>
-                                     </select>
-                                     <span class="invalid-feedback"><?php echo $barId_err; ?></span>
-                                     <label for="floatingSelect">Bar</label>
-                                 </div>
-                             </div>
-
                              <div class="col-md-4">
                                  <div class="form-floating">
                                      <input type="text" class="form-control <?php echo (!empty($productname_err)) ? 'is-invalid' : ''; ?>" name="productname" id="floatingName" placeholder="Product Name" required>
@@ -88,45 +68,27 @@
                              </div>
 
                              <div class="col-md-4">
-                                 <div class="form-floating mb-3" style="display: none;">
-                                     <input type="number" class="form-control <?php echo (!empty($alcoholPercentage_err)) ? 'is-invalid' : ''; ?>" name="alcoholPercentage" id="floatingName" placeholder="Quanity">
-                                     <label for="floatingName">Alcohol percentage</label>
-                                     <span class="invalid-feedback"><?php echo $alcoholPercentage_err; ?></span>
-                                 </div>
-                             </div>
-
-                             <div class="col-md-4">
-                                 <div class="form-floating mb-3" style="display: none;">
-                                     <input type="number" class="form-control <?php echo (!empty($volume_err)) ? 'is-invalid' : ''; ?>" name="volume" id="floatingName" placeholder="Quanity">
-                                     <label for="floatingName">Product Volume</label>
-                                     <span class="invalid-feedback"><?php echo $volume_err; ?></span>
-                                 </div>
-                             </div>
-
-                             <div class="col-md-4">
-                                 <div class="form-floating">
-                                     <select class="form-select <?php echo (!empty($unit_err)) ? 'is-invalid' : ''; ?> " name="unit" id="floatingSelect" required>
-                                         <option>Select Unit</option>
-                                         <option value="ml">ml</option>
-                                         <option value="l">l</option>
+                                 <div class="form-floating mb-3">
+                                     <select class="form-select <?php echo (!empty($class_err)) ? 'is-invalid' : ''; ?> " name="class" id="floatingSelect" required>
+                                         <option selected>Select Class</option>
+                                         <option value="Buga">Buga</option>
+                                         <option value="Kwalaah">Kwalaah</option>
                                      </select>
-                                     <label for="floatingSelect">Product Unit</label>
-                                     <span class="invalid-feedback"><?php echo $unit_err; ?></span>
+                                     <label for="floatingSelect">Product Class</label>
+                                     <span class="invalid-feedback"><?php echo $class_err; ?></span>
                                  </div>
                              </div>
-
                              <div class="col-md-4">
                                  <div class="form-floating">
-                                     <input type="number" class="form-control <?php echo (!empty($quantity_err)) ? 'is-invalid' : ''; ?>" name="quantity" id="floatingName" placeholder="Quanity" required>
-                                     <label for="floatingName">Product Quanity</label>
+                                     <input type="number" class="form-control <?php echo (!empty($quantity_err)) ? 'is-invalid' : ''; ?> custom-select" name="quantity" id="floatingName" placeholder="Quanity" required>
+                                     <label for="floatingName">Quanity</label>
                                      <span class="invalid-feedback"><?php echo $quantity_err; ?></span>
                                  </div>
                              </div>
-
                              <div class="col-md-4">
                                  <div class="form-floating">
                                      <input type="text" class="form-control <?php echo (!empty($price_err)) ? 'is-invalid' : ''; ?>" name="price" id="floatingName" placeholder="Price" required>
-                                     <label for="floatingName">Product Price(TZS)</label>
+                                     <label for="floatingName">Price</label>
                                      <span class="invalid-feedback"><?php echo $price_err; ?></span>
                                  </div>
                              </div>
@@ -139,7 +101,6 @@
                                      <span class="invalid-feedback"><?php echo $description_err; ?></span>
                                  </div>
                              </div>
-
                              <div class="col-md-6">
                                  <div class="form-floating">
                                      <input type="file" class="form-control <?php echo (!empty($image_err)) ? 'is-invalid' : ''; ?>" id="floatingImage" placeholder="photo">
@@ -148,14 +109,30 @@
                                  </div>
                              </div>
 
-
+                             <div class="col-md-4">
+                                 <div class="form-floating mb-3">
+                                     <select class="form-select <?php echo (!empty($barId_err)) ? 'is-invalid' : ''; ?>" id="floatingSelect" aria-label="State" name="barId" required>
+                                         <option selected>Select Bar</option>
+                                         <?php
+                                            require_once "../../../database/dbConnect.php";
+                                            $result = mysqli_query($mysqli, "Select * from bar; ");
+                                            while ($row = mysqli_fetch_array($result)) {
+                                            ?>
+                                             <option value="<?php echo $row['barId']; ?>"><?php echo $row["barName"]; ?></option>
+                                         <?php
+                                            }
+                                            ?>
+                                     </select>
+                                     <span class="invalid-feedback"><?php echo $barId_err; ?></span>
+                                     <label for="floatingSelect">Bar</label>
+                                 </div>
+                             </div>
 
                              <div class="text-center">
                                  <button type="submit" class="btn btn-primary">Submit</button>
                                  <button type="reset" class="btn btn-secondary">Reset</button>
                              </div>
                          </form><!-- End floating Labels Form -->
-
 
                      </div>
                  </div>
@@ -167,6 +144,7 @@
  </main><!-- End #main -->
 
  <?php include_once("include/footer.php"); ?>
+
 
  <script type="text/javascript">
      $(document).ready(function() {

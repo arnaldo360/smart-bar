@@ -26,7 +26,7 @@
              <div class="col-lg-12">
                  <div class="row">
 
-                     <!-- Sales Card -->
+                     <!-- Bar Card -->
                      <div class="col-xxl-4 col-md-6">
                          <div class="card info-card sales-card">
 
@@ -44,24 +44,29 @@
                              </div>
 
                              <div class="card-body">
-                                 <h5 class="card-title">Sales <span>| Today</span></h5>
+                                 <h5 class="card-title">Registered Bar</h5>
 
                                  <div class="d-flex align-items-center">
                                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                         <i class="bi bi-cart"></i>
+                                         <i class="bi bi-bricks"></i>
                                      </div>
                                      <div class="ps-3">
-                                         <h6>145</h6>
-                                         <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                         <?php
+                                            require_once "../../../database/dbConnect.php";
+                                            $result = mysqli_query($mysqli, "Select count(barID) AS countBar from bar; ");
+                                            $countBar = mysqli_fetch_assoc($result);
+
+                                            echo "<h6>" . $countBar['countBar'] . "</h6>";
+                                            ?>
 
                                      </div>
                                  </div>
                              </div>
 
                          </div>
-                     </div><!-- End Sales Card -->
+                     </div><!-- End Bar Card -->
 
-                     <!-- Revenue Card -->
+                     <!-- managers Card -->
                      <div class="col-xxl-4 col-md-6">
                          <div class="card info-card revenue-card">
 
@@ -79,22 +84,26 @@
                              </div>
 
                              <div class="card-body">
-                                 <h5 class="card-title">Revenue <span>| This Month</span></h5>
+                                 <h5 class="card-title">Managers</h5>
 
                                  <div class="d-flex align-items-center">
                                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                         <i class="bi bi-currency-dollar"></i>
+                                         <i class="bi bi-people"></i>
                                      </div>
                                      <div class="ps-3">
-                                         <h6>$3,264</h6>
-                                         <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                         <?php
+                                            require_once "../../../database/dbConnect.php";
+                                            $result = mysqli_query($mysqli, "Select count(managerId) AS countManager from manager; ");
+                                            $countManager = mysqli_fetch_assoc($result);
 
+                                            echo "<h6>" . $countManager['countManager'] . "</h6>";
+                                            ?>
                                      </div>
                                  </div>
                              </div>
 
                          </div>
-                     </div><!-- End Revenue Card -->
+                     </div><!-- End Managers Card -->
 
                      <!-- Customers Card -->
                      <div class="col-xxl-4 col-xl-12">
@@ -115,16 +124,20 @@
                              </div>
 
                              <div class="card-body">
-                                 <h5 class="card-title">Customers <span>| This Year</span></h5>
+                                 <h5 class="card-title">Customers</h5>
 
                                  <div class="d-flex align-items-center">
                                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                          <i class="bi bi-people"></i>
                                      </div>
                                      <div class="ps-3">
-                                         <h6>1244</h6>
-                                         <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+                                         <?php
+                                            require_once "../../../database/dbConnect.php";
+                                            $result = mysqli_query($mysqli, "Select count(customerID) AS countCustomer from customer; ");
+                                            $countCustomer = mysqli_fetch_assoc($result);
 
+                                            echo "<h6>" . $countCustomer['countCustomer'] . "</h6>";
+                                            ?>
                                      </div>
                                  </div>
 
@@ -133,9 +146,9 @@
 
                      </div><!-- End Customers Card -->
 
-                     <!-- Reports -->
-                     <div class="col-12">
-                         <div class="card">
+                     <!-- Employee Card -->
+                     <div class="col-xxl-4 col-md-6">
+                         <div class="card info-card sales-card">
 
                              <div class="filter">
                                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -151,71 +164,228 @@
                              </div>
 
                              <div class="card-body">
-                                 <h5 class="card-title">Reports <span>/Today</span></h5>
+                                 <h5 class="card-title">Employees</h5>
 
-                                 <!-- Line Chart -->
-                                 <div id="reportsChart"></div>
+                                 <div class="d-flex align-items-center">
+                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                         <i class="bi bi-people"></i>
+                                     </div>
+                                     <div class="ps-3">
+                                         <?php
+                                            require_once "../../../database/dbConnect.php";
+                                            $result = mysqli_query($mysqli, "Select count(employeeID) AS countEmployee from employee; ");
+                                            $countEmployee = mysqli_fetch_assoc($result);
 
-                                 <script>
-                                     document.addEventListener("DOMContentLoaded", () => {
-                                         new ApexCharts(document.querySelector("#reportsChart"), {
-                                             series: [{
-                                                 name: 'Sales',
-                                                 data: [31, 40, 28, 51, 42, 82, 56],
-                                             }, {
-                                                 name: 'Revenue',
-                                                 data: [11, 32, 45, 32, 34, 52, 41]
-                                             }, {
-                                                 name: 'Customers',
-                                                 data: [15, 11, 32, 18, 9, 24, 11]
-                                             }],
-                                             chart: {
-                                                 height: 350,
-                                                 type: 'area',
-                                                 toolbar: {
-                                                     show: false
-                                                 },
-                                             },
-                                             markers: {
-                                                 size: 4
-                                             },
-                                             colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                                             fill: {
-                                                 type: "gradient",
-                                                 gradient: {
-                                                     shadeIntensity: 1,
-                                                     opacityFrom: 0.3,
-                                                     opacityTo: 0.4,
-                                                     stops: [0, 90, 100]
-                                                 }
-                                             },
-                                             dataLabels: {
-                                                 enabled: false
-                                             },
-                                             stroke: {
-                                                 curve: 'smooth',
-                                                 width: 2
-                                             },
-                                             xaxis: {
-                                                 type: 'datetime',
-                                                 categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-                                             },
-                                             tooltip: {
-                                                 x: {
-                                                     format: 'dd/MM/yy HH:mm'
-                                                 },
-                                             }
-                                         }).render();
-                                     });
-                                 </script>
-                                 <!-- End Line Chart -->
-
+                                            echo "<h6>" . $countEmployee['countEmployee'] . "</h6>";
+                                            ?>
+                                     </div>
+                                 </div>
                              </div>
 
                          </div>
-                     </div><!-- End Reports -->
+                     </div><!-- End Employee Card -->
 
-                     <!-- Recent Sales -->
+                     <!-- Order Card -->
+                     <div class="col-xxl-4 col-md-6">
+                         <div class="card info-card revenue-card">
+
+                             <div class="filter">
+                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                     <li class="dropdown-header text-start">
+                                         <h6>Filter</h6>
+                                     </li>
+
+                                     <li><a class="dropdown-item" href="#">Today</a></li>
+                                     <li><a class="dropdown-item" href="#">This Month</a></li>
+                                     <li><a class="dropdown-item" href="#">This Year</a></li>
+                                 </ul>
+                             </div>
+
+                             <div class="card-body">
+                                 <h5 class="card-title">Orders</h5>
+
+                                 <div class="d-flex align-items-center">
+                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                         <i class="bi bi-minecart-loaded"></i>
+                                     </div>
+                                     <div class="ps-3">
+                                         <?php
+                                            require_once "../../../database/dbConnect.php";
+                                            $result = mysqli_query($mysqli, "Select count(orderId) AS countOrder from order_table; ");
+                                            $countOrder = mysqli_fetch_assoc($result);
+
+                                            echo "<h6>" . $countOrder['countOrder'] . "</h6>";
+                                            ?>
+                                     </div>
+                                 </div>
+                             </div>
+
+                         </div>
+                     </div><!-- End Order Card -->
+
+                     <!-- Product Card -->
+                     <div class="col-xxl-4 col-xl-12">
+
+                         <div class="card info-card customers-card">
+
+                             <div class="filter">
+                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                     <li class="dropdown-header text-start">
+                                         <h6>Filter</h6>
+                                     </li>
+
+                                     <li><a class="dropdown-item" href="#">Today</a></li>
+                                     <li><a class="dropdown-item" href="#">This Month</a></li>
+                                     <li><a class="dropdown-item" href="#">This Year</a></li>
+                                 </ul>
+                             </div>
+
+                             <div class="card-body">
+                                 <h5 class="card-title">Product</h5>
+
+                                 <div class="d-flex align-items-center">
+                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                         <i class="bi bi-hdd-stack"></i>
+                                     </div>
+                                     <div class="ps-3">
+                                         <?php
+                                            require_once "../../../database/dbConnect.php";
+                                            $result = mysqli_query($mysqli, "Select count(productId) AS countProduct from product; ");
+                                            $countProduct = mysqli_fetch_assoc($result);
+
+                                            echo "<h6>" . $countProduct['countProduct'] . "</h6>";
+                                            ?>
+                                     </div>
+                                 </div>
+
+                             </div>
+                         </div>
+
+                     </div><!-- End Product Card -->
+
+                     <!-- Feedback Card -->
+                     <div class="col-xxl-4 col-md-6">
+                         <div class="card info-card sales-card">
+
+                             <div class="filter">
+                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                     <li class="dropdown-header text-start">
+                                         <h6>Filter</h6>
+                                     </li>
+
+                                     <li><a class="dropdown-item" href="#">Today</a></li>
+                                     <li><a class="dropdown-item" href="#">This Month</a></li>
+                                     <li><a class="dropdown-item" href="#">This Year</a></li>
+                                 </ul>
+                             </div>
+
+                             <div class="card-body">
+                                 <h5 class="card-title">Feedback</h5>
+
+                                 <div class="d-flex align-items-center">
+                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                         <i class="bi bi-stickies"></i>
+                                     </div>
+                                     <div class="ps-3">
+                                         <?php
+                                            require_once "../../../database/dbConnect.php";
+                                            $result = mysqli_query($mysqli, "Select count(feedbackId) AS countFeedback from feedback; ");
+                                            $countFeedback = mysqli_fetch_assoc($result);
+
+                                            echo "<h6>" . $countFeedback['countFeedback'] . "</h6>";
+                                            ?>
+                                     </div>
+                                 </div>
+                             </div>
+
+                         </div>
+                     </div><!-- End Feedback Card -->
+
+                     <!-- report Card -->
+                     <div class="col-xxl-4 col-md-6">
+                         <div class="card info-card revenue-card">
+
+                             <div class="filter">
+                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                     <li class="dropdown-header text-start">
+                                         <h6>Filter</h6>
+                                     </li>
+
+                                     <li><a class="dropdown-item" href="#">Today</a></li>
+                                     <li><a class="dropdown-item" href="#">This Month</a></li>
+                                     <li><a class="dropdown-item" href="#">This Year</a></li>
+                                 </ul>
+                             </div>
+
+                             <div class="card-body">
+                                 <h5 class="card-title">Report</h5>
+
+                                 <div class="d-flex align-items-center">
+                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                         <i class="bi bi-journal-check"></i>
+                                     </div>
+                                     <div class="ps-3">
+                                         <?php
+                                            require_once "../../../database/dbConnect.php";
+                                            $result = mysqli_query($mysqli, "Select count(orderId) AS countOrder from order_table; ");
+                                            $countOrder = mysqli_fetch_assoc($result);
+
+                                            echo "<h6>" . $countOrder['countOrder'] . "</h6>";
+                                            ?>
+                                     </div>
+                                 </div>
+                             </div>
+
+                         </div>
+                     </div><!-- End Report Card -->
+
+                     <!-- activityLog Card -->
+                     <div class="col-xxl-4 col-xl-12">
+
+                         <div class="card info-card customers-card">
+
+                             <div class="filter">
+                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                     <li class="dropdown-header text-start">
+                                         <h6>Filter</h6>
+                                     </li>
+
+                                     <li><a class="dropdown-item" href="#">Today</a></li>
+                                     <li><a class="dropdown-item" href="#">This Month</a></li>
+                                     <li><a class="dropdown-item" href="#">This Year</a></li>
+                                 </ul>
+                             </div>
+
+                             <div class="card-body">
+                                 <h5 class="card-title">Activity Log</h5>
+
+                                 <div class="d-flex align-items-center">
+                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                         <i class="bi bi-list-check"></i>
+                                     </div>
+                                     <div class="ps-3">
+                                         <?php
+                                            require_once "../../../database/dbConnect.php";
+                                            $result = mysqli_query($mysqli, "Select count(customerID) AS countCustomer from customer; ");
+                                            $countCustomer = mysqli_fetch_assoc($result);
+
+                                            echo "<h6>" . $countCustomer['countCustomer'] . "</h6>";
+                                            ?>
+                                     </div>
+                                 </div>
+
+                             </div>
+                         </div>
+
+                     </div><!-- End activityLog Card -->
+
+
+                     <!-- Recent Orders -->
                      <div class="col-12">
                          <div class="card recent-sales overflow-auto">
 
@@ -233,66 +403,75 @@
                              </div>
 
                              <div class="card-body">
-                                 <h5 class="card-title">Recent Sales <span>| Today</span></h5>
+                                 <h5 class="card-title">Recent Orders <span>| Today</span></h5>
 
-                                 <table class="table table-borderless datatable">
-                                     <thead>
-                                         <tr>
-                                             <th scope="col">#</th>
-                                             <th scope="col">Customer</th>
-                                             <th scope="col">Product</th>
-                                             <th scope="col">Price</th>
-                                             <th scope="col">Status</th>
-                                         </tr>
-                                     </thead>
-                                     <tbody>
-                                         <tr>
-                                             <th scope="row"><a href="#">#2457</a></th>
-                                             <td>Brandon Jacob</td>
-                                             <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                                             <td>$64</td>
-                                             <td><span class="badge bg-success">Approved</span></td>
-                                         </tr>
-                                         <tr>
-                                             <th scope="row"><a href="#">#2147</a></th>
-                                             <td>Bridie Kessler</td>
-                                             <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                                             <td>$47</td>
-                                             <td><span class="badge bg-warning">Pending</span></td>
-                                         </tr>
-                                         <tr>
-                                             <th scope="row"><a href="#">#2049</a></th>
-                                             <td>Ashleigh Langosh</td>
-                                             <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                                             <td>$147</td>
-                                             <td><span class="badge bg-success">Approved</span></td>
-                                         </tr>
-                                         <tr>
-                                             <th scope="row"><a href="#">#2644</a></th>
-                                             <td>Angus Grady</td>
-                                             <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                                             <td>$67</td>
-                                             <td><span class="badge bg-danger">Rejected</span></td>
-                                         </tr>
-                                         <tr>
-                                             <th scope="row"><a href="#">#2644</a></th>
-                                             <td>Raheem Lehner</td>
-                                             <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                                             <td>$165</td>
-                                             <td><span class="badge bg-success">Approved</span></td>
-                                         </tr>
-                                     </tbody>
-                                 </table>
+                                 <?php
+                                    require_once("../../../database/dbConnect.php");
+
+                                    $sql = "SELECT c.customerFullName, p.productName, b.barName, o.orderStatus, o.tableNumber, o.orderAmount FROM order_table o 
+                                            JOIN employee e ON o.employeeId = e.employeeID 
+                                            JOIN customer c ON o.customerId = c.customerID 
+                                            JOIN product p ON o.productId = p.productId
+                                            JOIN bar b ON p.barID = b.barId
+                                            ORDER BY o.orderId DESC;";
+
+                                    $results = mysqli_query($mysqli, $sql);
+
+                                    echo "<table class='table table-borderless datatable'>
+                                            <thead>
+                                                <tr>
+                                                    <th scope='col'>#</th>
+                                                    <th scope='col'>Bar Name</th>
+                                                    <th scope='col'>Customer</th>
+                                                    <th scope='col'>Product</th>
+                                                    <th scope='col'>Price</th>
+                                                    <th scope='col'>Table#</th>
+                                                    <th scope='col'>Status</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>";
+
+                                    // output data of each row
+                                    $count = 1;
+                                    while ($row = mysqli_fetch_array($results)) {
+                                        $orderID = 'orderID' . $count;
+                                        echo "<tr>
+                                                <td scope='row'>" . $count . "</td>
+                                                <td>" . $row["barName"] . "</td>
+                                                <td>" . $row["customerFullName"] . "</td>
+                                                <td>" . $row["productName"] . "</td>
+                                                <td>" . $row["orderAmount"] . "</td>
+                                                <td>" . $row["tableNumber"] . "</td>
+                                                <td>";
+                                                        if ($row["orderStatus"] == 'ATTENDED') {
+                                                            echo "<span class='badge rounded-pill bg-success'>Attended</span>";
+                                                        } elseif ($row["orderStatus"] == 'PENDING') {
+                                                            echo "<span class='badge rounded-pill bg-warning'>Pending</span>";
+                                                        } else {
+                                                            echo "<span class='badge rounded-pill bg-primary'>Paid</span>";
+                                                        }
+
+                                            echo "</td>
+                                                </tr>";
+                                                        $count = $count + 1;
+                                                    }
+                                                    echo " </tbody>
+                                    </table>";
+
+                                    ?>
 
                              </div>
 
                          </div>
-                     </div><!-- End Recent Sales -->
+
+                     </div>
+                 </div><!-- End Recent Orders -->
 
 
 
-                 </div>
-             </div><!-- End Left side columns -->
+             </div>
+         </div><!-- End Left side columns -->
 
 
          </div>

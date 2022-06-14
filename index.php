@@ -70,10 +70,10 @@
               <li><a href="auth/manager/login.php">Manager</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="auth/admin/login.php">Admin</a></li>
+          <!-- <li><a class="nav-link scrollto" href="auth/admin/index.php">Admin</a></li> -->
         </ul>
         <i class=" bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      </nav><!-- navbar -->
       <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Create Order</a>
 
     </div>
@@ -87,13 +87,18 @@
           <h1>Welcome to <span>Smart-Bar</span></h1>
           <h2>guarantee to Easy of service </h2>
 
-          <div class="btns">
-            <a href="#book-a-table" class="btn-book animated fadeInUp scrollto">Reservation </a>
-          </div>
-        </div>
+          <?php if (isset($_GET["redirect"]) && !empty($_GET["redirect"])) : ?>
+            <?php if ($_GET["redirect"] == "success") : ?>
+              <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle me-1"></i>
+                Message sent succesfully!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <?php endif; ?>
+          <?php endif; ?>
 
+        </div>
       </div>
-    </div>
   </section><!-- End Hero -->
 
   <main id="main">
@@ -273,25 +278,24 @@
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="backend/feedbackController.php" method="post" class="php-email-form">
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  <input type="text" name="fullname" class="form-control <?php echo (!empty($fullname_err)) ? 'is-invalid' : ''; ?>" id="name" placeholder="Your Name" required>
+                  <span class="invalid-feedback"><?php echo $fullname_err; ?></span>
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <input type="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" name="email" id="email" placeholder="Your Email" required>
+                  <span class="invalid-feedback"><?php echo $email_err; ?></span>
                 </div>
               </div>
               <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                <input type="text" class="form-control <?php echo (!empty($subject_err)) ? 'is-invalid' : ''; ?>" name="subject" id="subject" placeholder="Subject" required>
+                <span class="invalid-feedback"><?php echo $subject_err; ?></span>
               </div>
               <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="8" placeholder="Message" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+                <textarea class="form-control <?php echo (!empty($message_err)) ? 'is-invalid' : ''; ?>" name="message" rows="8" placeholder="Message" required></textarea>
+                <span class="invalid-feedback"><?php echo $message_err; ?></span>
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
@@ -366,12 +370,7 @@
       <div class="copyright">
         &copy; Copyright <strong><span>Smart-Bar</span></strong>. All Rights Reserved
       </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/restaurantly-restaurant-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">Smart-Girls</a>
+      <div class="credits">Designed by <a href="#">Smart-Girls</a>
       </div>
     </div>
   </footer><!-- End Footer -->
@@ -385,7 +384,6 @@
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/mainJs.js"></script>

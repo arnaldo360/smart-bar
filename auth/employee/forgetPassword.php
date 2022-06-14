@@ -149,10 +149,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         </div>
                                         <div class="col-12">
                                             <p class="small mb-0">Already have an account? <a href="login.php">Log in</a></p>
-                                        </div>
+                                        <!-- </div>
                                         <div class="col-12">
                                             <p class="small mb-0">Don't have account? <a href="register.php">Create an account</a></p>
-                                        </div>
+                                        </div> -->
                                     </form>
 
                                 </div>

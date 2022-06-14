@@ -106,19 +106,21 @@
             </a>
         </li><!-- End Reservations Page Nav -->
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link collapsed" href="report.php">
                 <i class="bi bi-journal-check"></i>
                 <span>Report</span>
             </a>
-        </li><!-- End Report Page Nav -->
+        </li> -->
+        <!-- End Report Page Nav -->
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link collapsed" href="activityLog.php">
                 <i class="bi bi-list-check"></i>
                 <span>Activity Log</span>
             </a>
-        </li><!-- End Activity Log Page Nav -->
+        </li> -->
+        <!-- End Activity Log Page Nav -->
 
     </ul>
 

@@ -196,9 +196,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <p class="small mb-0">Forgot Password? <a href="forgetPassword.php">Reset Password</a></p>
                                         </div>
                                         
-                                        <div class="col-12">
+                                        <!-- <div class="col-12">
                                             <p class="small mb-0">Don't have account? <a href="register.php">Create an account</a></p>
-                                        </div>
+                                        </div> -->
+                                        
                                     </form>
 
                                 </div>
