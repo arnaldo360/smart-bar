@@ -151,6 +151,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                     <div class="pt-4 pb-2">
                                         <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
+
+                                        <?php if (isset($_GET["redirect"]) && !empty($_GET["redirect"])) : ?>
+                                            <?php if ($_GET["redirect"] == "success") : ?>
+                                                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                                    <i class="bi bi-check-circle me-1"></i>
+                                                    Password Change succesfully! Login with new password.
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                </div>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+
                                         <p class="text-center small">Enter your username & password to login</p>
                                         <?php if (count($login_errors) > 0) : ?>
                                             <div class="alert alert-danger">
@@ -195,11 +206,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <div class="col-12">
                                             <p class="small mb-0">Forgot Password? <a href="forgetPassword.php">Reset Password</a></p>
                                         </div>
-                                        
+
                                         <!-- <div class="col-12">
                                             <p class="small mb-0">Don't have account? <a href="register.php">Create an account</a></p>
                                         </div> -->
-                                        
+
                                     </form>
 
                                 </div>

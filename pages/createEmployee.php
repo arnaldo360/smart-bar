@@ -36,7 +36,7 @@
 
                  <div class="card">
                      <div class="card-body">
-                         <h5 class="card-title">Create Employee</h5>
+                         <h5 class="card-title">Create Employee <?php echo $username; ?></h5>
 
                          <!-- Floating Labels Form -->
                          <form class="row g-3 needs-validation" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" novalidate>
@@ -82,10 +82,10 @@
                              <div class="col-md-4">
                                  <div class="form-floating">
                                      <select class="form-select <?php echo (!empty($barId_err)) ? 'is-invalid' : ''; ?>" id="floatingSelect" aria-label="State" name="barId" disabled>
-                                        
+
                                          <?php
                                             require_once "../database/dbConnect.php";
-                                            $result = mysqli_query($mysqli, "select * from bar b join manager m on m.managerBar = b.barId;");
+                                            $result = mysqli_query($mysqli, "select b.barName, b.barId from bar b join manager m on m.managerBar = b.barId ;");
                                             while ($row = mysqli_fetch_array($result)) {
                                             ?>
                                              <option value="<?php echo $row['barId']; ?>" selected><?php echo $row["barName"]; ?></option>

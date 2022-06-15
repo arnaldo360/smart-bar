@@ -32,10 +32,10 @@ if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
                 $managerEmail          = $row['managerEmail'];
                 $managerGender         = $row['managerGender'];
                 $managerMobile         = $row['managerContact'];
+                $managerPhysicalAdd    = $row['managerPhysicalAdd'];
+                $managerDoB            = $row['managerDoB'];
                 $createdAt             = $row['createdAt'];
                 $managerStatus         = $row['managerStatus'];
-            } else {
-                echo "manager dont exist";
             }
         } else {
             echo "Failed to execute";

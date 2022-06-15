@@ -7,6 +7,6 @@ header("Location: ../../index.php");
 } else {
 	$role           = $_SESSION['userRole'];
 	$username       = $_SESSION['username'];
-	$user_id        = $_SESSION['id'];
+	$userId         = $_SESSION['id'];
 	$barId			= $_SESSION['barID'];
 }

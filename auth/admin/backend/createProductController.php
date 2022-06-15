@@ -33,10 +33,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $photo = $filename;
       }
     } else {
-      echo "Error: There was a problem uploading your file. Please try again.";
+      $photo_err = "Error: There was a problem uploading your file. Please try again.";
+      echo $photo_err;
     }
   } else {
-    echo "Error: " . $_FILES["photo"]["error"];
+    $photo_err = "Error: " . $_FILES["photo"]["error"];
+    echo $photo_err;
   }
 
   // BarId validation

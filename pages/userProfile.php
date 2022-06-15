@@ -6,7 +6,7 @@
 
     global $role;
     global $username;
-    global $user_id;
+    global $userId;
     global $barId;
 
     ?>
@@ -30,14 +30,18 @@
          </nav>
      </div><!-- End Page Title -->
 
+            <?php if (isset($_GET["redirect"]) && !empty($_GET["redirect"])) : ?>
+                 <?php if ($_GET["redirect"] == "success") : ?>
+                     <div class="alert alert-info alert-dismissible fade show" role="alert">
+                         <i class="bi bi-check-circle me-1"></i>
+                         Profile Updated succesfully!
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>
+                 <?php endif; ?>
+             <?php endif; ?>
+
 
      <?php if ($role == 1) {
-
-         $fullname = 'fullname';
-         $email = "email";
-         $contact = "contact";
-         $gender = "gender";
-
 
             echo "
             <section class='section profile'>
@@ -48,8 +52,9 @@
                      <div class='card-body profile-card pt-4 d-flex flex-column align-items-center'>
 
                          <img src='../assets/img/undraw_profile_pic.png' alt='Profile' class='rounded-circle'>
-                         <h2></h2>
+                         <h2>$managerFullName</h2>
                          <h3>Administrator</h3>
+
                          <div class='social-links mt-2'>
                              <a href='#' class='twitter'><i class='bi bi-twitter'></i></a>
                              <a href='#' class='facebook'><i class='bi bi-facebook'></i></a>
@@ -89,14 +94,14 @@
                                  <div class='row'>
                                      <div class='col-lg-3 col-md-4 label'>Fullname</div>
                                      <div class='col-lg-9 col-md-8'>
-                                         " . $adminFullName . "
+                                         " . $managerFullName . "
                                      </div>
                                  </div>
 
                                  <div class='row'>
                                      <div class='col-lg-3 col-md-4 label'>Phone</div>
                                      <div class='col-lg-9 col-md-8'>
-                                         " . $adminMobile . "
+                                         " . $managerMobile . "
                                             
                                      </div>
                                  </div>
@@ -104,65 +109,79 @@
                                  <div class='row'>
                                      <div class='col-lg-3 col-md-4 label'>Email</div>
                                      <div class='col-lg-9 col-md-8'>
-                                     " . $adminEmail . "
+                                     " . $managerEmail . "
                                      </div>
                                  </div>
 
                                  <div class='row'>
-                                     <div class='col-lg-3 col-md-4 label'>Email</div>
+                                     <div class='col-lg-3 col-md-4 label'>Gender</div>
                                      <div class='col-lg-9 col-md-8'>
-                                     " . $adminGender . "
+                                     " . $managerGender . "
                                      </div>
                                  </div>
 
                                  <div class='row'>
                                      <div class='col-lg-3 col-md-4 label'>Address</div>
                                      <div class='col-lg-9 col-md-8'>
-                                         " . $adminPhysicalAdd . "
+                                         " . $managerPhysicalAdd . "
                                      </div>
                                  </div>
 
+                                 <div class='row'>
+                                     <div class='col-lg-3 col-md-4 label'>Date Of Birth</div>
+                                     <div class='col-lg-9 col-md-8'>
+                                         " . $managerDoB . "
+                                     </div>
+                                 </div>
 
+                                 <div class='row'>
+                                     <div class='col-lg-3 col-md-4 label'>Status</div>
+                                     <div class='col-lg-9 col-md-8'>
+                                         " . $managerStatus . "
+                                     </div>
+                                 </div>
+
+                                 <div class='row'>
+                                     <div class='col-lg-3 col-md-4 label'>Created At</div>
+                                     <div class='col-lg-9 col-md-8'>
+                                         " . $createdAt . "
+                                     </div>
+                                 </div>
 
                              </div>
-            
-            ";
-        ?>
 
-         <?php
 
-            echo " 
                             <div class='tab-pane fade profile-edit pt-3' id='profile-edit'>
 
                                  <!-- Profile Edit Form -->
-                                 <form action='' method='POST' enctype='multipart/form-data' novalidate>
+                                 <form action='../backend/editManagerProfileController.php' method='POST' enctype='multipart/form-data' novalidate>
 
                                      <div class='row mb-3'>
                                          <label for='fullName' class='col-md-4 col-lg-3 col-form-label'>Full Name</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='fullName' type='text' class='form-control' id='fullName' name='fullname' value=" . $adminFullName . ">
+                                             <input type='text' class='form-control' id='fullName' name='fullname' value='$managerFullName'>
                                          </div>
                                      </div>
 
                                      <div class='row mb-3'>
                                          <label for='Phone' class='col-md-4 col-lg-3 col-form-label'>Phone</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='phone' type='text' class='form-control' id='Phone' name='contact' value=" . $adminMobile . ">
+                                             <input name='mobile' type='text' class='form-control' id='Phone' name='contact' value=" . $managerMobile . ">
                                          </div>
                                      </div>
 
                                      <div class='row mb-3'>
                                          <label for='Email' class='col-md-4 col-lg-3 col-form-label'>Email</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='email' type='email' class='form-control' id='Email' name='email' value=" . $adminEmail . ">
+                                             <input type='email' class='form-control' id='Email' name='email' value=" . $managerEmail . ">
                                          </div>
                                      </div>
 
                                      <div class='row mb-3'>
                                          <label for='Gender' class='col-md-4 col-lg-3 col-form-label'>Gender</label>
                                          <div class='col-md-8 col-lg-9'>
-                                            <select class='form-select'>
-                                                <option selected>" . $adminGender . "</option>
+                                            <select class='form-select' name='gender'>
+                                                <option selected>Select Gender</option>
                                                 <option value'Male'>Male</option>
                                                 <option value'Female'>Female</option>
                                             </select>
@@ -172,33 +191,35 @@
                                      <div class='row mb-3'>
                                          <label for='address' class='col-md-4 col-lg-3 col-form-label'>Address</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='text' type='text' class='form-control' id='address' name='address' value=" . $adminPhysicalAdd . ">
+                                             <input type='text' class='form-control' id='address' name='address' value=" . $managerPhysicalAdd . ">
+                                         </div>
+                                     </div>
+
+                                     <div class='row mb-3'>
+                                         <label for='dateOfBirth' class='col-md-4 col-lg-3 col-form-label'>Date Of Birth</label>
+                                         <div class='col-md-8 col-lg-9'>
+                                             <input name='dateOfBirth' type='date' class='form-control' id='dateOfBirth' value=" . $managerDoB . ">
                                          </div>
                                      </div>
 
                                      <div class='text-center'>
-                                         <button type='submit' class='btn btn-primary'>Save Changes</button>
+                                         <button type='submit' name='saveChanges' class='btn btn-primary'>Save Changes</button>
+                                         <a href='userProfile.php'><button type='button' class='btn btn-danger'>Cancle</button></a>
                                      </div>
                                  </form><!-- End Profile Edit Form -->
 
                              </div>
-                                ";
-
-            ?>
-
-     <?php
-
-            echo "
-                                <div class='tab-pane fade pt-3' id='profile-change-password'>
+                             
+                             <div class='tab-pane fade pt-3' id='profile-change-password'>
                                  <!-- Change Password Form -->
 
-                                 <form action='' method='POST' enctype='multipart/form-data' novalidate>
+                                 <form action='../backend/changePassManagerController.php' method='POST' enctype='multipart/form-data' novalidate>
 
 
                                      <div class='row mb-3'>
                                          <label for='new_Password' class='col-md-4 col-lg-3 col-form-label'>New Password</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='new_password' type='password' class='form-control' value='' id='new_Password'>
+                                             <input name='newpassword' type='password' class='form-control' value='' id='new_Password'>
                                              <span class='invalid-feedback'></span>
                                          </div>
                                      </div>
@@ -206,13 +227,14 @@
                                      <div class='row mb-3'>
                                          <label for='confirm_password' class='col-md-4 col-lg-3 col-form-label'>Re-enter New Password</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='confirm_password' type='password' class='form-control' id='comfirm_Password'>
+                                             <input name='renewpassword' type='password' class='form-control' id='comfirm_Password'>
                                              <span class='invalid-feedback'></span>
                                          </div>
                                      </div>
 
                                      <div class='text-center'>
-                                         <button type='submit' class='btn btn-primary'>Change Password</button>
+                                         <button type='submit' name='saveChanges' class='btn btn-primary'>Change Password</button>
+                                         <a href='userProfile.php'><button type='button' class='btn btn-danger'>Cancle</button></a>
                                      </div>
                              
                                  </form><!-- End Change Password Form -->
@@ -241,8 +263,9 @@
                      <div class='card-body profile-card pt-4 d-flex flex-column align-items-center'>
 
                          <img src='../assets/img/undraw_profile_pic.png' alt='Profile' class='rounded-circle'>
-                         <h2></h2>
+                         <h2>".$employeeFullName. "</h2>
                          <h3>Employee</h3>
+                         <h2>" . $employeeTitle . "</h2>
                          <div class='social-links mt-2'>
                              <a href='#' class='twitter'><i class='bi bi-twitter'></i></a>
                              <a href='#' class='facebook'><i class='bi bi-facebook'></i></a>
@@ -309,52 +332,66 @@
                                  </div>
 
                                  <div class='row'>
+                                     <div class='col-lg-3 col-md-4 label'>Date Of Birth</div>
+                                     <div class='col-lg-9 col-md-8'>
+                                     " . $employeeDoB . "
+                                     </div>
+                                 </div>
+
+                                 <div class='row'>
                                      <div class='col-lg-3 col-md-4 label'>Address</div>
                                      <div class='col-lg-9 col-md-8'>
                                          " . $employeePhysicalAdd . "
                                      </div>
                                  </div>
 
+                                 <div class='row'>
+                                     <div class='col-lg-3 col-md-4 label'>Status</div>
+                                     <div class='col-lg-9 col-md-8'>
+                                         " . $employeeStatus . "
+                                     </div>
+                                 </div>
 
+                                 <div class='row'>
+                                     <div class='col-lg-3 col-md-4 label'>Created At</div>
+                                     <div class='col-lg-9 col-md-8'>
+                                     " . $createdAt . "
+                                     </div>
+                                 </div>
 
                              </div>
-            
-            ";
-        ?>
 
-         <?php
 
-            echo " 
-                            <div class='tab-pane fade profile-edit pt-3' id='profile-edit'>
+                             <div class='tab-pane fade profile-edit pt-3' id='profile-edit'>
 
                                  <!-- Profile Edit Form -->
-                                 <form action='' method='POST' enctype='multipart/form-data' novalidate>
+                                 <form action='../backend/editEmployeeProfileController.php' method='POST' enctype='multipart/form-data' novalidate>
 
                                      <div class='row mb-3'>
                                          <label for='fullName' class='col-md-4 col-lg-3 col-form-label'>Full Name</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='fullName' type='text' class='form-control' id='fullName' name='fullname' value=" . $employeeFullName . ">
+                                             <input type='text' class='form-control' id='fullName' name='fullname' value='$employeeFullName '>
                                          </div>
                                      </div>
 
                                      <div class='row mb-3'>
                                          <label for='Phone' class='col-md-4 col-lg-3 col-form-label'>Phone</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='phone' type='text' class='form-control' id='Phone' name='contact' value=" . $employeeMobile . ">
+                                             <input type='text' class='form-control' id='Phone' name='mobile' value='$employeeMobile '>
                                          </div>
                                      </div>
 
                                      <div class='row mb-3'>
                                          <label for='Email' class='col-md-4 col-lg-3 col-form-label'>Email</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='email' type='email' class='form-control' id='Email' name='email' value=" . $employeeEmail . ">
+                                             <input type='email' class='form-control' id='Email' name='email' value=" . $employeeEmail . ">
                                          </div>
                                      </div>
 
                                      <div class='row mb-3'>
                                          <label for='Gender' class='col-md-4 col-lg-3 col-form-label'>Gender</label>
                                          <div class='col-md-8 col-lg-9'>
-                                            <select class='form-select'>
+                                            <select class='form-select' name='gender'>
                                                 <option selected>" .$employeeGender . "</option>
                                                 <option value'Male'>Male</option>
                                                 <option value'Female'>Female</option>
@@ -363,35 +400,38 @@
                                      </div>
 
                                      <div class='row mb-3'>
+                                         <label for='address' class='col-md-4 col-lg-3 col-form-label'>Date Of Birth</label>
+                                         <div class='col-md-8 col-lg-9'>
+                                             <input type='text' class='form-control' id='address' name='dateOfBirth' value=" . $employeeDoB . ">
+                                         </div>
+                                     </div>
+
+                                     <div class='row mb-3'>
                                          <label for='address' class='col-md-4 col-lg-3 col-form-label'>Address</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='text' type='text' class='form-control' id='address' name='address' value=" . $employeePhysicalAdd . ">
+                                             <input type='text' class='form-control' id='address' name='address' value=" . $employeePhysicalAdd . ">
                                          </div>
                                      </div>
 
                                      <div class='text-center'>
-                                         <button type='submit' class='btn btn-primary'>Save Changes</button>
+                                         <button type='submit' name='saveChanges' class='btn btn-primary'>Save Changes</button>
+                                         <a href='userProfile.php'><button type='button' class='btn btn-danger'>Cancle</button></a>
                                      </div>
                                  </form><!-- End Profile Edit Form -->
 
                              </div>
-                                ";
-
-            ?>
-
-     <?php
-
-            echo "
-                                <div class='tab-pane fade pt-3' id='profile-change-password'>
+                                
+                             
+                             <div class='tab-pane fade pt-3' id='profile-change-password'>
                                  <!-- Change Password Form -->
 
-                                 <form action='../backend/changePassword.php' method='POST' enctype='multipart/form-data' novalidate>
+                                 <form action='../backend/changePassEmployeeController.php' method='POST' enctype='multipart/form-data' novalidate>
 
 
                                      <div class='row mb-3'>
                                          <label for='new_Password' class='col-md-4 col-lg-3 col-form-label'>New Password</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='new_password' type='password' class='form-control' value='' id='new_Password'>
+                                             <input name='newpassword' type='password' class='form-control' value='' id='new_Password'>
                                              <span class='invalid-feedback'></span>
                                          </div>
                                      </div>
@@ -399,13 +439,14 @@
                                      <div class='row mb-3'>
                                          <label for='confirm_password' class='col-md-4 col-lg-3 col-form-label'>Re-enter New Password</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='confirm_password' type='password' class='form-control' id='comfirm_Password'>
+                                             <input name='renewpassword' type='password' class='form-control' id='comfirm_Password'>
                                              <span class='invalid-feedback'></span>
                                          </div>
                                      </div>
 
                                      <div class='text-center'>
-                                         <button type='submit' class='btn btn-primary'>Change Password</button>
+                                         <button type='submit' name='saveChanges' class='btn btn-primary'>Change Password</button>
+                                         <a href='userProfile.php'><button type='button' class='btn btn-danger'>Cancle</button></a>
                                      </div>
                              
                                  </form><!-- End Change Password Form -->
@@ -424,12 +465,6 @@
          ";
         } elseif ($role == 3) {
 
-            $fullname = "fullname";
-            $email = "email";
-            $contact = "contact";
-            $gender = "gender";
-
-
             echo "
             <section class='section profile'>
          <div class='row'>
@@ -439,7 +474,7 @@
                      <div class='card-body profile-card pt-4 d-flex flex-column align-items-center'>
 
                          <img src='../assets/img/undraw_profile_pic.png' alt='Profile' class='rounded-circle'>
-                         <h2></h2>
+                         <h2>".$customerFullName."</h2>
                          <h3>Customer</h3>
                          <div class='social-links mt-2'>
                              <a href='#' class='twitter'><i class='bi bi-twitter'></i></a>
@@ -487,8 +522,7 @@
                                  <div class='row'>
                                      <div class='col-lg-3 col-md-4 label'>Phone</div>
                                      <div class='col-lg-9 col-md-8'>
-                                         " . $customerMobile . "
-                                            
+                                         " . $customerMobile . "   
                                      </div>
                                  </div>
 
@@ -513,47 +547,54 @@
                                      </div>
                                  </div>
 
+                                 <div class='row'>
+                                     <div class='col-lg-3 col-md-4 label'>Status</div>
+                                     <div class='col-lg-9 col-md-8'>
+                                         " . $customerStatus . "
+                                     </div>
+                                 </div>
 
+                                 <div class='row'>
+                                     <div class='col-lg-3 col-md-4 label'>Created At</div>
+                                     <div class='col-lg-9 col-md-8'>
+                                         " . $createdAt . "
+                                     </div>
+                                 </div>
 
                              </div>
             
-            ";
-        ?>
-
-         <?php
-
-            echo " 
-                            <div class='tab-pane fade profile-edit pt-3' id='profile-edit'>
+            
+                             <div class='tab-pane fade profile-edit pt-3' id='profile-edit'>
 
                                  <!-- Profile Edit Form -->
-                                 <form action='../auth/customer/editProfile.php' method='POST' enctype='multipart/form-data' novalidate>
+                                 <form action='../backend/editCustomerProfileController.php' method='POST' enctype='multipart/form-data' novalidate>
 
                                      <div class='row mb-3'>
                                          <label for='fullName' class='col-md-4 col-lg-3 col-form-label'>Full Name</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='fullName' type='text' class='form-control' id='fullName' name= .$fullname . value=" . $customerFullName . ">
+                                             <input type='text' class='form-control' id='fullName' name='fullname' value='$customerFullName'>
                                          </div>
                                      </div>
 
                                      <div class='row mb-3'>
                                          <label for='Phone' class='col-md-4 col-lg-3 col-form-label'>Phone</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='phone' type='text' class='form-control' id='Phone' name= . $contact .  value=" . $customerMobile . ">
+                                             <input type='text' class='form-control' id='Phone' name= 'mobile'  value=" . $customerMobile . ">
                                          </div>
                                      </div>
 
                                      <div class='row mb-3'>
                                          <label for='Email' class='col-md-4 col-lg-3 col-form-label'>Email</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='email' type='email' class='form-control' id='Email' name=. $email . value=" . $customerEmail . ">
+                                             <input type='email' class='form-control' id='Email' name='email' value=" . $customerEmail . ">
                                          </div>
                                      </div>
 
                                      <div class='row mb-3'>
                                          <label for='Gender' class='col-md-4 col-lg-3 col-form-label'>Gender</label>
                                          <div class='col-md-8 col-lg-9'>
-                                            <select class='form-select' name=.$gender.>
-                                                <option selected>" . $customerGender . "</option>
+                                            <select class='form-select' name='gender'>
+                                                <option selected>Select Gender</option>
                                                 <option value'Male'>Male</option>
                                                 <option value'Female'>Female</option>
                                             </select>
@@ -563,33 +604,28 @@
                                      <div class='row mb-3'>
                                          <label for='address' class='col-md-4 col-lg-3 col-form-label'>Address</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='text' type='text' class='form-control' id='address' name='address' value=" . $customerPhysicalAdd . ">
+                                             <input type='text' class='form-control' id='address' name='address' value=" . $customerPhysicalAdd . ">
                                          </div>
                                      </div>
 
                                      <div class='text-center'>
-                                         <button type='submit' class='btn btn-primary'>Save Changes</button>
+                                         <button type='submit' name='saveChanges' class='btn btn-primary'>Save Changes</button>
+                                         <a href='userProfile.php'><button type='button' class='btn btn-danger'>Cancle</button></a>
                                      </div>
                                  </form><!-- End Profile Edit Form -->
 
                              </div>
-                                ";
-
-            ?>
-
-     <?php
-
-            echo "
-                                <div class='tab-pane fade pt-3' id='profile-change-password'>
+                               
+                             
+                             <div class='tab-pane fade pt-3' id='profile-change-password'>
                                  <!-- Change Password Form -->
 
-                                 <form action='' method='POST' enctype='multipart/form-data' novalidate>
-
+                                 <form action='../backend/changePassCustomerController.php' method='POST' enctype='multipart/form-data' novalidate>
 
                                      <div class='row mb-3'>
                                          <label for='new_Password' class='col-md-4 col-lg-3 col-form-label'>New Password</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='new_password' type='password' class='form-control' value='' id='new_Password'>
+                                             <input name='newpassword' type='password' class='form-control' value='' id='new_Password'>
                                              <span class='invalid-feedback'></span>
                                          </div>
                                      </div>
@@ -597,13 +633,14 @@
                                      <div class='row mb-3'>
                                          <label for='confirm_password' class='col-md-4 col-lg-3 col-form-label'>Re-enter New Password</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='confirm_password' type='password' class='form-control' id='comfirm_Password'>
+                                             <input name='renewpassword' type='password' class='form-control' id='comfirm_Password'>
                                              <span class='invalid-feedback'></span>
                                          </div>
                                      </div>
 
                                      <div class='text-center'>
-                                         <button type='submit' class='btn btn-primary'>Change Password</button>
+                                         <button type='submit' name='saveChanges' class='btn btn-primary'>Change Password</button>
+                                         <a href='userProfile.php'><button type='button' class='btn btn-danger'>Cancle</button></a>
                                      </div>
                              
                                  </form><!-- End Change Password Form -->

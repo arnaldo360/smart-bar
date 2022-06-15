@@ -58,6 +58,7 @@
                                  <th scope='col'>Bar Name</th>
                                  <th scope='col'>Product Name</th>
                                  <th scope='col'>Quantity</th>
+                                 <th scope='col'>Price</th>
                                  <th scope='col'>Status</th>
                                  <th scope='col'>Action</th>
                              </tr>
@@ -73,6 +74,7 @@
                                  <th>" . $row["barName"] . "</th>
                                  <td>" . $row["productName"] . "</td>
                                  <td>" . $row["productQuantity"] . "</td>
+                                 <td>" . $row["productPrice"] . " Tzs</td>
                                  <td>";
                             if ($row["productStatus"] == 'ACTIVE') {
                                 echo "<span class='badge rounded-pill bg-success'>Active</span>";

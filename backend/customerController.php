@@ -34,9 +34,8 @@ if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
                 $customerMobile         = $row['customerContact'];
                 $customerPhysicalAdd    = $row['customerPhysicalAdd'];
                 $customerStatus         = $row['customerStatus'];
+                $createdAt              = $row['createdAt'];
 
-            } else {
-                echo "Customer dont exist";
             }
 
         } else {

@@ -119,7 +119,7 @@
 
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="reservation.php">
+            <a class="nav-link collapsed" href="feedback.php">
                 <i class="bi bi-stickies"></i>
                 <span>Feedback</span>
             </a>

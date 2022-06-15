@@ -51,7 +51,7 @@
                      <?php
                         require_once("../database/dbConnect.php");
 
-                        $sql = "SELECT * FROM employee JOIN bar ON bar.barId = employee.employeeBar WHERE bar.barId = $barId";
+                        $sql = "SELECT * FROM employee JOIN bar ON bar.barId = employee.employeeBar WHERE employee.employeeBar = $barId";
 
                         $results = mysqli_query($mysqli, $sql);
 

@@ -32,11 +32,12 @@ if (isset($_SESSION["username"]) && !empty($_SESSION["username"])) {
                 $employeeEmail          = $row['employeeEmail'];
                 $employeeGender         = $row['employeeGender'];
                 $employeeMobile         = $row['employeeContact'];
+                $employeeTitle          = $row['employeeTitle'];
+                $employeeDoB            = $row['employeeDoB'];
                 $employeePhysicalAdd    = $row['employeePhysicalAdd'];
                 $employeeStatus         = $row['employeeStatus'];
+                $createdAt              = $row['createdAt'];
 
-            } else {
-                echo "employee dont exist";
             }
 
         } else {

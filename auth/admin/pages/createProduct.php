@@ -34,7 +34,7 @@
                          <h5 class="card-title">Create Product</h5>
 
                          <!-- Floating Labels Form -->
-                         <form class="row g-3 needs-validation" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" novalidate>
+                         <form class="row g-3 needs-validation" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data" novalidate>
 
                              <div class="col-md-4">
                                  <div class="form-floating mb-3">
@@ -79,8 +79,8 @@
 
                              <div class="col-md-4">
                                  <div class="form-floating" id="category" style="display: none;">
-                                     <select class="form-select <?php echo (!empty($category_err)) ? 'is-invalid' : ''; ?> " name="product_category" id="category_type" required>
-
+                                     <select class="form-select <?php echo (!empty($category_err)) ? 'is-invalid' : ''; ?> " name="category" id="category_type" required>
+                                         <option selected>Select Category</option>
                                      </select>
                                      <label for="floatingSelect">Product Category</label>
                                      <span class="invalid-feedback"><?php echo $category_err; ?></span>
@@ -88,16 +88,16 @@
                              </div>
 
                              <div class="col-md-4">
-                                 <div class="form-floating mb-3" style="display: none;">
-                                     <input type="number" class="form-control <?php echo (!empty($alcoholPercentage_err)) ? 'is-invalid' : ''; ?>" name="alcoholPercentage" id="floatingName" placeholder="Quanity">
+                                 <div class="form-floating mb-3" id="alcohol" style="display: none;">
+                                     <input type="number" class="form-control <?php echo (!empty($alcoholPercentage_err)) ? 'is-invalid' : ''; ?>" name="alcoholPercentage" id="alcohol" placeholder="Quanity">
                                      <label for="floatingName">Alcohol percentage</label>
                                      <span class="invalid-feedback"><?php echo $alcoholPercentage_err; ?></span>
                                  </div>
                              </div>
 
                              <div class="col-md-4">
-                                 <div class="form-floating mb-3" style="display: none;">
-                                     <input type="number" class="form-control <?php echo (!empty($volume_err)) ? 'is-invalid' : ''; ?>" name="volume" id="floatingName" placeholder="Quanity">
+                                 <div class="form-floating mb-3" id="volume" style="display: none;">
+                                     <input type="number" class="form-control <?php echo (!empty($volume_err)) ? 'is-invalid' : ''; ?>" name="volume" id="volume" placeholder="Quanity">
                                      <label for="floatingName">Product Volume</label>
                                      <span class="invalid-feedback"><?php echo $volume_err; ?></span>
                                  </div>
@@ -105,10 +105,10 @@
 
                              <div class="col-md-4">
                                  <div class="form-floating">
-                                     <select class="form-select <?php echo (!empty($unit_err)) ? 'is-invalid' : ''; ?> " name="unit" id="floatingSelect" required>
+                                     <select class="form-select <?php echo (!empty($unit_err)) ? 'is-invalid' : ''; ?> " name="unit" id="unit" required>
                                          <option>Select Unit</option>
-                                         <option value="ml">ml</option>
-                                         <option value="l">l</option>
+                                         <option value="ml">Millilitres</option>
+                                         <option value="l">Litlres</option>
                                      </select>
                                      <label for="floatingSelect">Product Unit</label>
                                      <span class="invalid-feedback"><?php echo $unit_err; ?></span>
@@ -142,16 +142,16 @@
 
                              <div class="col-md-6">
                                  <div class="form-floating">
-                                     <input type="file" class="form-control <?php echo (!empty($image_err)) ? 'is-invalid' : ''; ?>" id="floatingImage" placeholder="photo">
+                                     <input type="file" class="form-control <?php echo (!empty($photo_err)) ? 'is-invalid' : ''; ?>" name="photo" id="floatingImage" placeholder="photo">
                                      <label for="floatingImage" style="padding-top: 5px;">Upload Image</label>
-                                     <span class="invalid-feedback"><?php echo $image_err; ?></span>
+                                     <span class="invalid-feedback"><?php echo $photo_err; ?></span>
                                  </div>
                              </div>
 
 
 
                              <div class="text-center">
-                                 <button type="submit" class="btn btn-primary">Submit</button>
+                                 <button type="submit" class="btn btn-primary" value="upload">Submit</button>
                                  <button type="reset" class="btn btn-secondary">Reset</button>
                              </div>
                          </form><!-- End floating Labels Form -->
@@ -170,10 +170,10 @@
 
  <script type="text/javascript">
      $(document).ready(function() {
-         $("#product_type").on('change', function() {
+         $("#product_type").change(function() {
              //  alert("wazungu");
              // store option value in variable
-             var product_type = $(this).children("option:selected").val();
+             var product_type = $("#product_type option:selected").val();
              var category_wrap = document.getElementById("category");
              var alcohol_wrap = document.getElementById("alcohol");
              var volume_wrap = document.getElementById("volume");

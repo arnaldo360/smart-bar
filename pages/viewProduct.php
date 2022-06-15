@@ -32,38 +32,73 @@
      <section class="pagetitle">
          <!-- Recent Sales -->
          <div class="col-12">
+
+             <?php if (isset($_GET["redirect"]) && !empty($_GET["redirect"])) : ?>
+                 <?php if ($_GET["redirect"] == "success") : ?>
+                     <div class="alert alert-info alert-dismissible fade show" role="alert">
+                         <i class="bi bi-check-circle me-1"></i>
+                         Product Added succesfully!
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>
+                 <?php endif; ?>
+             <?php endif; ?>
+
              <div class="card recent-sales overflow-auto">
 
                  <div class="card-body">
                      <h5 class="card-title">View Product</h5>
 
-                     <table class="table table-borderless datatable">
+                     <?php
+                        require_once("../database/dbConnect.php");
+
+                        $sql = "SELECT * FROM product JOIN bar ON product.barID = bar.barId";
+
+                        $results = mysqli_query($mysqli, $sql);
+
+                        echo "<table class='table table-borderless datatable'>
                          <thead>
                              <tr>
-                                 <th scope="col">#</th>
-                                 <th scope="col">Product</th>
-                                 <th scope="col">Description</th>
-                                 <th scope="col">Price</th>
-                                 <th scope="col">Status</th>
-                                 <th scope="col">Action</th>
+                                 <th scope='col'>#</th>
+                                 <th scope='col'>Bar Name</th>
+                                 <th scope='col'>Product Name</th>
+                                 <th scope='col'>Quantity</th>
+                                 <th scope='col'>Status</th>
+                                 <th scope='col'>Action</th>
                              </tr>
                          </thead>
-                         <tbody>
-                             <tr>
-                                 <th scope="row"><a href="#">1</a></th>
-                                 <td>Konyagi</td>
-                                 <td>Use not under Age</td>
-                                 <td>Tsh 10,000/=</td>
-                                 <td><span class="badge bg-success">Approved</span></td>
-                                 <td>
-                                     <button type="button" class="btn btn-info"><i class="bi bi-eye"></i></button>
-                                     <button type="button" class="btn btn-success"><i class="bi bi-pencil"></i></button>
-                                     <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                 </td>
-                             </tr>
-                         </tbody>
-                     </table>
+                         <tbody>";
 
+                        // output data of each row
+                        $count = 1;
+                        while ($row = mysqli_fetch_array($results)) {
+                            $productId = 'productId' . $count;
+                            echo "<tr>
+                                <td scope='row'>" . $count . "</td>
+                                 <th>" . $row["barName"] . "</th>
+                                 <td>" . $row["productName"] . "</td>
+                                 <td>" . $row["productQuantity"] . "</td>
+                                 <td>";
+                            if ($row["productStatus"] == 'ACTIVE') {
+                                echo "<span class='badge rounded-pill bg-success'>Active</span>";
+                            } elseif ($row["productStatus"] == 'DEACTIVATED') {
+                                echo "<span class='badge rounded-pill bg-danger'>Deactivated</span>";
+                            } else {
+                                echo "<span class='badge rounded-pill bg-primary'>Pending</span>";
+                            }
+
+                            echo "</td>
+                                 <td>
+                                     <a href='displayBar.php?id=" . $row["productId"] . "'><button type='button' class='btn btn-info' id='$count'><i class='bi bi-eye'></i></button></a>
+                                     <a href='editBar.php?id=" . $row["productId"] . "'><button type='button' class='btn btn-success' id='$count'><i class='bi bi-pencil'></i></button></a>
+                                     <a href='deleteBar.php?id=" . $row["productId"] . "'><button type='button' class='btn btn-danger' id='modalDelete.$count.'><i class='bi bi-trash'></i></button></a>
+                                 </td>
+                             </tr>";
+                            $count = $count + 1;
+                        }
+                        echo " </tbody>
+                     </table>";
+
+                        ?>
                  </div>
 
              </div>
