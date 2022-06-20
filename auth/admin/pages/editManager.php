@@ -127,14 +127,14 @@
                                      <div class="row mb-3">
                                          <label for="Adreess" class="col-md-4 col-lg-3 col-form-label">Adreess</label>
                                          <div class="col-md-8 col-lg-9">
-                                             <input name="address" type="text" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" id="Adreess" value="<?php echo $managerEmail; ?>">
+                                             <input name="address" type="text" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" id="Adreess" value="<?php echo $managerPhysicalAdd; ?>">
                                              <span class="invalid-feedback"><?php echo $address_err; ?></span>
                                          </div>
                                      </div>
 
                                      <div class="text-center">
                                          <button type="submit" name="saveChanges" class="btn btn-primary">Save Changes</button>
-                                         <a href="viewmanager.php"><button type="button" class="btn btn-danger">Cancle</button></a>
+                                         <a href="viewManager.php"><button type="button" class="btn btn-danger">Cancle</button></a>
                                      </div>
                                  </form><!-- End Profile Edit Form -->
 

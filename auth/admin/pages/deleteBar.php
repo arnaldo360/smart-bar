@@ -35,7 +35,7 @@
                          <hr>
                          <div class="text-center">
                              <button type="submit" class="btn btn-danger">Delete</button>
-                             <a href="viewBar.php"><button type="button" class="btn btn-secondary">Cancle</button></a>
+                             <a href="viewBar.php"><button type="button" class="btn btn-secondary">Cancel</button></a>
 
                          </div>
                      </form>

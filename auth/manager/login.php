@@ -200,7 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <button class="btn btn-primary w-100" type="submit">Login</button>
                                         </div>
                                         <div class="col-6">
-                                            <a href="../../index.php"><button class="btn btn-danger w-100" type="button">Cancle</button></a>
+                                            <a href="../../index.php"><button class="btn btn-danger w-100" type="button">Cancel</button></a>
                                         </div>
 
 

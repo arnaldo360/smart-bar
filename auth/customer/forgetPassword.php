@@ -82,8 +82,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="../../assets/img/favicon.png" rel="icon">
-    <link href="../../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="../../assets/img/smartlogo.jpg" rel="icon">
+    <link href="../../assets/img/smartlogo.jpg" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <button class="btn btn-primary w-100" type="submit">Reset Password</button>
                                         </div>
                                         <div class="col-6">
-                                            <a href="../../index.php"><button class="btn btn-danger w-100" type="button">Cancle</button></a>
+                                            <a href="../../index.php"><button class="btn btn-danger w-100" type="button">Cancel</button></a>
                                         </div>
 
                                         <div class="col-12">

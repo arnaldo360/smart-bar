@@ -118,7 +118,7 @@
                                      <div class="row mb-3">
                                          <label for="Adreess" class="col-md-4 col-lg-3 col-form-label">Adreess</label>
                                          <div class="col-md-8 col-lg-9">
-                                             <input name="address" type="text" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" id="Adreess" value="<?php echo $customerEmail; ?>">
+                                             <input name="address" type="text" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" id="Adreess" value="<?php echo $customerPhysicalAdd; ?>">
                                              <span class="invalid-feedback"><?php echo $address_err; ?></span>
                                          </div>
                                      </div>

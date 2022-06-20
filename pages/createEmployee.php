@@ -36,13 +36,13 @@
 
                  <div class="card">
                      <div class="card-body">
-                         <h5 class="card-title">Create Employee <?php echo $username; ?></h5>
+                         <h5 class="card-title">Create Employee <?php echo $barId; ?></h5>
 
                          <!-- Floating Labels Form -->
-                         <form class="row g-3 needs-validation" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" novalidate>
+                         <form class="row g-3 needs-validation" id="createEmployeeForm" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" novalidate>
                              <div class="col-md-4">
                                  <div class="form-floating">
-                                     <input type="text" class="form-control <?php echo (!empty($fullname_err)) ? 'is-invalid' : ''; ?>" id="floatingName" placeholder="Employee Fullname" name="fullname" required>
+                                     <input type="text" class="form-control <?php echo (!empty($fullname_err)) ? 'is-invalid' : ''; ?>" id="fullname" placeholder="Employee Fullname" name="fullname" required>
                                      <label for="floatingName">Employee FullName</label>
                                      <span class="invalid-feedback"><?php echo $fullname_err; ?></span>
                                  </div>
@@ -50,7 +50,7 @@
 
                              <div class="col-md-4">
                                  <div class="form-floating">
-                                     <input type="email" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" id="floatingEmail" placeholder="Manager Email" name="username" required>
+                                     <input type="email" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" id="email" placeholder="Manager Email" name="username" required>
                                      <label for="floatingEmail">Employee Email</label>
                                      <span class="invalid-feedback"><?php echo $username_err; ?></span>
                                  </div>
@@ -58,43 +58,17 @@
 
                              <div class="col-md-4">
                                  <div class="form-floating">
-                                     <input type="text" class="form-control <?php echo (!empty($contact_err)) ? 'is-invalid' : ''; ?>" id="floatingNum" placeholder="Mobile Number" name="contact" required>
+                                     <input type="text" class="form-control <?php echo (!empty($contact_err)) ? 'is-invalid' : ''; ?>" id="mobile" placeholder="Mobile Number" name="contact" required>
                                      <label for="floatingNum">Mobile Number</label>
                                      <span class="invalid-feedback"><?php echo $contact_err; ?></span>
                                  </div>
                              </div>
-                             <div class="col-md-4">
-                                 <div class="form-floating">
-                                     <input type="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" id="floatingPass" placeholder="Manager Password" name="password" required>
-                                     <label for="floatingPass">Employee Password</label>
-                                     <span class="invalid-feedback"><?php echo $password_err; ?></span>
-                                 </div>
-                             </div>
 
                              <div class="col-md-4">
                                  <div class="form-floating">
-                                     <input type="password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" id="floatingConfPass" placeholder="Confirm Password" name="confirm_password" required>
-                                     <label for="floatingConfPass">Confirm Password</label>
-                                     <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
-                                 </div>
-                             </div>
-
-                             <div class="col-md-4">
-                                 <div class="form-floating">
-                                     <select class="form-select <?php echo (!empty($barId_err)) ? 'is-invalid' : ''; ?>" id="floatingSelect" aria-label="State" name="barId" disabled>
-
-                                         <?php
-                                            require_once "../database/dbConnect.php";
-                                            $result = mysqli_query($mysqli, "select b.barName, b.barId from bar b join manager m on m.managerBar = b.barId ;");
-                                            while ($row = mysqli_fetch_array($result)) {
-                                            ?>
-                                             <option value="<?php echo $row['barId']; ?>" selected><?php echo $row["barName"]; ?></option>
-                                         <?php
-                                            }
-                                            ?>
-                                     </select>
-                                     <span class="invalid-feedback"><?php echo $barId_err; ?></span>
-                                     <label for="floatingSelect">Bar</label>
+                                     <input type="date" class="form-control <?php echo (!empty($dateOfBirth_err)) ? 'is-invalid' : ''; ?>" id="floatingNum" placeholder="Date Of Birth" name="dateOfBirth" required>
+                                     <label for="floatingNum">Date Of Birth</label>
+                                     <span class="invalid-feedback"><?php echo $dateOfBirth_err; ?></span>
                                  </div>
                              </div>
 
@@ -107,6 +81,49 @@
                                      </select>
                                      <label for="floatingGen">Gender</label>
                                      <span class="invalid-feedback"><?php echo $gender_err; ?></span>
+                                 </div>
+                             </div>
+
+                             <div class="col-md-4">
+                                 <div class="form-floating">
+                                     <select class="form-select <?php echo (!empty($title_err)) ? 'is-invalid' : ''; ?>" id="floatingTitle" name="title" required>
+                                         <option selected>Select Title</option>
+                                         <option value="Counter">Counter</option>
+                                         <option value="Waiter">Waiter</option>
+                                         <option value="Waitress">Waitress</option>
+                                     </select>
+                                     <label for="floatingTitle">Employee Title</label>
+                                     <span class="invalid-feedback"><?php echo $title_err; ?></span>
+                                 </div>
+                             </div>
+
+                             <div class="col-md-4">
+                                 <div class="form-floating">
+                                     <input type="text" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" id="floatingName" placeholder="Physical Address" name="address" required>
+                                     <label for="floatingName">Employee Physical Address</label>
+                                     <span class="invalid-feedback"><?php echo $address_err; ?></span>
+                                 </div>
+                             </div>
+
+                             <div class="col-md-4">
+                                 <div class="form-floating">
+                                     <input type="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" id="password" placeholder="Manager Password" name="password" required>
+                                     <label for="floatingPass">Employee Password</label>
+                                     <span class="invalid-feedback" id="invalid-feedback"><?php echo $password_err; ?></span>
+                                 </div>
+                             </div>
+
+                             <div class="col-md-4">
+                                 <div class="form-floating">
+                                     <input type="password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" id="confirmpassword" placeholder="Confirm Password" name="confirm_password" required>
+                                     <label for=" floatingConfPass">Confirm Password</label>
+                                     <span class="invalid-feedback" id="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+                                 </div>
+                             </div>
+
+                             <div class="col-md-4">
+                                 <div class="form-floating">
+                                     <input type="hidden" value="<?php echo $_SESSION["barID"]; ?>" name="barId" required>
                                  </div>
                              </div>
 
@@ -127,5 +144,7 @@
 
 
  <?php include_once("include/footer.php"); ?>
+
+ <?php include_once("../backend/formValidationScript.php"); ?>
 
  <?php include_once("include/bodyClosing.php"); ?>

@@ -118,7 +118,7 @@
                                      <div class="row mb-3">
                                          <label for="date" class="col-md-4 col-lg-3 col-form-label">Date Of Birth</label>
                                          <div class="col-md-8 col-lg-9">
-                                             <input name="dateOfBirth" type="date" class="form-control <?php echo (!empty($date_err)) ? 'is-invalid' : ''; ?>" id="date" value="<?php echo $employeeEmail; ?>">
+                                             <input name="dateOfBirth" type="date" class="form-control <?php echo (!empty($date_err)) ? 'is-invalid' : ''; ?>" id="date" value="<?php echo $employeeDoB; ?>">
                                              <span class="invalid-feedback"><?php echo $date_err; ?></span>
                                          </div>
                                      </div>
@@ -126,7 +126,7 @@
                                      <div class="row mb-3">
                                          <label for="Adreess" class="col-md-4 col-lg-3 col-form-label">Adreess</label>
                                          <div class="col-md-8 col-lg-9">
-                                             <input name="address" type="text" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" id="Adreess" value="<?php echo $employeeEmail; ?>">
+                                             <input name="address" type="text" class="form-control <?php echo (!empty($address_err)) ? 'is-invalid' : ''; ?>" id="Addreess" value="<?php echo $employeePhysicalAdd; ?>">
                                              <span class="invalid-feedback"><?php echo $address_err; ?></span>
                                          </div>
                                      </div>

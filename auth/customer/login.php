@@ -28,6 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = trim($_POST["username"]);
     }
 
+    // Check if bar is empty
+    if (empty(trim($_POST["barID"]))) {
+        $barId_err = "Please select bar.";
+    } else {
+        $barId = trim($_POST["barID"]);
+    }
+
     // Check if password is empty
     if (empty(trim($_POST["password"]))) {
         $password_err = "Please enter your password.";
@@ -35,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = trim($_POST["password"]);
     }
 
-    $sql = " SELECT customerID, customerEmail, customerPassword, BarId, userRole FROM customer WHERE customerEmail = ? ";
+    $sql = " SELECT customerID, customerEmail, customerPassword, userRole FROM customer WHERE customerEmail = ? ";
 
     if ($statement = $mysqli->prepare($sql)) {
         //bind variables
@@ -53,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($statement->num_rows == 1) {
 
                 // Bind result variables
-                $statement->bind_result($userID, $username, $hashed_password, $usersBar, $userRole);
+                $statement->bind_result($userID, $username, $hashed_password, $userRole);
 
                 if ($statement->fetch()) {
 
@@ -66,10 +73,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION["loggedin"]       = true;
                         $_SESSION["id"]             = $userID;
                         $_SESSION["username"]       = $username;
-                        $_SESSION["barID"]          = $usersBar;
+                        $_SESSION["barID"]          = $barId;
                         $_SESSION["userRole"]       = $userRole;
 
-                        header("Location: ../../pages/dashboard.php");
+                        header("Location: ../../pages/createOrder.php");
                     } else {
                         array_push($login_errors, "Invalid Password");
                     }
@@ -106,8 +113,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="../../assets/img/favicon.png" rel="icon">
-    <link href="../../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="../../assets/img/smartlogo.jpg" rel="icon">
+    <link href="../../assets/img/smartlogo.jpg" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -141,13 +148,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                 <div class="card-body">
                                     <div class="d-flex justify-content-center py-4">
-                                        <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                            <img src="../../assets/img/logo.png" alt="">
-                                            <span class="d-none d-lg-block">Smart-Bar</span>
+                                        <a href="../../index.php" class="logo d-flex align-items-center w-auto">
+                                            <img src="../../assets/img/logo (2).png" alt="">
                                         </a>
                                     </div><!-- End Logo -->
 
                                     <div class="pt-4 pb-2">
+                                        <h6 class="card-title text-center pb-0 fs-4">Customer</h6>
                                         <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                                         <p class="text-center small">Enter your username & password to login</p>
 
@@ -170,20 +177,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <?php endif; ?>
                                     </div>
 
-                                    <form class="row g-3 needs-validation" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" novalidate>
+                                    <form class="row g-3 needs-validation" id="loginForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" novalidate>
+
+                                        <div class="col-12">
+                                            <label for="selectBar" class="form-label">Select Bar</label>
+                                            <div class="input-group has-validation">
+                                                <select class="form-control <?php echo (!empty($barId_err)) ? 'is-invalid' : ''; ?>" name="barID" id="barID" required>
+                                                    <option>Select Bar</option>
+
+                                                    <?php
+                                                    // Include database Connection file
+                                                    require_once "../../database/dbConnect.php";
+
+                                                    $result = mysqli_query($mysqli, "SELECT * FROM bar ;");
+                                                    while ($row = mysqli_fetch_array($result)) {
+                                                    ?>
+                                                        <option value="<?php echo $row['barId']; ?>"><?php echo $row["barName"]; ?></option>
+                                                    <?php
+                                                    }
+                                                    ?>
+
+
+                                                    ?>
+
+                                                </select>
+                                                <span class="invalid-feedback"><?php echo $barId_err; ?></span>
+                                            </div>
+                                        </div>
 
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">Username</label>
                                             <div class="input-group has-validation">
-                                                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" id="yourUsername" required>
-                                                <div class="invalid-feedback">Please enter your username.</div>
+                                                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" placeholder="Please enter your Email." id="yourUsername" required>
+                                                <div class="invalid-feedback">Please enter your Email.</div>
                                                 <span class="invalid-feedback"><?php echo $username_err; ?></span>
                                             </div>
                                         </div>
 
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" id="yourPassword" required>
+                                            <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Please enter your password!" id="yourPassword" required>
                                             <div class="invalid-feedback">Please enter your password!</div>
                                             <span class="invalid-feedback"><?php echo $password_err; ?></span>
                                         </div>
@@ -198,7 +231,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <button class="btn btn-primary w-100" type="submit">Login</button>
                                         </div>
                                         <div class="col-6">
-                                            <a href="../../index.php"><button class="btn btn-danger w-100" type="button">Cancle</button></a>
+                                            <a href="../../index.php"><button class="btn btn-danger w-100" type="button">Cancel</button></a>
                                         </div>
 
                                         <div class="col-12">
@@ -226,16 +259,70 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Vendor JS Files -->
     <script src="../../assets/vendor/apexcharts/apexcharts.min.js"></script>
     <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/vendor/chart.js/chart.min.js"></script>
-    <script src="../../assets/vendor/echarts/echarts.min.js"></script>
     <script src="../../assets/vendor/quill/quill.min.js"></script>
     <script src="../../assets/vendor/simple-datatables/simple-datatables.js"></script>
     <script src="../../assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="../../assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
     <script src="../../assets/js/main.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.11.2/jquery.mask.js" integrity="sha512-bwanfE29Vxh7VGuxx44U2WkSG9944fjpYRTC3GDUjh0UJ5FOdCQxMJgKWBnlxP5hHKpFJKmawufWEyr5pvwYVA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function() {
+
+            // email validation method
+            $.validator.addMethod('email', function(value, element, param) {
+                var nameRegex = /^\S+@\S+\.\S+$/;
+                return value.match(nameRegex);
+            });
+
+            // create login validation 
+            $("#loginForm").validate({
+                rules: {
+                    barID: {
+                        required: true
+                    },
+                    yourUsername: {
+                        required: true,
+                        email: true
+                    },
+                    yourPassword: {
+                        required: true
+                    }
+                },
+                messages: {
+                    barID: {
+                        required: "Bar is required",
+                    },
+
+                    yourUsername: {
+                        required: "Email is required",
+                        email: "Invalid email address"
+                    },
+                    yourPassword: {
+                        required: "Password is required"
+                    }
+
+                },
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+        });
+    </script>
+
 </body>
+
 
 </html>

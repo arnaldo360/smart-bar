@@ -11,6 +11,8 @@
 
     ?>
 
+ <?php include("../backend/viewProductController.php"); ?>
+
  <?php include("include/title.php"); ?>
 
  <?php include("include/header.php"); ?>
@@ -28,112 +30,105 @@
              </ol>
          </nav>
      </div><!-- End Page Title -->
-     <section class="section">
-         <div class="row">
-             <div class="col-lg-12">
 
-                 <div class="card">
-                     <div class="card-body">
-                         <h5 class="card-title">Create Order</h5>
 
-                         <!-- Floating Labels Form -->
-                         <form class="row g-3 needs-validation" novalidate>
-                             <div class="col-md-4">
-                                 <div class="form-floating">
-                                     <input type="text" class="form-control" id="floatingName" placeholder="Bar Name" required>
-                                     <label for="floatingName">Bar Name</label>
-                                 </div>
-                             </div>
-                             <div class="col-md-4">
-                                 <div class="form-floating">
-                                     <input type="text" class="form-control" id="floatingNum" placeholder="Brella Number" required>
-                                     <label for="floatingNum">Brella Number</label>
-                                 </div>
-                             </div>
-                             <div class="col-md-4">
-                                 <div class="form-floating">
-                                     <input type="text" class="form-control" id="floatingName" placeholder="Bar Owner Fullname" required>
-                                     <label for="floatingName">Bar Owner</label>
-                                 </div>
-                             </div>
-                             <div class="col-md-4">
-                                 <div class="form-floating">
-                                     <input type="email" class="form-control" id="floatingEmail" placeholder="Bar Email" required>
-                                     <label for="floatingEmail">Bar Email</label>
-                                 </div>
-                             </div>
-                             <div class="col-md-4">
-                                 <div class="form-floating">
-                                     <input type="text" class="form-control" id="floatingMobile" placeholder="Bar Contact" required>
-                                     <label for="floatingMobile">Mobile</label>
-                                 </div>
-                             </div>
-                             <div class="col-md-4">
-                                 <div class="form-floating">
-                                     <input type="number" class="form-control" id="floatingNum" placeholder="Number of Employees" required>
-                                     <label for="floatingNum">Number of Employees</label>
-                                 </div>
-                             </div>
-                             <div class="col-md-4">
-                                 <div class="form-floating">
-                                     <input type="text" class="form-control" id="floatingName" placeholder="Your Name" required>
-                                     <label for="floatingName">Your Name</label>
-                                 </div>
-                             </div>
-                             <div class="col-md-4">
-                                 <div class="form-floating">
-                                     <input type="text" class="form-control" id="floatingName" placeholder="Your Name" required>
-                                     <label for="floatingName">Your Name</label>
-                                 </div>
-                             </div>
-                             <div class="col-md-4">
-                                 <div class="form-floating">
-                                     <input type="text" class="form-control" id="floatingName" placeholder="Your Name" required>
-                                     <label for="floatingName">Your Name</label>
-                                 </div>
-                             </div>
-                             <div class="col-md-4">
-                                 <div class="form-floating mb-3">
-                                     <select class="form-select" id="floatingSelect" aria-label="State" required>
-                                         <option selected>Select Region</option>
-                                         <option value="1">Arusha</option>
-                                         <option value="2">Dar</option>
-                                     </select>
-                                     <label for="floatingSelect">Region</label>
-                                 </div>
-                             </div>
-                             <div class="col-md-4">
-                                 <div class="form-floating mb-3">
-                                     <select class="form-select" id="floatingSelect" aria-label="State" required>
-                                         <option selected>Select District</option>
-                                         <option value="1">Oregon</option>
-                                         <option value="2">DC</option>
-                                     </select>
-                                     <label for="floatingSelect">District</label>
-                                 </div>
-                             </div>
-                             <div class="col-md-4">
-                                 <div class="form-floating mb-3">
-                                     <select class="form-select" id="floatingSelect" aria-label="State" required>
-                                         <option selected>Select Ward</option>
-                                         <option value="1">Oregon</option>
-                                         <option value="2">DC</option>
-                                     </select>
-                                     <label for="floatingSelect">Ward</label>
-                                 </div>
-                             </div>
-                             <div class="text-center">
-                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                 <button type="reset" class="btn btn-secondary">Reset</button>
-                             </div>
-                         </form><!-- End floating Labels Form -->
+     <!-- creating order -->
 
-                     </div>
-                 </div>
-
+     <div class="container py-5">
+         <div class="row text-center text-white mb-5">
+             <div class="col-lg-7 mx-auto">
+                 <h4 class="d-none d-lg-block text-primary">Enjoyment , Is Drinking with Friends !</h4>
              </div>
          </div>
-     </section>
+         <div class="row">
+             <div class="col-lg-12 mx-auto">
+                 <!-- List group-->
+                 <ul class="list-group shadow">
+
+                     <?php while ($product_rows = $products->fetch_array(MYSQLI_ASSOC)) : ?>
+                         <!-- list group item-->
+                         <li class="list-group-item">
+                             <!-- Custom content-->
+                             <div class="media align-items-lg-center flex-column flex-lg-row p-3 ">
+                                 <div class="media-body order-2 order-lg-1">
+                                     <h3 class="mt-0 font-weight-bold mb-2"><?= $product_rows["productName"] ?></h3>
+
+                                     <div class="row">
+                                         <div class="col-sm-4 border-right">
+                                             <p class="mb-0 small font-weight-bold">Type & Category</p>
+                                             <p class="mb-0 small">
+                                                 <?= $product_rows["productType"] ?> | <?= $product_rows["productCategory"]; ?>
+                                             </p>
+                                             <div class="">
+                                                 <p class="mb-0 small font-weight-bold">Description</p>
+                                                 <p class="mb-0 small"><?= $product_rows["productDescription"]; ?></p>
+                                             </div>
+                                         </div>
+                                         <div class="col-sm-4">
+                                             <p class="mb-0 small font-weight-bold">Alcohol & Volume</p>
+                                             <p class="mb-0 small">
+                                                 <?php
+                                                    if ($product_rows["alcoholPercentage"] == null || $product_rows["alcoholPercentage"] == 0) {
+                                                        echo "Non alcoholic | " . $product_rows["productVolume"] . " " . $product_rows["productUnit"];
+                                                    } else {
+                                                        echo $product_rows["alcoholPercentage"] . "% | " . $product_rows["productVolume"] . " " . $product_rows["productUnit"];
+                                                    }
+                                                    ?>
+                                             </p>
+                                         </div>
+                                         <div class="col-sm-4">
+                                             <?php $imageURL = '../assets/image/upload/' . $product_rows["productImage"]; ?>
+                                             <img src="<?php echo $imageURL; ?>" width="100" class="ml-lg-5 order-1 order-lg-2" alt="product image" />
+                                         </div>
+                                     </div>
+
+                                     <div class="row mt-1">
+
+                                     </div>
+
+                                     <div class="d-flex align-items-center justify-content-between mt-1">
+                                         <h4 class="font-weight-bold my-2"><?= $product_rows["productPrice"] . " TZS"; ?></h4>
+                                     </div>
+                                     <div class="mt-2">
+                                         <form id="orderForm" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+
+                                             <!-- hidden form values -->
+                                             <input type="hidden" name="productId" value="<?= $product_rows["productId"]; ?>">
+                                             <input type="hidden" name="productPrice" value="<?= $product_rows["productPrice"]; ?>">
+                                             <input type="hidden" name="productImage" value="<?= $product_rows["productImage"]; ?>">
+                                             <!-- hidden form values -->
+
+                                             <div class="row">
+                                                 <div class="col-md-6">
+                                                     <input type="number" placeholder="Quantity" class="form-control quantity" name="quantity">
+                                                 </div>
+                                                 <div class="col-md-6">
+                                                     <button type="submit" class="btn btn-md btn-success">Order</button>
+                                                 </div>
+                                             </div>
+                                         </form>
+                                     </div>
+                                 </div>
+
+                             </div> <!-- End -->
+                         </li> <!-- End -->
+                     <?php endwhile; ?>
+                     <!-- list group item-->
+                 </ul> <!-- End -->
+             </div>
+         </div>
+     </div>
+
+     </div>
+
+
+
+     </div>
+     </div>
+     </div>
+
+
+     <!-- end creating order -->
 
  </main><!-- End #main -->
 

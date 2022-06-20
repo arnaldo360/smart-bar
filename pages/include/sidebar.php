@@ -39,11 +39,6 @@
             </a>
             <ul id="orders-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="createOrder.php">
-                        <i class="bi bi-clipboard-plus"></i><span>Create Order</span>
-                    </a>
-                </li>
-                <li>
                     <a href="viewOrder.php">
                         <i class="bi bi-view-list"></i><span>View Order</span>
                     </a>
@@ -76,20 +71,6 @@
             </a>
         </li><!-- End Feedback Page Nav -->
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="report.php">
-                <i class="bi bi-journal-check"></i>
-                <span>Report</span>
-            </a>
-        </li><!-- End Report Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="activityLog.php">
-                <i class="bi bi-list-check"></i>
-                <span>Activity Log</span>
-            </a>
-        </li><!-- End Activity Log Page Nav -->
-
     </ul>';
         }
         ?>
@@ -104,11 +85,6 @@
                 <i class="bi bi-minecart-loaded"></i><span>Orders</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="orders-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="createOrder.php">
-                        <i class="bi bi-clipboard-plus"></i><span>Create Order</span>
-                    </a>
-                </li>
                 <li>
                     <a href="viewOrder.php">
                         <i class="bi bi-view-list"></i><span>View Order</span>

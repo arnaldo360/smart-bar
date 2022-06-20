@@ -87,7 +87,8 @@
                                      <a href='displayBar.php?id=" . $row["barId"] . "'><button type='button' class='btn btn-info' id='$count'><i class='bi bi-eye'></i></button></a>
                                      <a href='editBar.php?id=" . $row["barId"] . "'><button type='button' class='btn btn-success' id='$count'><i class='bi bi-pencil'></i></button></a>
                                      <a href='deleteBar.php?id=" . $row["barId"] . "'><button type='button' class='btn btn-danger' id='modalDelete.$count.'><i class='bi bi-trash'></i></button></a>
-                                 </td>
+                                     <a href='activateBar.php?id=" . $row["barId"] . "'><button type='button' class='btn btn-primary' id='modalActivate.$count.'><i class='bi bi-unlock'></i></button></a>
+                                     </td>
                              </tr>";
                             $count = $count + 1;
                         }

@@ -110,5 +110,5 @@
 
 
  <?php include_once("include/footer.php"); ?>
-
+ <?php include_once("../backend/formValidationScript.php"); ?>
  <?php include_once("include/bodyClosing.php"); ?>

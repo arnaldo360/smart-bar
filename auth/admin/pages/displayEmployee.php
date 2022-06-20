@@ -132,7 +132,7 @@
 
                                                     <div class='row'>
                                                         <div class='col-lg-3 col-md-4 label'>Address</div>
-                                                        <div class='col-lg-9 col-md-8'>$employeePhysicalAdd</div>
+                                                        <div class='col-lg-9 col-md-8'>".$employeePhysicalAdd."</div>
                                                     </div>
 
                                                     <div class='row'>

@@ -58,6 +58,7 @@
                                      <span class="invalid-feedback"><?php echo $contact_err; ?></span>
                                  </div>
                              </div>
+
                              <div class="col-md-4">
                                  <div class="form-floating">
                                      <input type="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" id="floatingPass" placeholder="Manager Password" name="password" required>

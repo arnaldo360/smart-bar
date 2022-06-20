@@ -38,7 +38,7 @@
                                     echo $managerFullName;
                                 } elseif ($role == 2) {
                                     echo $employeeFullName;
-                                } elseif ($role == 3)  {
+                                } elseif ($role == 3) {
                                     echo $customerFullName;
                                 }
                                 ?>
@@ -49,7 +49,7 @@
                                     echo 'Manager';
                                 } elseif ($role == 2) {
                                     echo 'Employee';
-                                } elseif ($role == 3)  {
+                                } elseif ($role == 3) {
                                     echo 'Customer';
                                 }
                                 ?>

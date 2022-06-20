@@ -26,7 +26,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"])) {
                 /* Fetch result row as an associative array. Since the result set contains only one row, we don't need to use while loop */
                 $row = $result->fetch_array(MYSQLI_ASSOC);
 
-                // Retrieve admin field values
+                // Retrieve employee field values
                 $employeeId                     = $row['employeeID'];
                 $employeeFullName               = $row['employeeFullName'];
                 $employeeEmail                  = $row['employeeEmail'];

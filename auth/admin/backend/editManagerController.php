@@ -70,7 +70,7 @@ if (isset($_POST['saveChanges'])) {
             $param_email    = $email;
             $param_mobile   = $mobile;
             $param_gender   = $gender;
-            $param_adress   = $adress;
+            $param_address   = $address;
             $param_date     = $date;
             $param_id       = $userId;
 
