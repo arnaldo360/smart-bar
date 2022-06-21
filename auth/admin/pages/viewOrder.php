@@ -45,18 +45,19 @@
                          <h5 class="card-title">View Order</h5>
 
                          <?php
-                                    require_once("../../../database/dbConnect.php");
+                            require_once("../../../database/dbConnect.php");
 
-                                    $sql = "SELECT o.orderId, c.customerFullName, p.productName, b.barName, o.orderStatus, o.tableNumber, o.orderAmount FROM order_table o 
-                                            JOIN employee e ON o.employeeId = e.employeeID 
-                                            JOIN customer c ON o.customerId = c.customerID 
-                                            JOIN product p ON o.productId = p.productId
+                            $sql = "SELECT b.barName, c.customerFullName, o.ordersId, ol.quantity, p.productName, e.employeeFullName, o.orderStatus, o.tableNumber, ol.totalPrice FROM orders o 
+                                            LEFT JOIN employee e ON e.employeeID = o.employeeId
+                                            JOIN order_list ol ON o.orderListId = ol.orderListId
+                                            JOIN customer c ON ol.customerId = c.customerID 
+                                            JOIN product p ON ol.productId = p.productId
                                             JOIN bar b ON p.barID = b.barId
-                                            ORDER BY o.orderId DESC;";
+                                            ORDER BY o.ordersId DESC;";
 
-                                    $results = mysqli_query($mysqli, $sql);
+                            $results = mysqli_query($mysqli, $sql);
 
-                                    echo "<table class='table table-borderless datatable'>
+                            echo "<table class='table table-borderless datatable'>
                                             <thead>
                                                 <tr>
                                                     <th scope='col'>#</th>
@@ -66,46 +67,41 @@
                                                     <th scope='col'>Price</th>
                                                     <th scope='col'>Table#</th>
                                                     <th scope='col'>Status</th>
-                                                    <th scope='col'>Action</th>
+
                                                 </tr>
                                             </thead>
                                             <tbody>";
 
-                                    // output data of each row
-                                    $count = 1;
-                                    while ($row = mysqli_fetch_array($results)) {
-                                        $orderID = 'orderID' . $count;
-                                        echo "<tr>
+                            // output data of each row
+                            $count = 1;
+                            while ($row = mysqli_fetch_array($results)) {
+                                $orderID = 'orderID' . $count;
+                                echo "<tr>
                                                 <td scope='row'>" . $count . "</td>
                                                 <td>" . $row["barName"] . "</td>
                                                 <td>" . $row["customerFullName"] . "</td>
                                                 <td>" . $row["productName"] . "</td>
-                                                <td>" . $row["orderAmount"] . "</td>
+                                                <td>" . $row["totalPrice"] . "</td>
                                                 <td>" . $row["tableNumber"] . "</td>
                                                 <td>";
-                                                        if ($row["orderStatus"] == 'ATTENDED') {
-                                                            echo "<span class='badge rounded-pill bg-success'>Attended</span>";
-                                                        } elseif ($row["orderStatus"] == 'PENDING') {
-                                                            echo "<span class='badge rounded-pill bg-warning'>Pending</span>";
-                                                        } else {
-                                                            echo "<span class='badge rounded-pill bg-primary'>Paid</span>";
-                                                        }
+                                if ($row["orderStatus"] == 'ATTENDED') {
+                                    echo "<span class='badge rounded-pill bg-success'>Attended</span>";
+                                } elseif ($row["orderStatus"] == 'PENDING') {
+                                    echo "<span class='badge rounded-pill bg-warning'>Pending</span>";
+                                } else {
+                                    echo "<span class='badge rounded-pill bg-primary'>Paid</span>";
+                                }
 
-                                            echo "</td>
-                                                <td>
-                                                    <a href='displayOrder.php?id=" . $row["orderId"] . "'><button type='button' class='btn btn-info' id='$count'><i class='bi bi-eye'></i></button></a>
-                                                    <a href='editOrder.php?id=" . $row["orderId"] . "'><button type='button' class='btn btn-success' id='$count'><i class='bi bi-pencil'></i></button></a>
-                                                    <a href='deleteOrder.php?id=" . $row["orderId"] . "'><button type='button' class='btn btn-danger' id='modalDelete.$count.'><i class='bi bi-trash'></i></button></a>
-                                                </td>
+                                echo "</td>
                                                 </tr>";
-                                                        $count = $count + 1;
-                                                    }
-                                                    echo " </tbody>
+                                $count = $count + 1;
+                            }
+                            echo " </tbody>
                                     </table>";
 
-                                    ?>
+                            ?>
 
-                         
+
                      </div>
 
                  </div>

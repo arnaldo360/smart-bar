@@ -88,7 +88,6 @@
                                      <a href='editManager.php?id=" . $row["managerId"] . "'><button type='button' class='btn btn-success' id='$count'><i class='bi bi-pencil'></i></button></a>
                                      <a href='deleteManager.php?id=" . $row["managerId"] . "'><button type='button' class='btn btn-danger' id='modalDelete.$count.'><i class='bi bi-trash'></i></button></a>
                                      <a href='activateManager.php?id=" . $row["managerId"] . "'><button type='button' class='btn btn-primary' id='modalActivate.$count.'><i class='bi bi-unlock'></i></button></a>
-
                                      </td>
                              </tr>";
                             $count = $count + 1;

@@ -4,7 +4,7 @@ session_start();
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("location: ../../pages/dashboard.php");
+    header("location: ../../pages/employeeDashboard.php");
     exit;
 }
 
@@ -67,9 +67,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $_SESSION["id"]             = $userID;
                         $_SESSION["username"]       = $username;
                         $_SESSION["barID"]          = $employeeBar;
-                        $_SESSION["userRole"]           = $userRole;
+                        $_SESSION["userRole"]       = $userRole;
 
-                        header("Location: ../../pages/dashboard.php");
+                        header("Location: ../../pages/employeeDashboard.php");
                     } else {
                         array_push($login_errors, "Invalid Password");
                     }
@@ -150,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </div><!-- End Logo -->
 
                                     <div class="pt-4 pb-2">
-                                        <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
+                                        <h5 class="card-title text-center pb-0 fs-4">Employee Login</h5>
 
                                         <?php if (isset($_GET["redirect"]) && !empty($_GET["redirect"])) : ?>
                                             <?php if ($_GET["redirect"] == "success") : ?>
@@ -177,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">Username</label>
                                             <div class="input-group has-validation">
-                                                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" id="yourUsername" required>
+                                                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" id="yourUsername" placeholder="Enter your Email" required>
                                                 <div class="invalid-feedback">Please enter your username.</div>
                                                 <span class="invalid-feedback"><?php echo $username_err; ?></span>
                                             </div>
@@ -185,7 +185,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" id="yourPassword" required>
+                                            <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" id="yourPassword" placeholder="Enter your Password" required>
                                             <div class="invalid-feedback">Please enter your password!</div>
                                             <span class="invalid-feedback"><?php echo $password_err; ?></span>
                                         </div>

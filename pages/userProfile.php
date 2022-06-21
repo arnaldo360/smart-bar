@@ -30,15 +30,15 @@
          </nav>
      </div><!-- End Page Title -->
 
-            <?php if (isset($_GET["redirect"]) && !empty($_GET["redirect"])) : ?>
-                 <?php if ($_GET["redirect"] == "success") : ?>
-                     <div class="alert alert-info alert-dismissible fade show" role="alert">
-                         <i class="bi bi-check-circle me-1"></i>
-                         Profile Updated succesfully!
-                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                     </div>
-                 <?php endif; ?>
-             <?php endif; ?>
+     <?php if (isset($_GET["redirect"]) && !empty($_GET["redirect"])) : ?>
+         <?php if ($_GET["redirect"] == "success") : ?>
+             <div class="alert alert-info alert-dismissible fade show" role="alert">
+                 <i class="bi bi-check-circle me-1"></i>
+                 Profile Updated succesfully!
+                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+             </div>
+         <?php endif; ?>
+     <?php endif; ?>
 
 
      <?php if ($role == 1) {
@@ -154,7 +154,7 @@
                             <div class='tab-pane fade profile-edit pt-3' id='profile-edit'>
 
                                  <!-- Profile Edit Form -->
-                                 <form action='../backend/editManagerProfileController.php' method='POST' enctype='multipart/form-data' novalidate>
+                                 <form action='../backend/editManagerProfileController.php' method='POST' id='editUserForm' enctype='multipart/form-data' novalidate>
 
                                      <div class='row mb-3'>
                                          <label for='fullName' class='col-md-4 col-lg-3 col-form-label'>Full Name</label>
@@ -166,7 +166,7 @@
                                      <div class='row mb-3'>
                                          <label for='Phone' class='col-md-4 col-lg-3 col-form-label'>Phone</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input name='mobile' type='text' class='form-control' id='Phone' name='contact' value=" . $managerMobile . ">
+                                             <input name='mobile' type='text' class='form-control' id='mobile' name='contact' value=" . $managerMobile . ">
                                          </div>
                                      </div>
 
@@ -180,7 +180,7 @@
                                      <div class='row mb-3'>
                                          <label for='Gender' class='col-md-4 col-lg-3 col-form-label'>Gender</label>
                                          <div class='col-md-8 col-lg-9'>
-                                            <select class='form-select' name='gender'>
+                                            <select class='form-select' id='gender' name='gender'>
                                                 <option selected>Select Gender</option>
                                                 <option value'Male'>Male</option>
                                                 <option value'Female'>Female</option>
@@ -204,7 +204,7 @@
 
                                      <div class='text-center'>
                                          <button type='submit' name='saveChanges' class='btn btn-primary'>Save Changes</button>
-                                         <a href='userProfile.php'><button type='button' class='btn btn-danger'>Cancle</button></a>
+                                         <a href='userProfile.php'><button type='button' class='btn btn-danger'>Cancel</button></a>
                                      </div>
                                  </form><!-- End Profile Edit Form -->
 
@@ -234,7 +234,7 @@
 
                                      <div class='text-center'>
                                          <button type='submit' name='saveChanges' class='btn btn-primary'>Change Password</button>
-                                         <a href='userProfile.php'><button type='button' class='btn btn-danger'>Cancle</button></a>
+                                         <a href='userProfile.php'><button type='button' class='btn btn-danger'>Cancel</button></a>
                                      </div>
                              
                                  </form><!-- End Change Password Form -->
@@ -263,7 +263,7 @@
                      <div class='card-body profile-card pt-4 d-flex flex-column align-items-center'>
 
                          <img src='../assets/img/undraw_profile_pic.png' alt='Profile' class='rounded-circle'>
-                         <h2>".$employeeFullName. "</h2>
+                         <h2>" . $employeeFullName . "</h2>
                          <h3>Employee</h3>
                          <h2>" . $employeeTitle . "</h2>
                          <div class='social-links mt-2'>
@@ -365,7 +365,7 @@
                              <div class='tab-pane fade profile-edit pt-3' id='profile-edit'>
 
                                  <!-- Profile Edit Form -->
-                                 <form action='../backend/editEmployeeProfileController.php' method='POST' enctype='multipart/form-data' novalidate>
+                                 <form action='../backend/editEmployeeProfileController.php' id='editUserForm' method='POST' enctype='multipart/form-data' novalidate>
 
                                      <div class='row mb-3'>
                                          <label for='fullName' class='col-md-4 col-lg-3 col-form-label'>Full Name</label>
@@ -377,7 +377,7 @@
                                      <div class='row mb-3'>
                                          <label for='Phone' class='col-md-4 col-lg-3 col-form-label'>Phone</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input type='text' class='form-control' id='Phone' name='mobile' value='$employeeMobile '>
+                                             <input type='text' class='form-control' id='mobile' name='mobile' value='$employeeMobile '>
                                          </div>
                                      </div>
 
@@ -392,7 +392,7 @@
                                          <label for='Gender' class='col-md-4 col-lg-3 col-form-label'>Gender</label>
                                          <div class='col-md-8 col-lg-9'>
                                             <select class='form-select' name='gender'>
-                                                <option selected>" .$employeeGender . "</option>
+                                                <option selected>" . $employeeGender . "</option>
                                                 <option value'Male'>Male</option>
                                                 <option value'Female'>Female</option>
                                             </select>
@@ -415,7 +415,7 @@
 
                                      <div class='text-center'>
                                          <button type='submit' name='saveChanges' class='btn btn-primary'>Save Changes</button>
-                                         <a href='userProfile.php'><button type='button' class='btn btn-danger'>Cancle</button></a>
+                                         <a href='userProfile.php'><button type='button' class='btn btn-danger'>Cancel</button></a>
                                      </div>
                                  </form><!-- End Profile Edit Form -->
 
@@ -446,7 +446,7 @@
 
                                      <div class='text-center'>
                                          <button type='submit' name='saveChanges' class='btn btn-primary'>Change Password</button>
-                                         <a href='userProfile.php'><button type='button' class='btn btn-danger'>Cancle</button></a>
+                                         <a href='userProfile.php'><button type='button' class='btn btn-danger'>Cancel</button></a>
                                      </div>
                              
                                  </form><!-- End Change Password Form -->
@@ -474,7 +474,7 @@
                      <div class='card-body profile-card pt-4 d-flex flex-column align-items-center'>
 
                          <img src='../assets/img/undraw_profile_pic.png' alt='Profile' class='rounded-circle'>
-                         <h2>".$customerFullName."</h2>
+                         <h2>" . $customerFullName . "</h2>
                          <h3>Customer</h3>
                          <div class='social-links mt-2'>
                              <a href='#' class='twitter'><i class='bi bi-twitter'></i></a>
@@ -567,7 +567,7 @@
                              <div class='tab-pane fade profile-edit pt-3' id='profile-edit'>
 
                                  <!-- Profile Edit Form -->
-                                 <form action='../backend/editCustomerProfileController.php' method='POST' enctype='multipart/form-data' novalidate>
+                                 <form action='../backend/editCustomerProfileController.php' id='editUserForm' method='POST' enctype='multipart/form-data' novalidate>
 
                                      <div class='row mb-3'>
                                          <label for='fullName' class='col-md-4 col-lg-3 col-form-label'>Full Name</label>
@@ -579,7 +579,7 @@
                                      <div class='row mb-3'>
                                          <label for='Phone' class='col-md-4 col-lg-3 col-form-label'>Phone</label>
                                          <div class='col-md-8 col-lg-9'>
-                                             <input type='text' class='form-control' id='Phone' name= 'mobile'  value=" . $customerMobile . ">
+                                             <input type='text' class='form-control' id='mobile' name= 'mobile'  value=" . $customerMobile . ">
                                          </div>
                                      </div>
 
@@ -610,7 +610,7 @@
 
                                      <div class='text-center'>
                                          <button type='submit' name='saveChanges' class='btn btn-primary'>Save Changes</button>
-                                         <a href='userProfile.php'><button type='button' class='btn btn-danger'>Cancle</button></a>
+                                         <a href='userProfile.php'><button type='button' class='btn btn-danger'>Cancel</button></a>
                                      </div>
                                  </form><!-- End Profile Edit Form -->
 
@@ -640,7 +640,7 @@
 
                                      <div class='text-center'>
                                          <button type='submit' name='saveChanges' class='btn btn-primary'>Change Password</button>
-                                         <a href='userProfile.php'><button type='button' class='btn btn-danger'>Cancle</button></a>
+                                         <a href='userProfile.php'><button type='button' class='btn btn-danger'>Cancel</button></a>
                                      </div>
                              
                                  </form><!-- End Change Password Form -->
@@ -666,5 +666,7 @@
 
 
  <?php include_once("include/footer.php"); ?>
+
+ <?php include_once("../backend/formValidationScript.php"); ?>
 
  <?php include_once("include/bodyClosing.php"); ?>

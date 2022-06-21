@@ -6,7 +6,7 @@
 
     global $role;
     global $username;
-    global $user_id;
+    global $userId;
     global $barId;
 
     ?>
@@ -14,7 +14,6 @@
  <?php include("../backend/viewProductController.php"); ?>
 
  <?php include("include/title.php"); ?>
-
  <?php include("include/header.php"); ?>
 
  <?php include("include/sidebar.php"); ?>
@@ -41,7 +40,7 @@
              </div>
          </div>
          <div class="row">
-             <div class="col-lg-12 mx-auto">
+             <div class="col-lg-9 mx-auto">
                  <!-- List group-->
                  <ul class="list-group shadow">
 
@@ -54,7 +53,7 @@
                                      <h3 class="mt-0 font-weight-bold mb-2"><?= $product_rows["productName"] ?></h3>
 
                                      <div class="row">
-                                         <div class="col-sm-4 border-right">
+                                         <div class="col-sm-3 border-right">
                                              <p class="mb-0 small font-weight-bold">Type & Category</p>
                                              <p class="mb-0 small">
                                                  <?= $product_rows["productType"] ?> | <?= $product_rows["productCategory"]; ?>
@@ -64,7 +63,7 @@
                                                  <p class="mb-0 small"><?= $product_rows["productDescription"]; ?></p>
                                              </div>
                                          </div>
-                                         <div class="col-sm-4">
+                                         <div class="col-sm-3">
                                              <p class="mb-0 small font-weight-bold">Alcohol & Volume</p>
                                              <p class="mb-0 small">
                                                  <?php
@@ -76,38 +75,37 @@
                                                     ?>
                                              </p>
                                          </div>
-                                         <div class="col-sm-4">
+
+                                         <div class="col-sm-3 border-left">
                                              <?php $imageURL = '../assets/image/upload/' . $product_rows["productImage"]; ?>
-                                             <img src="<?php echo $imageURL; ?>" width="100" class="ml-lg-5 order-1 order-lg-2" alt="product image" />
+                                             <img src="<?php echo $imageURL; ?>" width="120" class="ml-lg-5 order-1 order-lg-2" alt="product image" />
+                                         </div>
+
+                                         <div class="d-flex align-items-center justify-content-between mt-1">
+                                             <h4 class="font-weight-bold my-2"><?= $product_rows["productPrice"] . " TZS"; ?></h4>
+                                         </div>
+                                         <div class="mt-6">
+                                             <form id="orderForm" action="../backend/orderProductsController.php" method="POST">
+
+                                                 <!-- hidden form values -->
+                                                 <input type="hidden" name="productId" value="<?= $product_rows["productId"]; ?>">
+                                                 <input type="hidden" name="productPrice" value="<?= $product_rows["productPrice"]; ?>">
+                                                 <input type="hidden" name="productImage" value="<?= $product_rows["productImage"]; ?>">
+                                                 <!-- hidden form values -->
+
+                                                 <div class="row">
+                                                     <div class="col-md-3">
+                                                         <input type="number" placeholder="Quantity" class="form-control quantity" name="quantity">
+                                                     </div>
+                                                     <div class="col-md-3">
+                                                         <button type="submit" class="btn btn-md btn-success">Order</button>
+                                                     </div>
+                                                 </div>
+                                             </form>
                                          </div>
                                      </div>
 
-                                     <div class="row mt-1">
 
-                                     </div>
-
-                                     <div class="d-flex align-items-center justify-content-between mt-1">
-                                         <h4 class="font-weight-bold my-2"><?= $product_rows["productPrice"] . " TZS"; ?></h4>
-                                     </div>
-                                     <div class="mt-2">
-                                         <form id="orderForm" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-
-                                             <!-- hidden form values -->
-                                             <input type="hidden" name="productId" value="<?= $product_rows["productId"]; ?>">
-                                             <input type="hidden" name="productPrice" value="<?= $product_rows["productPrice"]; ?>">
-                                             <input type="hidden" name="productImage" value="<?= $product_rows["productImage"]; ?>">
-                                             <!-- hidden form values -->
-
-                                             <div class="row">
-                                                 <div class="col-md-6">
-                                                     <input type="number" placeholder="Quantity" class="form-control quantity" name="quantity">
-                                                 </div>
-                                                 <div class="col-md-6">
-                                                     <button type="submit" class="btn btn-md btn-success">Order</button>
-                                                 </div>
-                                             </div>
-                                         </form>
-                                     </div>
                                  </div>
 
                              </div> <!-- End -->

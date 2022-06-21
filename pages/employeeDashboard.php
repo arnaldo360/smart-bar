@@ -30,7 +30,7 @@
              <div class="col-lg-12">
                  <div class="row">
 
-                     <!-- Employee Card -->
+                     <!-- Customer Card -->
                      <div class="col-xxl-4 col-md-6">
                          <div class="card info-card sales-card">
 
@@ -48,31 +48,26 @@
                              </div>
 
                              <div class="card-body">
-                                 <a href="viewEmployee.php">
-                                     <h5 class="card-title">Employees</h5>
-                                 </a>
+                                 <h5 class="card-title">Customers</h5>
 
                                  <div class="d-flex align-items-center">
                                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                          <i class="bi bi-people"></i>
                                      </div>
                                      <div class="ps-3">
-                                         <a href="viewEmployee.php">
-                                             <?php
-                                                require_once "../database/dbConnect.php";
-                                                $result = mysqli_query($mysqli, "Select count(employeeID) AS countEmployee from employee where employeeBar = $barId; ");
-                                                $countEmployee = mysqli_fetch_assoc($result);
+                                         <?php
+                                            require_once "../database/dbConnect.php";
+                                            $result = mysqli_query($mysqli, "Select count(customerId) AS countEmployee from order_list ol join product p on ol.productId = p.productId where p.barID = $barId group by ol.customerId; ");
+                                            $countEmployee = mysqli_fetch_assoc($result);
 
-                                                echo "<h6>" . $countEmployee['countEmployee'] . "</h6>";
-                                                ?>
-                                         </a>
-
+                                            echo "<h6>" . $countEmployee['countEmployee'] . "</h6>";
+                                            ?>
                                      </div>
                                  </div>
                              </div>
 
                          </div>
-                     </div><!-- End Employee Card -->
+                     </div><!-- End Customer Card -->
 
                      <!-- Order Card -->
                      <div class="col-xxl-4 col-md-6">
@@ -92,28 +87,28 @@
                              </div>
 
                              <div class="card-body">
-                                 <a href="managerViewOrders.php">
+                                 <a href="employeeViewOrders.php">
                                      <h5 class="card-title">Orders</h5>
                                  </a>
 
+                                     <div class="d-flex align-items-center">
+                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
 
-                                 <div class="d-flex align-items-center">
-                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                         <i class="bi bi-minecart-loaded"></i>
+                                             <i class="bi bi-minecart-loaded"></i>
+                                         </div>
+                                         <div class="ps-3">
+                                             <a href="employeeViewOrders.php">
+                                                 <?php
+                                                    require_once "../database/dbConnect.php";
+                                                    $result = mysqli_query($mysqli, "Select count(ordersId) AS countOrder from orders o join order_list ol on o.orderListId = ol.orderListId join product p on ol.productId = p.productId where p.barID = $barId and o.orderStatus = 'PENDING'; ");
+                                                    $countOrder = mysqli_fetch_assoc($result);
+
+                                                    echo "<h6>" . $countOrder['countOrder'] . "</h6>";
+                                                    ?>
+                                             </a>
+
+                                         </div>
                                      </div>
-                                     <div class="ps-3">
-                                         <a href="managerViewOrders.php">
-                                             <?php
-                                                require_once "../database/dbConnect.php";
-                                                $result = mysqli_query($mysqli, "Select count(ordersId) AS countOrder from orders o join order_list ol on o.orderListId = ol.orderListId JOIN product p on ol.productId = p.productId where p.barID = $barId; ");
-                                                $countOrder = mysqli_fetch_assoc($result);
-
-                                                echo "<h6>" . $countOrder['countOrder'] . "</h6>";
-                                                ?>
-                                         </a>
-
-                                     </div>
-                                 </div>
                              </div>
 
                          </div>
@@ -138,25 +133,20 @@
                              </div>
 
                              <div class="card-body">
-                                 <a href="viewProduct.php">
-                                     <h5 class="card-title">Product</h5>
-                                 </a>
+                                 <h5 class="card-title">Product</h5>
 
                                  <div class="d-flex align-items-center">
                                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                          <i class="bi bi-hdd-stack"></i>
                                      </div>
                                      <div class="ps-3">
-                                         <a href="viewProduct.php">
-                                             <?php
-                                                require_once "../database/dbConnect.php";
-                                                $result = mysqli_query($mysqli, "Select count(productId) AS countProduct from product where barID = $barId; ");
-                                                $countProduct = mysqli_fetch_assoc($result);
+                                         <?php
+                                            require_once "../database/dbConnect.php";
+                                            $result = mysqli_query($mysqli, "Select count(productId) AS countProduct from product where barID = $barId; ");
+                                            $countProduct = mysqli_fetch_assoc($result);
 
-                                                echo "<h6>" . $countProduct['countProduct'] . "</h6>";
-                                                ?>
-                                         </a>
-
+                                            echo "<h6>" . $countProduct['countProduct'] . "</h6>";
+                                            ?>
                                      </div>
                                  </div>
 
@@ -164,51 +154,6 @@
                          </div>
 
                      </div><!-- End Product Card -->
-
-                     <!-- Feedback Card -->
-                     <div class="col-xxl-4 col-md-6">
-                         <div class="card info-card sales-card">
-
-                             <div class="filter">
-                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                     <li class="dropdown-header text-start">
-                                         <h6>Filter</h6>
-                                     </li>
-
-                                     <li><a class="dropdown-item" href="#">Today</a></li>
-                                     <li><a class="dropdown-item" href="#">This Month</a></li>
-                                     <li><a class="dropdown-item" href="#">This Year</a></li>
-                                 </ul>
-                             </div>
-
-                             <div class="card-body">
-                                 <a href="feedback.php">
-                                     <h5 class="card-title">Feedback</h5>
-                                 </a>
-
-                                 <div class="d-flex align-items-center">
-                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                         <i class="bi bi-stickies"></i>
-                                     </div>
-                                     <div class="ps-3">
-                                         <a href="feedback.php">
-                                             <?php
-                                                require_once "../database/dbConnect.php";
-                                                $result = mysqli_query($mysqli, "Select count(feedbackId) AS countFeedback from feedback; ");
-                                                $countFeedback = mysqli_fetch_assoc($result);
-
-                                                echo "<h6>" . $countFeedback['countFeedback'] . "</h6>";
-                                                ?>
-                                         </a>
-                                     </div>
-                                 </div>
-                             </div>
-
-                         </div>
-                     </div><!-- End Feedback Card -->
-
-
 
 
                      <!-- Recent Orders -->
@@ -234,13 +179,12 @@
                                  <?php
                                     require_once("../database/dbConnect.php");
 
-                                    $sql = "SELECT o.ordersId, ol.quantity, p.productName, e.employeeFullName, o.orderStatus, o.tableNumber, ol.totalPrice FROM orders o 
-                                            LEFT JOIN employee e ON e.employeeID = o.employeeId
+                                    $sql = "SELECT c.customerFullName, o.ordersId, ol.quantity, p.productName, b.barName, o.orderStatus, o.tableNumber, ol.totalPrice FROM orders o 
                                             JOIN order_list ol ON o.orderListId = ol.orderListId
                                             JOIN customer c ON ol.customerId = c.customerID 
                                             JOIN product p ON ol.productId = p.productId
                                             JOIN bar b ON p.barID = b.barId
-                                            WHERE p.barID = $barId
+                                            WHERE b.barId = $barId
                                             ORDER BY o.ordersId DESC;";
 
                                     $results = mysqli_query($mysqli, $sql);
@@ -249,7 +193,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope='col'>#</th>
-                                                    <th scope='col'>Employee Name</th>
+                                                    <th scope='col'>Customer Name</th>
                                                     <th scope='col'>Product</th>
                                                     <th scope='col'>Quantity</th>
                                                     <th scope='col'>Price</th>
@@ -266,7 +210,7 @@
                                         $orderID = 'orderID' . $count;
                                         echo "<tr>
                                                 <td scope='row'>" . $count . "</td>
-                                                <td>" . $row["employeeFullName"] . "</td>
+                                                <td>" . $row["customerFullName"] . "</td>
                                                 <td>" . $row["productName"] . "</td>                                                
                                                 <td>" . $row["quantity"] . "</td>
                                                 <td>" . $row["totalPrice"] . "</td>

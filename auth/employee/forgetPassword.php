@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <button class="btn btn-primary w-100" type="submit">Reset Password</button>
                                         </div>
                                         <div class="col-6">
-                                            <a href="../../index.php"><button class="btn btn-danger w-100" type="button">Cancle</button></a>
+                                            <a href="../../index.php"><button class="btn btn-danger w-100" type="button">Cancel</button></a>
                                         </div>
                                         <div class="col-12">
                                             <p class="small mb-0">Already have an account? <a href="login.php">Log in</a></p>

@@ -204,4 +204,82 @@
             }
         });
     });
+
+    $(document).ready(function() {
+
+        // mobile mask
+        $('#mobile').mask('0000-000-000');
+
+        // email validation method
+        $.validator.addMethod('email', function(value, element, param) {
+            var nameRegex = /^\S+@\S+\.\S+$/;
+            return value.match(nameRegex);
+        });
+
+        // physical address validation method
+        $.validator.addMethod('st_address', function(value, element, param) {
+            var nameRegex = /^[#.0-9a-zA-Z\s,-]+$/;
+            return value.match(nameRegex);
+        });
+
+        // create new user validation 
+        $("#editUserForm").validate({
+            rules: {
+                fullName: {
+                    required: true
+                },
+                mobile: {
+                    required: true,
+                    minlength: 10
+                },
+                Email: {
+                    required: true,
+                    email: true
+                },
+                gender: {
+                    required: true
+                },
+                dateOfBirth: {
+                    required: true
+                },
+                address: {
+                    required: true,
+                    st_address: true
+                }
+            },
+            messages: {
+                fullName: {
+                    required: "Fullname is required",
+                },
+
+                mobile: {
+                    required: "Mobile is required",
+                    minlength: "Mobile is invalid"
+                },
+                Email: {
+                    required: "Email is required",
+                    email: "Email is invalid"
+                },
+                gender: {
+                    required: "Gender is required"
+                },
+                address: {
+                    required: "Physical address is required",
+                    st_address: "Physical address is invalid"
+                }
+
+            },
+            errorElement: 'span',
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+    });
 </script>

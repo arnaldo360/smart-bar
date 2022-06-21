@@ -150,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </div><!-- End Logo -->
 
                                     <div class="pt-4 pb-2">
-                                        <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
+                                        <h5 class="card-title text-center pb-0 fs-4">Manager Login</h5>
                                         <p class="text-center small">Enter your username & password to login</p>
                                         
                                         <?php if (isset($_GET["redirect"]) && !empty($_GET["redirect"])) : ?>
@@ -177,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">Username</label>
                                             <div class="input-group has-validation">
-                                                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" id="yourUsername" required>
+                                                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your Email" id="yourUsername" required>
                                                 <div class="invalid-feedback">Please enter your username.</div>
                                                 <span class="invalid-feedback"><?php echo $username_err; ?></span>
                                             </div>
@@ -185,7 +185,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" id="yourPassword" required>
+                                            <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your Password" id="yourPassword" required>
                                             <div class="invalid-feedback">Please enter your password!</div>
                                             <span class="invalid-feedback"><?php echo $password_err; ?></span>
                                         </div>
