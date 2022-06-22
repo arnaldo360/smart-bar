@@ -119,7 +119,7 @@
                              <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                                  <!-- Profile Edit Form -->
-                                 <form class="row g-3 needs-validation" action="../backend/editProfileController.php" method="POST" novalidate>
+                                 <form class="row g-3 needs-validation" id="userProfileForm" action="../backend/editProfileController.php" method="POST" novalidate>
 
                                      <div class="row mb-3">
                                          <label for="fullname" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
@@ -195,4 +195,6 @@
 
  <?php include_once("include/footer.php"); ?>
 
+ <?php include_once("../backend/formValidationScript.php"); ?>
+ 
  <?php include_once("include/bodyClosing.php"); ?>

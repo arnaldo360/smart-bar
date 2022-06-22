@@ -10,7 +10,7 @@
     global $barId;
 
     ?>
- <?php include_once('../backend/productDetails.php'); ?>
+ <?php include_once('../backend/orderDetails.php'); ?>
 
  <?php include("include/title.php"); ?>
 
@@ -21,12 +21,12 @@
  <main id="main" class="main">
 
      <div class="pagetitle">
-         <h1>Profile</h1>
+         <h1>Orders</h1>
          <nav>
              <ol class="breadcrumb">
                  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                 <li class="breadcrumb-item">Users</li>
-                 <li class="breadcrumb-item active">Profile</li>
+                 <li class="breadcrumb-item">Orders</li>
+                 <li class="breadcrumb-item active">Display Order</li>
              </ol>
          </nav>
      </div><!-- End Page Title -->
@@ -64,7 +64,7 @@
 
                              <div class="tab-pane fade show active profile-overview" id="profile-overview">
 
-                                 <h5 class="card-title">Product Details</h5>
+                                 <h5 class="card-title">Order Details</h5>
 
                                  <div class="row">
                                      <div class="col-lg-3 col-md-4 label ">Product Name</div>
@@ -72,43 +72,23 @@
                                  </div>
 
                                  <div class="row">
-                                     <div class="col-lg-3 col-md-4 label">Product Type</div>
-                                     <div class="col-lg-9 col-md-8"><?php echo $productType; ?></div>
+                                     <div class="col-lg-3 col-md-4 label">Table Number</div>
+                                     <div class="col-lg-9 col-md-8"><?php echo $tableNumber; ?></div>
                                  </div>
 
                                  <div class="row">
-                                     <div class="col-lg-3 col-md-4 label">Product Category</div>
-                                     <div class="col-lg-9 col-md-8"><?php echo $productCategory; ?></div>
+                                     <div class="col-lg-3 col-md-4 label">Quantity</div>
+                                     <div class="col-lg-9 col-md-8"><?php echo $quantity; ?></div>
                                  </div>
 
                                  <div class="row">
-                                     <div class="col-lg-3 col-md-4 label">Product Description</div>
-                                     <div class="col-lg-9 col-md-8"><?php echo $productDescription; ?></div>
+                                     <div class="col-lg-3 col-md-4 label">Total Price</div>
+                                     <div class="col-lg-9 col-md-8"><?php echo $totalPrice; ?></div>
                                  </div>
 
                                  <div class="row">
-                                     <div class="col-lg-3 col-md-4 label">Product Price</div>
-                                     <div class="col-lg-9 col-md-8"><?php echo $productPrice . "Tzs"; ?></div>
-                                 </div>
-
-                                 <div class="row">
-                                     <div class="col-lg-3 col-md-4 label">Product Quantity</div>
-                                     <div class="col-lg-9 col-md-8"><?php echo $productQuantity; ?></div>
-                                 </div>
-
-                                 <div class="row">
-                                     <div class="col-lg-3 col-md-4 label">Product Volume</div>
-                                     <div class="col-lg-9 col-md-8"><?php echo $productVolume . " " . $productUnit; ?></div>
-                                 </div>
-
-                                 <div class="row">
-                                     <div class="col-lg-3 col-md-4 label">Product Alcohol Percentage</div>
-                                     <div class="col-lg-9 col-md-8"><?php echo $alcoholPercentage . "%"; ?></div>
-                                 </div>
-
-                                 <div class="row">
-                                     <div class="col-lg-3 col-md-4 label">Product Status</div>
-                                     <div class="col-lg-9 col-md-8"><?php echo $productStatus; ?></div>
+                                     <div class="col-lg-3 col-md-4 label">Order Status</div>
+                                     <div class="col-lg-9 col-md-8"><?php echo $orderStatus; ?></div>
                                  </div>
 
                                  <div class="row">
@@ -116,7 +96,7 @@
                                      <div class="col-lg-9 col-md-8"><?php echo $createdAt; ?></div>
                                  </div>
 
-                                 <a href='viewProduct.php' style='align-items: right;'>
+                                 <a href='viewOrders.php' style='align-items: right;'>
                                      <div class='alert alert-danger alert-dismissible fade show' role='alert'>Close
                                          <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                      </div>

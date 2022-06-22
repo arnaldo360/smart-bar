@@ -3,7 +3,7 @@
 // require once database connection file
 require_once("../../../database/dbConnect.php");
 
-if (isset($_GET["id"]) && !empty($_GET["id"]) && ($_SERVER["REQUEST_METHOD"] == "POST")) {
+if (isset($_GET["id"]) && !empty($_GET["id"])) {
 
     // declare form field variables and initialize null
     $managerId = $_GET["id"];
@@ -18,7 +18,7 @@ if (isset($_GET["id"]) && !empty($_GET["id"]) && ($_SERVER["REQUEST_METHOD"] == 
 
         // set parameter
         $param_managerId              = $managerId;
-        $param_managertatus          = "ACTIVE";
+        $param_managerStatus          = "ACTIVE";
 
         if ($statement->execute()) {
 

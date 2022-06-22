@@ -153,7 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">Username</label>
                                             <div class="input-group has-validation">
-                                                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" id="yourUsername" required>
+                                                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your Email" id="yourUsername" required>
                                                 <div class="invalid-feedback">Please enter your username.</div>
                                                 <span class="invalid-feedback"><?php echo $username_err; ?></span>
                                             </div>
@@ -161,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" id="yourPassword" required>
+                                            <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" placeholder="Enter your Password" id="yourPassword" required>
                                             <div class="invalid-feedback">Please enter your password!</div>
                                             <span class="invalid-feedback"><?php echo $password_err; ?></span>
                                         </div>

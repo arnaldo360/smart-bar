@@ -44,47 +44,54 @@
                          <h5 class="card-title">Create Bar</h5>
 
                          <!-- Floating Labels Form -->
-                         <form class="row g-3 needs-validation" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data" novalidate>
+                         <form class="row g-3 needs-validation" id="createBarForm" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" enctype="multipart/form-data" novalidate>
                              <div class="col-md-6">
                                  <div class="form-floating">
-                                     <input type="text" class="form-control" id="floatingName" placeholder="Bar Name" name="barName" required>
+                                     <input type="text" class="form-control <?php echo (!empty($barName_err)) ? 'is-invalid' : ''; ?>" placeholder="Bar Name" id="barName" name="barName" required>
                                      <label for="floatingName">Bar Name</label>
+                                     <span class="invalid-feedback"><?php echo $barName_err; ?></span>
                                  </div>
                              </div>
                              <div class="col-md-6">
                                  <div class="form-floating">
-                                     <input type="text" class="form-control" id="floatingNum" placeholder="Brella Number" name="brellaNum" required>
+                                     <input type="text" class="form-control <?php echo (!empty($brellaNum_err)) ? 'is-invalid' : ''; ?>" placeholder="Brella Number" id="brellaNum" name="brellaNum" required>
                                      <label for="floatingNum">Brella Number</label>
+                                     <span class="invalid-feedback"><?php echo $brellaNum_err; ?></span>
                                  </div>
                              </div>
                              <div class="col-md-4">
                                  <div class="form-floating">
-                                     <input type="text" class="form-control" id="floatingName" placeholder="Bar Owner Fullname" name="barOwner" required>
+                                     <input type="text" class="form-control <?php echo (!empty($barOwner_err)) ? 'is-invalid' : ''; ?>" placeholder="Bar Owner Fullname" id="barOwner" name="barOwner" required>
                                      <label for="floatingName">Bar Owner</label>
+                                     <span class="invalid-feedback"><?php echo $barOwner_err; ?></span>
                                  </div>
                              </div>
                              <div class="col-md-4">
                                  <div class="form-floating">
-                                     <input type="email" class="form-control" id="floatingEmail" placeholder="Bar Email" name="barEmail" required>
+                                     <input type="email" class="form-control <?php echo (!empty($barEmail_err)) ? 'is-invalid' : ''; ?>" placeholder="Bar Email" id="barEmail" name="barEmail" required>
                                      <label for="floatingEmail">Bar Email</label>
+                                     <span class="invalid-feedback"><?php echo $barEmail_err; ?></span>
                                  </div>
                              </div>
                              <div class="col-md-4">
                                  <div class="form-floating">
-                                     <input type="text" class="form-control" id="floatingMobile" placeholder="Bar Contact" name="barContact" required>
+                                     <input type="text" class="form-control <?php echo (!empty($barContact_err)) ? 'is-invalid' : ''; ?>" placeholder="Bar Contact" id="barContact" name="barContact" required>
                                      <label for="floatingMobile">Bar Mobile</label>
+                                     <span class="invalid-feedback"><?php echo $barContact_err; ?></span>
                                  </div>
                              </div>
                              <div class="col-md-6">
                                  <div class="form-floating">
-                                     <input type="number" class="form-control" id="floatingNum" placeholder="Number of Employees" name="num_employees" required>
+                                     <input type="number" class="form-control <?php echo (!empty($num_employees_err)) ? 'is-invalid' : ''; ?>" placeholder="Number of Employees" id="num_employees" name="num_employees" required>
                                      <label for="floatingNum">Number of Employees</label>
+                                     <span class="invalid-feedback"><?php echo $num_employees_err; ?></span>
                                  </div>
                              </div>
                              <div class="col-md-6">
                                  <div class="form-floating">
-                                     <input type="text" class="form-control" id="floatingAdd" placeholder="Physical Address" name="address" required>
+                                     <input type="text" class="form-control <?php echo (!empty($barAddress_err)) ? 'is-invalid' : ''; ?>" placeholder="Physical Address" id="address" name="address" required>
                                      <label for="floatingAdd">Physical Address</label>
+                                     <span class="invalid-feedback"><?php echo $barAddress_err; ?></span>
                                  </div>
                              </div>
 
@@ -106,44 +113,6 @@
 
  <?php include_once("include/footer.php"); ?>
 
- <script type="text/javascript">
-     $(document).ready(function() {
-
-         $('#region-dropdown').on('change', function() {
-             var region_id = this.value;
-
-             $.ajax({
-                 url: "../backend/retriveTanzania.php",
-                 type: "POST",
-                 data: {
-                     region_id: region_id
-                 },
-                 cache: false,
-                 success: function(result) {
-                     $("#district-dropdown").html(result);
-                 }
-             });
-         });
-     });
-
-     $(document).ready(function() {
-         $('#district-dropdown').on('change', function() {
-             var district_id = this.value;
-
-             $.ajax({
-                 url: "../backend/retriveTanzania.php",
-                 type: "POST",
-                 data: {
-                     district_id: district_id
-                 },
-                 cache: false,
-                 success: function(result) {
-                     $("#ward-dropdown").html(result);
-                 }
-             });
-         });
-     });
- </script>
- 
  <?php include_once("../backend/formValidationScript.php"); ?>
+
  <?php include_once("include/bodyClosing.php"); ?>

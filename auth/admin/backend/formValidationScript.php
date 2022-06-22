@@ -5,30 +5,17 @@
 <script>
     $(document).ready(function() {
 
-        //bar name validation method
-        // $.validator.addMethod('name_validation', function(value, element, param) {
-        //     var nameRegex = /^[a-zA-Z\s,-]+$/;
-        //     return value.match(nameRegex);
-        // });
+        //mobile mask method
+        $('#barContact').mask('0000-000-000');
 
-        //brellaNum validation method
-        $('#mobile').mask('0000000');
+        //brella mask method
+        $('#brellaNum').mask('000-000');
 
-        // bar ownwer vaidation
-        // $.validator.addMethod('name_validation', function(value, element, param) {
-        //     var nameRegex = /^[a-zA-Z\s,-]+$/;
-        //     return value.match(nameRegex);
-        // });
-
-
-        // bar email validation method
+        // email validation method
         $.validator.addMethod('email', function(value, element, param) {
             var nameRegex = /^\S+@\S+\.\S+$/;
             return value.match(nameRegex);
         });
-
-        // bar cntactact
-        $('#mobile').mask('0000-000-000');
 
         // physical address validation method
         $.validator.addMethod('st_address', function(value, element, param) {
@@ -45,14 +32,104 @@
                 },
                 brellaNum: {
                     required: true,
-                    minlength: 7
+                    minlength: 6
                 },
                 barOwner: {
                     required: true,
                     email: true
                 },
                 barEmail: {
+                    required: true,
+                    email: true
+                },
+                barContact: {
                     required: true
+                },
+                address: {
+                    required: true,
+                    st_address: true
+                },
+                num_employees: {
+                    required: true,
+                }
+            },
+            messages: {
+                barName: {
+                    required: "Bar Name is required",
+                },
+
+                brellaNum: {
+                    required: "Brella number is required",
+                    minlength: "Brella number is invalid"
+                },
+                barOwner: {
+                    required: "Bar owner Name is required",
+                },
+                barEmail: {
+                    required: "Bar email is required",
+                    email: "Bar email is invalid"
+                },
+                barContact: {
+                    required: "Bar contact is required"
+                },
+                address: {
+                    required: "Physical address is required",
+                    st_address: "Physical address is invalid"
+                }
+
+            },
+            errorElement: 'span',
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+    });
+
+    $(document).ready(function() {
+
+        //mobile mask method
+        $('#barContact').mask('0000-000-000');
+
+        //brella mask method
+        $('#brellaNum').mask('000-000');
+
+        // email validation method
+        $.validator.addMethod('email', function(value, element, param) {
+            var nameRegex = /^\S+@\S+\.\S+$/;
+            return value.match(nameRegex);
+        });
+
+        // physical address validation method
+        $.validator.addMethod('st_address', function(value, element, param) {
+            var nameRegex = /^[#.0-9a-zA-Z\s,-]+$/;
+            return value.match(nameRegex);
+        });
+
+        // create new bar validation 
+        $("#editBarForm").validate({
+            rules: {
+                barName: {
+                    required: true,
+                    name_validation: true
+                },
+                brellaNum: {
+                    required: true,
+                    minlength: 6
+                },
+                barOwner: {
+                    required: true,
+                    email: true
+                },
+                barEmail: {
+                    required: true,
+                    email: true
                 },
                 barContact: {
                     required: true
@@ -107,13 +184,7 @@
     $(document).ready(function() {
 
         // mobile mask
-        $('#mobile').mask('0000-000-000');
-
-        // name validation method
-        // $.validator.addMethod('name_validation', function(value, element, param) {
-        //     var nameRegex = /^[a-zA-Z]+$/;
-        //     return value.match(nameRegex);
-        // });
+        $('#contact').mask('0000-000-000');
 
         // email validation method
         $.validator.addMethod('email', function(value, element, param) {
@@ -121,63 +192,51 @@
             return value.match(nameRegex);
         });
 
-        // physical address validation method
-        $.validator.addMethod('st_address', function(value, element, param) {
-            var nameRegex = /^[#.0-9a-zA-Z\s,-]+$/;
-            return value.match(nameRegex);
-        });
-
-        // create edit employee validation 
-        $("#editEmployeeForm").validate({
+        // create Employee validation 
+        $("#createEmployeeForm").validate({
             rules: {
                 fullname: {
-                    required: true,
-                    name_validation: true
+                    required: true
                 },
                 contact: {
                     required: true,
                     minlength: 10
                 },
-                username: {
+                email: {
                     required: true,
                     email: true
                 },
-                title: {
+                password: {
                     required: true
                 },
-                dateOfBirth: {
+                confirmPassword: {
                     required: true
                 },
-                address: {
-                    required: true,
-                    st_address: true
-                },
-                gender: {
-                    required: true,
+                barId: {
+                    required: true
                 }
             },
             messages: {
                 fullname: {
-                    required: "Employee fullname is required",
+                    required: "fullname is required",
                 },
 
                 contact: {
-                    required: "Employee mobile is required",
-                    minlength: "Employee mobile is invalid"
+                    required: "mobile is required",
+                    minlength: "mobile is invalid"
                 },
-                username: {
-                    required: "Employee email is required",
-                    email: "Employee email is invalid"
+                email: {
+                    required: "email is required",
+                    email: "email is invalid"
                 },
-                gender: {
-                    required: "Employee gender is required"
+                password: {
+                    required: "password is required"
                 },
-                title: {
-                    required: "Employee title is required"
+                confirmPassword: {
+                    required: "confirm password is required"
                 },
-                address: {
-                    required: "Physical address is required",
-                    st_address: "Physical address is invalid"
+                barId: {
+                    required: "barId is required"
                 }
 
             },
@@ -195,23 +254,132 @@
         });
     });
 
-    // password validation method
-    // $.validator.addMethod('password', function(value, element, param) {
-    //     var nameRegex = /^[#.0-9a-zA-Z\s,-]+$/;
-    //     return value.match(nameRegex);
-    // });
 
-    // confirm password validation method
-    // $.validator.addMethod('confirmpassword', function(value, element, param) {
-    //     var nameRegex = /^[#.0-9a-zA-Z\s,-]+$/;
-    //     return value.match(nameRegex);
-    // });
+    $(document).ready(function() {
 
-    //fuction to match password and confirm password
-    // $('#password, #confirmpassword').on('keyup', function() {
-    //   if ($('#password').val() == $('#confirmpassword').val()) {
-    //     $('#invalid-feedback').innerhtml('Matching').css('color', 'green');
-    //} else
-    //  $('#invalid-feedback').innerhtml('Not Matching').css('color', 'red');
-    //});
+        // mobile mask
+        $('#contact').mask('0000-000-000');
+
+        // email validation method
+        $.validator.addMethod('email', function(value, element, param) {
+            var nameRegex = /^\S+@\S+\.\S+$/;
+            return value.match(nameRegex);
+        });
+
+        // create manager validation 
+        $("#createManagerForm").validate({
+            rules: {
+                fullname: {
+                    required: true
+                },
+                contact: {
+                    required: true,
+                    minlength: 10
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required: true
+                },
+                confirmPassword: {
+                    required: true
+                },
+                barId: {
+                    required: true
+                }
+            },
+            messages: {
+                fullname: {
+                    required: "fullname is required",
+                },
+
+                contact: {
+                    required: "mobile is required",
+                    minlength: "mobile is invalid"
+                },
+                email: {
+                    required: "email is required",
+                    email: "email is invalid"
+                },
+                password: {
+                    required: "password is required"
+                },
+                confirmPassword: {
+                    required: "confirm password is required"
+                },
+                barId: {
+                    required: "barId is required"
+                }
+
+            },
+            errorElement: 'span',
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+    });
+
+    $(document).ready(function() {
+
+        // mobile mask
+        $('#Phone').mask('0000-000-000');
+
+        // email validation method
+        $.validator.addMethod('email', function(value, element, param) {
+            var nameRegex = /^\S+@\S+\.\S+$/;
+            return value.match(nameRegex);
+        });
+
+        // create userProfile validation 
+        $("#userProfileForm").validate({
+            rules: {
+                fullName: {
+                    required: true
+                },
+                Phone: {
+                    required: true,
+                    minlength: 10
+                },
+                Email: {
+                    required: true,
+                    email: true
+                }
+            },
+            messages: {
+                fullName: {
+                    required: "fullname is required",
+                },
+
+                Phone: {
+                    required: "mobile is required",
+                    minlength: "mobile is invalid"
+                },
+                Email: {
+                    required: "email is required",
+                    email: "email is invalid"
+                }
+
+            },
+            errorElement: 'span',
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+    });
 </script>

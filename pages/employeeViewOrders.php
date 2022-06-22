@@ -6,7 +6,7 @@
 
     global $role;
     global $username;
-    global $user_id;
+    global $userId;
     global $barId;
 
     ?>
@@ -34,15 +34,23 @@
          <div class="col-12">
 
              <?php if (isset($_GET["redirect"]) && !empty($_GET["redirect"])) : ?>
-                 <?php if ($_GET["redirect"] == "success") : ?>
-                     <div class="alert alert-info alert-dismissible fade show" role="alert">
-                         <i class="bi bi-check-circle me-1"></i>
-                         Order Added succesfully!
+                 <?php if ($_GET["redirect"] == "order_attended") : ?>
+                     <div class="alert alert-success alert-dismissible fade show" role="alert">
+                         <i class="fas fa-check"></i><span class="ml-2">Order has been attended</span>
                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                      </div>
                  <?php endif; ?>
              <?php endif; ?>
-             
+
+             <?php if (isset($_GET["redirect"]) && !empty($_GET["redirect"])) : ?>
+                 <?php if ($_GET["redirect"] == "order_paid") : ?>
+                     <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                         <i class="fas fa-check"></i><span class="ml-2">Order has been paid</span>
+                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                     </div>
+                 <?php endif; ?>
+             <?php endif; ?>
+
              <div class="card recent-sales overflow-auto">
 
                  <div class="card-body">
@@ -51,12 +59,13 @@
                      <?php
                         require_once("../database/dbConnect.php");
 
-                        $sql = "SELECT o.orderId, c.customerFullName, p.productName, b.barName, o.orderStatus, o.tableNumber, o.orderAmount FROM order_table o 
-                                            JOIN employee e ON o.employeeId = e.employeeID 
-                                            JOIN customer c ON o.customerId = c.customerID 
-                                            JOIN product p ON o.productId = p.productId
+                        $sql = "SELECT c.customerFullName, o.ordersId, ol.quantity, p.productName, b.barName, o.orderStatus, o.tableNumber, ol.totalPrice FROM orders o 
+                                            JOIN order_list ol ON o.orderListId = ol.orderListId
+                                            JOIN customer c ON ol.customerId = c.customerID 
+                                            JOIN product p ON ol.productId = p.productId
                                             JOIN bar b ON p.barID = b.barId
-                                            ORDER BY o.orderId DESC;";
+                                            WHERE b.barId = $barId AND ol.customerId = $userId
+                                            ORDER BY o.ordersId DESC;";
 
                         $results = mysqli_query($mysqli, $sql);
 
@@ -64,9 +73,9 @@
                                             <thead>
                                                 <tr>
                                                     <th scope='col'>#</th>
-                                                    <th scope='col'>Bar Name</th>
-                                                    <th scope='col'>Customer</th>
+                                                    <th scope='col'>Customer Name</th>
                                                     <th scope='col'>Product</th>
+                                                    <th scope='col'>Quantity</th>
                                                     <th scope='col'>Price</th>
                                                     <th scope='col'>Table#</th>
                                                     <th scope='col'>Status</th>
@@ -81,10 +90,10 @@
                             $orderID = 'orderID' . $count;
                             echo "<tr>
                                                 <td scope='row'>" . $count . "</td>
-                                                <td>" . $row["barName"] . "</td>
                                                 <td>" . $row["customerFullName"] . "</td>
                                                 <td>" . $row["productName"] . "</td>
-                                                <td>" . $row["orderAmount"] . "</td>
+                                                <td>" . $row["quantity"] . "</td>
+                                                <td>" . $row["totalPrice"] . "</td>
                                                 <td>" . $row["tableNumber"] . "</td>
                                                 <td>";
                             if ($row["orderStatus"] == 'ATTENDED') {
@@ -96,16 +105,15 @@
                             }
 
                             echo "</td>
-                                                <td>
-                                                    <a href='displayOrder.php?id=" . $row["orderId"] . "'><button type='button' class='btn btn-info' id='$count'><i class='bi bi-eye'></i></button></a>
-                                                    <a href='editOrder.php?id=" . $row["orderId"] . "'><button type='button' class='btn btn-success' id='$count'><i class='bi bi-pencil'></i></button></a>
-                                                    <a href='deleteOrder.php?id=" . $row["orderId"] . "'><button type='button' class='btn btn-danger' id='modalDelete.$count.'><i class='bi bi-trash'></i></button></a>
-                                                </td>
-                                                </tr>";
+                                <td>
+                                    <a href='../backend/approveOrderController.php?id=" . $row["ordersId"] . "'><button type='button' class='btn btn-success' id='$count'><i class='bi bi-check'></i></button></a>
+                                    <a href='../backend/paidOrderController.php?id=" . $row["ordersId"] . "'><button type='button' class='btn btn-primary' id='$count'><i class='bi bi-wallet2'></i></button></a>
+                                </td>
+                                </tr>";
                             $count = $count + 1;
                         }
                         echo " </tbody>
-                                    </table>";
+                            </table>";
 
                         ?>
 

@@ -28,10 +28,10 @@
          <div class="row">
              <div class="col-lg-12">
 
-                 <div class="alert alert-success alert-dismissible fade show">
+                 <div class="alert alert-primary alert-dismissible fade show">
                      <form action="../backend/activateManagerController.php?id=<?php echo $_GET["id"]; ?>" method="POST">
                          <h4 class="alert-heading">Activate Manager</h4>
-                         <p>Activate this record? </p>
+                         <p>Activate the Bar Manger? </p>
                          <hr>
                          <div class="text-center">
                              <button type="submit" class="btn btn-success">Yes</button>

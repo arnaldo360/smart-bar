@@ -68,11 +68,7 @@
                 <i class="bi bi-minecart-loaded"></i><span>Orders</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="orders-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="createOrder.php">
-                        <i class="bi bi-plus"></i><span>Create Order</span>
-                    </a>
-                </li>
+                
                 <li>
                     <a href="viewOrder.php">
                         <i class="bi bi-view-list"></i><span>View Order</span>

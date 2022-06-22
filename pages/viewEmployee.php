@@ -59,7 +59,6 @@
                          <thead>
                              <tr>
                                  <th scope='col'>#</th>
-                                 <th scope='col'>Bar Name</th>
                                  <th scope='col'>Employee Name</th>
                                  <th scope='col'>Title</th>
                                  <th scope='col'>Email</th>
@@ -75,7 +74,6 @@
                             $employeeID = 'employeeID' . $count;
                             echo "<tr>
                                 <td scope='row'>" . $count . "</td>
-                                 <th>" . $row["barName"] . "</th>
                                  <td>" . $row["employeeFullName"] . "</td>
                                  <td>" . $row["employeeTitle"] . "</td>
                                  <td>" . $row["employeeEmail"] . "</td>

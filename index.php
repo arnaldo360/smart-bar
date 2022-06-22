@@ -64,6 +64,7 @@
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
           <li class="dropdown"><a href="#"><span>Staff</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="auth/employee/login.php">Employee</a></li>
@@ -114,19 +115,19 @@
             </div>
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-            <h3>our system is here to enable you to have a counter and a kitchen of a specific bar on a palm of your hand. </h3>
+            <h3>our system is here to enable you to have a counter of a specific bar on a palm of your hand. </h3>
             <p class="fst-italic">
-              Smart-Bar will enable you to choose a bar of your desire, make order and pay online.
+              Smart-Bar will enable you to choose a bar of your desire, make order and wait for service.
             </p>
             <ul>
-              <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+              <li><i class="bi bi-check-circle"></i> “There comes a time in every woman's life when the only thing that helps is a glass of champagne.” </li>
+              <li><i class="bi bi-check-circle"></i> “In a study, scientists report that drinking beer can be good for the liver. I’m sorry, did I say ‘scientists’? I meant Irish people.”</li>
+              <li><i class="bi bi-check-circle"></i> “Happiness is having a rare steak, a bottle of whisky and a dog to eat the rare steak.”</li>
             </ul>
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
+              Never lie, steal, cheat or drink. But if you must lie, lie in the arms of the one you love. 
+              If you must steal, steal away from bad company. If you must cheat, cheat death. 
+              And if you must drink, drink in the moments that take your breath away.
             </p>
           </div>
         </div>
@@ -164,8 +165,8 @@
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="box" data-aos="zoom-in" data-aos-delay="300">
               <span>03</span>
-              <h4> Ad ad velit qui</h4>
-              <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
+              <h4>Drink with friends</h4>
+              <p>Tell a friend and a friend will tell a friend</p>
             </div>
           </div>
 
@@ -174,60 +175,89 @@
       </div>
     </section><!-- End Why Us Section -->
 
-    <!-- ======= Reservation Section ======= -->
-    <section id="book-a-table" class="book-a-table">
-      <div class="container" data-aos="fade-up">
+    <!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery">
 
+      <div class="container" data-aos="fade-up">
         <div class="section-title">
-          <h2>Reservation</h2>
-          <p>Make Reservation</p>
+          <h2>Gallery</h2>
+          <p>Some photos from Our Bars</p>
+        </div>
+      </div>
+
+      <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row g-0">
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="assets/img/gallery/img1.jpg" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="assets/img/gallery/img1.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="assets/img/gallery/img2.jpg" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="assets/img/gallery/img2.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="assets/img/gallery/img3.jpg" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="assets/img/gallery/img3.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="assets/img/gallery/img4.jpg" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="assets/img/gallery/img4.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="assets/img/gallery/img9.jpg" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="assets/img/gallery/img9.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="assets/img/gallery/img6.jpg" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="assets/img/gallery/img6.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="assets/img/gallery/img10.jpg" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="assets/img/gallery/img10.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="assets/img/gallery/img8.jpg" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="assets/img/gallery/img8.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
         </div>
 
-        <form action="#" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
-          <div class="row">
-            <div class="col-lg-4 col-md-6 form-group">
-              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
-              <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="date" name="date" class="form-control" id="date" placeholder="Reservation Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="time" class="form-control" name="time" id="time" placeholder="Reservation Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="number" class="form-control" name="people" id="people" placeholder="# of people" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="text" class="form-control" name="barId" id="barId" placeholder="Select bar" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
-              <div class="validate"></div>
-            </div>
-            <div class="col-lg-4 col-md-6 form-group mt-3">
-              <input type="text" class="form-control" name="event" id="event" placeholder="Choose event" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
-              <div class="validate"></div>
-            </div>
-          </div>
-          <div class="mb-3">
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
-          </div>
-          <div class="text-center"><button type="submit">Book Now</button></div>
-        </form>
-
       </div>
-    </section><!-- End Book A Table Section -->
+    </section><!-- End Gallery Section -->
+
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">

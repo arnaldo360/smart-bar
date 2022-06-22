@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2022 at 11:27 PM
+-- Generation Time: Jun 22, 2022 at 12:08 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -122,18 +122,33 @@ CREATE TABLE `manager` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_table`
+-- Table structure for table `orders`
 --
 
-CREATE TABLE `order_table` (
-  `orderId` int(11) NOT NULL,
-  `employeeId` int(11) DEFAULT NULL,
-  `customerId` int(11) DEFAULT NULL,
+CREATE TABLE `orders` (
+  `ordersId` int(11) NOT NULL,
+  `orderListId` int(11) DEFAULT NULL,
   `tableNumber` int(11) DEFAULT NULL,
-  `orderAmount` int(11) DEFAULT NULL,
-  `productId` int(11) DEFAULT NULL,
   `orderStatus` varchar(45) DEFAULT 'PENDING',
-  `createdAt` datetime DEFAULT NULL
+  `employeeId` int(11) DEFAULT NULL,
+  `createdAt` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_list`
+--
+
+CREATE TABLE `order_list` (
+  `orderListId` int(11) NOT NULL,
+  `customerId` int(11) DEFAULT NULL,
+  `productId` int(11) DEFAULT NULL,
+  `quantity` varchar(45) DEFAULT NULL,
+  `totalPrice` varchar(45) DEFAULT NULL,
+  `productImage` varchar(45) DEFAULT NULL,
+  `orderListStatus` varchar(45) DEFAULT 'PENDING',
+  `createdAt` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -220,13 +235,20 @@ ALTER TABLE `manager`
   ADD KEY `managerBar` (`managerBar`);
 
 --
--- Indexes for table `order_table`
+-- Indexes for table `orders`
 --
-ALTER TABLE `order_table`
-  ADD PRIMARY KEY (`orderId`),
-  ADD KEY `EmpId` (`employeeId`),
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`ordersId`),
+  ADD KEY `orderListId` (`orderListId`),
+  ADD KEY `employeeId` (`employeeId`);
+
+--
+-- Indexes for table `order_list`
+--
+ALTER TABLE `order_list`
+  ADD PRIMARY KEY (`orderListId`),
   ADD KEY `customerId` (`customerId`),
-  ADD KEY `ProductId` (`productId`);
+  ADD KEY `productId` (`productId`);
 
 --
 -- Indexes for table `product`
@@ -276,10 +298,16 @@ ALTER TABLE `manager`
   MODIFY `managerId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `order_table`
+-- AUTO_INCREMENT for table `orders`
 --
-ALTER TABLE `order_table`
-  MODIFY `orderId` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `orders`
+  MODIFY `ordersId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `order_list`
+--
+ALTER TABLE `order_list`
+  MODIFY `orderListId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -316,12 +344,17 @@ ALTER TABLE `manager`
   ADD CONSTRAINT `manager_ibfk_1` FOREIGN KEY (`managerBar`) REFERENCES `bar` (`barId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `order_table`
+-- Constraints for table `orders`
 --
-ALTER TABLE `order_table`
-  ADD CONSTRAINT `order_table_ibfk_1` FOREIGN KEY (`customerId`) REFERENCES `customer` (`customerID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `order_table_ibfk_2` FOREIGN KEY (`employeeId`) REFERENCES `employee` (`employeeID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `order_table_ibfk_3` FOREIGN KEY (`productId`) REFERENCES `product` (`productId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`orderListId`) REFERENCES `order_list` (`orderListId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `order_list`
+--
+ALTER TABLE `order_list`
+  ADD CONSTRAINT `order_list_ibfk_1` FOREIGN KEY (`customerId`) REFERENCES `customer` (`customerID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `order_list_ibfk_2` FOREIGN KEY (`productId`) REFERENCES `product` (`productId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `product`
