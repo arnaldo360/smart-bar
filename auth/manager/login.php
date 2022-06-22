@@ -2,6 +2,7 @@
 // Initialize the session
 session_start();
 
+
 // Include database Connection file
 require_once "../../database/dbConnect.php";
 
