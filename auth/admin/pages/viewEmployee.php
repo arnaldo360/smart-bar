@@ -40,7 +40,7 @@
              <?php endif; ?>
              <div class="card recent-sales overflow-auto">
 
-                 <div class="card-body">
+                 <div class="card-body table-responsive">
 
                      <h5 class="card-title">View Bar Employees</h5>
 

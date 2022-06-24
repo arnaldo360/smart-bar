@@ -45,7 +45,7 @@
 
              <div class="card recent-sales overflow-auto">
 
-                 <div class="card-body">
+                 <div class="card-body table-responsive" style="overflow-x:auto;">
                      <h5 class="card-title">View Product</h5>
 
                      <?php

@@ -44,7 +44,7 @@
              <?php endif; ?>
              <div class="card recent-sales overflow-auto">
 
-                 <div class="card-body">
+                 <div class="card-body table-responsive">
 
                      <h5 class="card-title">View Bar Employes</h5>
 
@@ -182,8 +182,8 @@
                                      <h5 class="modal-title">Employee Delete</h5>
                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                  </div> -->
-                                 <!-- modal Body -->
-                                 <!-- <div class="modal-body">
+                     <!-- modal Body -->
+                     <!-- <div class="modal-body">
 
                                      <div class="alert alert-danger alert-dismissible fade show">
                                          <h4 class="alert-heading">Delete Employee</h4>
@@ -196,8 +196,8 @@
                                      </div>
 
                                  </div> -->
-                                 <!-- Closing modal -->
-                                 <!-- <div class="modal-footer">
+                     <!-- Closing modal -->
+                     <!-- <div class="modal-footer">
                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                  </div>
                              </div>
@@ -277,7 +277,7 @@
          });
      });
  </script> -->
-<!-- 
+ <!-- 
  <script type="text/javascript">
      $(document).ready(function() {
          $('#delete_user').click(function() {
