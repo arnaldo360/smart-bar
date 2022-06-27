@@ -125,7 +125,7 @@
 
                                      <div class="text-center">
                                          <button type="submit" name="saveChanges" class="btn btn-primary">Save Changes</button>
-                                         <a href="viewcustomer.php"><button type="button" class="btn btn-danger">Cancle</button></a>
+                                         <a href="viewcustomer.php"><button type="button" class="btn btn-danger">Cancel</button></a>
                                      </div>
                                  </form><!-- End Profile Edit Form -->
 

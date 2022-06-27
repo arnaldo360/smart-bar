@@ -107,8 +107,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="../../assets/img/smartlogo.jpg" rel="icon">
-    <link href="../../assets/img/smartlogo.jpg" rel="apple-touch-icon">
+    <link href="../../assets/img/favicon.png" rel="icon">
+    <link href="../../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -143,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div class="card-body">
                                     <div class="d-flex justify-content-center py-4">
                                         <a href="../../index.php" class="logo d-flex align-items-center w-auto">
-                                            <img src="../../assets/img/logo (2).png" alt="">
+                                            <img src="../../assets/img/logo.png" alt="">
                                         </a>
                                     </div><!-- End Logo -->
 

@@ -147,7 +147,7 @@
 
                                      <div class="text-center">
                                          <button type="submit" class="btn btn-primary">Save Changes</button>
-                                         <a href="userProfile.php"><button type="button" class="btn btn-danger">Cancle</button></a>
+                                         <a href="userProfile.php"><button type="button" class="btn btn-danger">Cancel</button></a>
                                      </div>
                                  </form><!-- End Profile Edit Form -->
 
@@ -175,7 +175,7 @@
 
                                      <div class="text-center">
                                          <button type="submit" class="btn btn-primary">Change Password</button>
-                                         <a href="userProfile.php"><button type="button" class="btn btn-danger">Cancle</button></a>
+                                         <a href="userProfile.php"><button type="button" class="btn btn-danger">Cancel</button></a>
                                      </div>
                                  </form><!-- End Change Password Form -->
 

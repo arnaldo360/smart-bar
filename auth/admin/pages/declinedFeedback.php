@@ -34,7 +34,7 @@
                          <hr>
                          <div class="text-center">
                              <button type="submit" class="btn btn-danger">Decline</button>
-                             <a href="feedback.php"><button type="button" class="btn btn-secondary">Cancle</button></a>
+                             <a href="feedback.php"><button type="button" class="btn btn-secondary">Cancel</button></a>
 
                          </div>
                      </form>

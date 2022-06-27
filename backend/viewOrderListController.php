@@ -5,7 +5,7 @@ require_once "../database/dbConnect.php";
 
   // fetch items in orderList
   $orderListSql = "SELECT * FROM order_list INNER JOIN customer ON order_list.customerId = customer.customerID
-  INNER JOIN product ON order_List.productId = product.productId WHERE order_list.customerId = ? AND order_list.orderListStatus = ?";
+  INNER JOIN product ON order_list.productId = product.productId WHERE order_list.customerId = ? AND order_list.orderListStatus = ?";
 
   if ($stmt = $mysqli->prepare($orderListSql)) {
     // bind variable
